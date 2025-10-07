@@ -8,10 +8,13 @@ public enum Rarity
 public class Card
 {
     protected Rarity rarity;
+    protected string name;
 
     public Rarity Rarity { get { return rarity; } }
+    public string Name { get { return name; } }
 
-    public Card(Rarity rarity) {
+    public Card(Rarity rarity, string name) {
         this.rarity = rarity;
+        this.name = name;
     }
 }

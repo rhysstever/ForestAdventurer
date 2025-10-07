@@ -17,7 +17,7 @@ public class CardManager : MonoBehaviour
 {
     public static CardManager instance = null;
 
-    private List<Card> mainHands, offHands, allies, spirits, spells, drinks;
+    private List<Card> mainHandCards, offHandCards, allyCards, spiritCards, spellCards, drinkCards;
 
     private Dictionary<Rarity, float> rarityPercentages;
 
@@ -27,17 +27,24 @@ public class CardManager : MonoBehaviour
         } else if(instance != this) {
             Destroy(gameObject);
         }
+
+        mainHandCards = new List<Card>();
+        offHandCards = new List<Card>();
+        allyCards = new List<Card>();
+        spiritCards = new List<Card>();
+        spellCards = new List<Card>();
+        drinkCards = new List<Card>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        MainHandCreation();
-        OffHandCreation();
-        AllyCreation();
-        SpiritCreation();
-        SpellCreation();
-        DrinkCreation();
+        mainHandCards = MainHandCreation();
+        offHandCards = OffHandCreation();
+        allyCards = AllyCreation();
+        spiritCards = SpiritCreation();
+        spellCards = SpellCreation();
+        drinkCards = DrinkCreation();
 
         rarityPercentages = new Dictionary<Rarity, float>();
         rarityPercentages.Add(Rarity.Common, 0.75f);
@@ -45,65 +52,73 @@ public class CardManager : MonoBehaviour
     }
 
     #region Creation Methods
-    private void MainHandCreation() {
-        mainHands = new List<Card>();
-        mainHands.Add(new MainHand(Rarity.Starter, "Shortsword", 1));
-        mainHands.Add(new MainHand(Rarity.Common, "Wand", 1));
-        mainHands.Add(new MainHand(Rarity.Common, "Longsword", 2));
-        mainHands.Add(new MainHand(Rarity.Common, "Staff", 2));
+    private List<Card> MainHandCreation() {
+        List<Card> cards = new List<Card>();
+        cards.Add(new MainHand(Rarity.Starter, "Shortsword", 1));
+        cards.Add(new MainHand(Rarity.Common, "Wand", 1));
+        cards.Add(new MainHand(Rarity.Common, "Longsword", 2));
+        cards.Add(new MainHand(Rarity.Common, "Staff", 2));
+        cards.Add(new MainHand(Rarity.Common, "Mace", 2));
+        cards.Add(new MainHand(Rarity.Common, "Flail", 2));
+        cards.Add(new MainHand(Rarity.Common, "Spear", 2));
+        cards.Add(new MainHand(Rarity.Common, "Trident", 2));
+        return cards;
     }
 
-    private void OffHandCreation() {
-        offHands = new List<Card>();
-        offHands.Add(new OffHand(Rarity.Starter, "Wooden Shield"));
-        offHands.Add(new OffHand(Rarity.Common, "Buckler"));
-        offHands.Add(new OffHand(Rarity.Common, "Tome"));
-        offHands.Add(new OffHand(Rarity.Common, "Buckler"));
+    private List<Card> OffHandCreation() {
+        List<Card> cards = new List<Card>();
+        cards.Add(new OffHand(Rarity.Starter, "Wooden Shield"));
+        cards.Add(new OffHand(Rarity.Common, "Buckler"));
+        cards.Add(new OffHand(Rarity.Common, "Tome"));
+        cards.Add(new OffHand(Rarity.Common, "Spell Focus"));
+        cards.Add(new OffHand(Rarity.Common, "Tower Shield"));
+        return cards;
     }
 
-    private void AllyCreation() {
-        allies = new List<Card>();
-        allies.Add(new Ally(Rarity.Common, "Squirrel"));
-        allies.Add(new Ally(Rarity.Common, "Frog"));
-        allies.Add(new Ally(Rarity.Common, "Rat"));
-        allies.Add(new Ally(Rarity.Common, "Bunny"));
-        allies.Add(new Ally(Rarity.Rare, "Newt"));
-        allies.Add(new Ally(Rarity.Rare, "Porcupine"));
-        allies.Add(new Ally(Rarity.Rare, "Hampster"));
+    private List<Card> AllyCreation() {
+        List<Card> cards = new List<Card>();
+        cards.Add(new Ally(Rarity.Common, "Squirrel"));
+        cards.Add(new Ally(Rarity.Common, "Frog"));
+        cards.Add(new Ally(Rarity.Common, "Rat"));
+        cards.Add(new Ally(Rarity.Common, "Bunny"));
+        cards.Add(new Ally(Rarity.Rare, "Newt"));
+        cards.Add(new Ally(Rarity.Rare, "Porcupine"));
+        cards.Add(new Ally(Rarity.Rare, "Hampster"));
+        return cards;
     }
 
-    private void SpiritCreation() {
-        spirits = new List<Card>();
-        spirits.Add(new Spirit(Rarity.Starter, "Wisp"));
-        spirits.Add(new Spirit(Rarity.Common, "Buckler"));
-        spirits.Add(new Spirit(Rarity.Common, "Tome"));
-        spirits.Add(new Spirit(Rarity.Common, "Buckler"));
+    private List<Card> SpiritCreation() {
+        List<Card> cards = new List<Card>();
+        cards.Add(new Spirit(Rarity.Common, "Air Spirit"));
+        cards.Add(new Spirit(Rarity.Common, "Earth Spirit"));
+        cards.Add(new Spirit(Rarity.Common, "Fire Spirit"));
+        cards.Add(new Spirit(Rarity.Common, "Water Spirit"));
+        return cards;
     }
 
-    private void SpellCreation() {
-        spells = new List<Card>();
-        spells.Add(new Spell(Rarity.Starter, "Magic Bolt", 2));
-        spells.Add(new Spell(Rarity.Common, "Fireball", 3));
-        spells.Add(new Spell(Rarity.Common, "Stone Gaze", 4));
-        spells.Add(new Spell(Rarity.Rare, "Lightning Bolt", 3));
-        spells.Add(new Spell(Rarity.Rare, "Heal", 3));
+    private List<Card> SpellCreation() {
+        List<Card> cards = new List<Card>();
+        cards.Add(new Spell(Rarity.Starter, "Arcane Bolt", 2, SpellTargetType.Single));
+        cards.Add(new Spell(Rarity.Common, "Fireball", 3, SpellTargetType.Adjacent));
+        cards.Add(new Spell(Rarity.Common, "Life Drain", 2, SpellTargetType.Single));
+        cards.Add(new Spell(Rarity.Rare, "Lightning Bolt", 3, SpellTargetType.Adjacent));
+        cards.Add(new Spell(Rarity.Rare, "Heal", 2, SpellTargetType.Self));
+        cards.Add(new Spell(Rarity.Rare, "Blizzard", 3, SpellTargetType.All));
+        return cards;
     }
 
-    private void DrinkCreation() {
-        drinks = new List<Card>();
-        drinks.Add(new Drink(Rarity.Starter, "Cup"));
-        drinks.Add(new Drink(Rarity.Common, "Pouch"));
-        drinks.Add(new Drink(Rarity.Common, "Tankard"));
-        drinks.Add(new Drink(Rarity.Common, "Flask"));
-        drinks.Add(new Drink(Rarity.Rare, "Flagon"));
-        drinks.Add(new Drink(Rarity.Rare, "Goblet"));
-        drinks.Add(new Drink(Rarity.Rare, "Chalice"));
+    private List<Card> DrinkCreation() {
+        List<Card> cards = new List<Card>();
+        cards.Add(new Drink(Rarity.Starter, "Cup"));
+        cards.Add(new Drink(Rarity.Common, "Pouch"));
+        cards.Add(new Drink(Rarity.Common, "Tankard"));
+        cards.Add(new Drink(Rarity.Common, "Flask"));
+        cards.Add(new Drink(Rarity.Rare, "Flagon"));
+        cards.Add(new Drink(Rarity.Rare, "Goblet"));
+        cards.Add(new Drink(Rarity.Rare, "Chalice"));
+        return cards;
     }
     #endregion Creation Methods
-
-    public Card Test(Card card) {
-        return card;
-    }
 
     private Rarity GetRandomRarity() {
         float currentRarityPercSum = 0f;
@@ -132,17 +147,17 @@ public class CardManager : MonoBehaviour
     private List<Card> GetCardList(Slot slotType) {
         switch(slotType) {
             case Slot.MainHand:
-                return mainHands;
+                return mainHandCards;
             case Slot.OffHand:
-                return offHands;
+                return offHandCards;
             case Slot.Ally:
-                return allies;
+                return allyCards;
             case Slot.Spirit:
-                return spirits;
+                return spiritCards;
             case Slot.Spell:
-                return spells;
+                return spellCards;
             case Slot.Drink:
-                return drinks;
+                return drinkCards;
             default:
                 break;
         }

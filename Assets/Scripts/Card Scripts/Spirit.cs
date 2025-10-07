@@ -1,10 +1,6 @@
 public class Spirit : Card
 {
-    private string name;
+    public Spirit(Rarity rarity, string name) : base(rarity, name) {
 
-    public string Name { get { return name; } }
-
-    public Spirit(Rarity rarity, string name) : base(rarity) {
-        this.name = name;
     }
 }

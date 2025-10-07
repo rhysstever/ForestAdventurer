@@ -1,13 +1,21 @@
+
+public enum SpellTargetType
+{
+    Single,
+    Self,
+    Adjacent,
+    All
+}
 public class Spell : Card
 {
-    private string name;
     private int manaCost;
+    private SpellTargetType targetType;
 
-    public string Name { get { return name; } }
     public int ManaCost { get { return manaCost; } }
+    public SpellTargetType TargetType { get { return targetType; } }
 
-    public Spell(Rarity rarity, string name, int manaCost) : base(rarity) {
-        this.name = name;
+    public Spell(Rarity rarity, string name, int manaCost, SpellTargetType targetType) : base(rarity, name) {
         this.manaCost = manaCost;
+        this.targetType = targetType;
     }
 }
