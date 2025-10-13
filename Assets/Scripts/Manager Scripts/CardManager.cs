@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,10 +14,11 @@ public enum Slot
 
 public class CardManager : MonoBehaviour
 {
+    // Singleton
     public static CardManager instance = null;
 
+    // Instantiated in script
     private List<Card> mainHandCards, offHandCards, allyCards, spiritCards, spellCards, drinkCards;
-
     private Dictionary<Rarity, float> rarityPercentages;
 
     private void Awake() {
@@ -165,7 +165,7 @@ public class CardManager : MonoBehaviour
         return new List<Card>();
     }
 
-    public Card GetRandomCard(Slot slotType) {
+    public Card GetRandomCardData(Slot slotType) {
         List<Card> cardList = GetCardList(slotType);
         Rarity randomRarity = GetRandomRarity();
 
@@ -174,7 +174,7 @@ public class CardManager : MonoBehaviour
         return filterList[randomIndex];
     }
 
-    public Card GetStarterCard(Slot slotType) {
+    public Card GetStarterCardData(Slot slotType) {
         List<Card> cardList = GetCardList(slotType);
         List<Card> filteredList = cardList.Where(card => card.Rarity == Rarity.Starter).ToList();
         if(filteredList.Count > 0) { 

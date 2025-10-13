@@ -1,13 +1,19 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
 {
+    // Singleton
     public static DeckManager instance;
 
+    // Instantiated in inspector
+    [SerializeField]
+    private Transform cardParentTrans;
+    [SerializeField]
+    private GameObject cardPrefab;
+
+    // Instantiated in script
     private int currentDeckSize, currentHandSize;
     private List<Card> deck, hand;
 
@@ -28,13 +34,11 @@ public class DeckManager : MonoBehaviour
         currentDeckSize = deck.Count;
 
         hand = DrawCards(currentHandSize);
-        Debug.Log("Deck");
-        for(int i = 0; i < deck.Count; i++) {
-            Debug.Log(deck[i].Name);
-        }
-        Debug.Log("Hand");
-        for(int i = 0; i < hand.Count; i++) {
-            Debug.Log(hand[i].Name);
+
+        float cardXOffset = 3.5f;
+        float cardRowXOffset = 4.5f;
+        for(int i = 0; i < hand.Count; i++) { 
+            SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
         }
     }
 
@@ -50,19 +54,19 @@ public class DeckManager : MonoBehaviour
         // === 12 card starter deck ===
         // 4 main-hands cards
         for(int i = 0; i < 4; i++) {
-            cards.Add(CardManager.instance.GetStarterCard(Slot.MainHand));
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.MainHand));
         }
         // 4 off-hands cards
         for(int i = 0; i < 4; i++) {
-            cards.Add(CardManager.instance.GetStarterCard(Slot.OffHand));
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.OffHand));
         }
         // 2 spell cards
         for(int i = 0; i < 2; i++) {
-            cards.Add(CardManager.instance.GetStarterCard(Slot.Spell));
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.Spell));
         }
         // 2 drink cards
         for(int i = 0; i < 2; i++) {
-            cards.Add(CardManager.instance.GetStarterCard(Slot.Drink));
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.Drink));
         }
 
         return cards;
@@ -85,5 +89,18 @@ public class DeckManager : MonoBehaviour
 
         // Map each int index to a card in the deck
         return cardIndicesToDraw.Select(index => deck[index]).ToList();
+    }
+
+    public GameObject SpawnCard(Card cardData) {
+        Vector2 defaultPos = new Vector2(0f, -5f);
+        return SpawnCard(cardData, defaultPos);
+    }
+
+    public GameObject SpawnCard(Card cardData, Vector2 position) {
+        GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, cardParentTrans);
+        CardObject cardObj = newCard.GetComponent<CardObject>();
+        cardObj.SetCardNameText(cardData.Name);
+
+        return newCard;
     }
 }

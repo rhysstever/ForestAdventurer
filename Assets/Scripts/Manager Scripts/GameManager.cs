@@ -9,6 +9,7 @@ public enum MenuState
 
 public class GameManager : MonoBehaviour
 {
+    // Singleton
     public static GameManager instance = null;
 
     private void Awake() {

@@ -1,8 +1,8 @@
-using NUnit.Framework;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    // Singleton
     public static CharacterManager instance = null;
 
     private void Awake() {
@@ -54,11 +54,11 @@ public class CharacterManager : MonoBehaviour
         currentDefense = 0;
 
         // Setup starter slots
-        mainHand = CardManager.instance.GetStarterCard(Slot.MainHand) as MainHand;
-        offHand = CardManager.instance.GetStarterCard(Slot.OffHand) as OffHand;
-        ally = CardManager.instance.GetStarterCard(Slot.Ally) as Ally;
-        spirit = CardManager.instance.GetStarterCard(Slot.Spirit) as Spirit;
-        spell = CardManager.instance.GetStarterCard(Slot.Spell) as Spell;
-        drink = CardManager.instance.GetStarterCard(Slot.Drink) as Drink;
+        mainHand = CardManager.instance.GetStarterCardData(Slot.MainHand) as MainHand;
+        offHand = CardManager.instance.GetStarterCardData(Slot.OffHand) as OffHand;
+        ally = CardManager.instance.GetStarterCardData(Slot.Ally) as Ally;
+        spirit = CardManager.instance.GetStarterCardData(Slot.Spirit) as Spirit;
+        spell = CardManager.instance.GetStarterCardData(Slot.Spell) as Spell;
+        drink = CardManager.instance.GetStarterCardData(Slot.Drink) as Drink;
     }
 }
