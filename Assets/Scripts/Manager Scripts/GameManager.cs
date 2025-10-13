@@ -31,10 +31,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ChangeMenuState(MenuState newMenuState) {
         currentMenuState = newMenuState;
+    }
+
+    public Vector2 GetMousePosition() {
+        Vector3 position = Input.mousePosition;
+        position.z = -Camera.main.transform.position.z;
+        return (Vector2)Camera.main.ScreenToWorldPoint(position);
     }
 }
