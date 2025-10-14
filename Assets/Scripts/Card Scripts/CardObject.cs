@@ -33,16 +33,20 @@ public class CardObject : MonoBehaviour
     }
 
     private void OnMouseOver() {
-        // When hovered over, show the selection ring of the card
+        // When hovered over
+        // Show the selection ring of the card
         cardSelectionRing.SetActive(true);
+        // Prioritize the card in the sorting layer
         canvas.sortingOrder = 1;
     }
 
     private void OnMouseExit() {
-        // When no longer hovered, hide the selection ring of the card
+        // When no longer hovered
         // Check that the card is not being dragged
         if((Vector2)transform.position == savedPos) {
+            // Shide the selection ring of the card
             cardSelectionRing.SetActive(false);
+            // Deprioritize the card in the sorting layer
             canvas.sortingOrder = 0;
         }
     }
