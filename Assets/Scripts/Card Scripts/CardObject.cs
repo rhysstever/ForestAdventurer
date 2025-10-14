@@ -5,7 +5,11 @@ using UnityEngine.UI;
 public class CardObject : MonoBehaviour
 {
     [SerializeField]
-    private Image cardBackgroundImage, cardImage;
+    private Canvas canvas;
+    [SerializeField]
+    private Image cardBackgroundImage, cardArtImage;
+    [SerializeField]
+    private GameObject cardSelectionRing;
     [SerializeField]
     private TMP_Text cardNameText, cardDescriptionText;
 
@@ -13,6 +17,7 @@ public class CardObject : MonoBehaviour
 
     private void Start() {
         savedPos = transform.position;
+        cardSelectionRing.SetActive(false);
     }
 
     public void SetCardNameText(string cardNameText) {
@@ -23,18 +28,23 @@ public class CardObject : MonoBehaviour
         this.cardDescriptionText.text = cardDescriptionText;
     }
 
-    public void SetCardImage(Image cardImage) {
-        this.cardImage = cardImage;
+    public void SetCardArtImage(Image cardArtImage) {
+        this.cardArtImage = cardArtImage;
     }
 
     private void OnMouseOver() {
-        // When hovered over, highlight the card
-        cardBackgroundImage.color = Color.red;
+        // When hovered over, show the selection ring of the card
+        cardSelectionRing.SetActive(true);
+        canvas.sortingOrder = 1;
     }
 
     private void OnMouseExit() {
-        // When no longer hovered, un-highlight the card
-        cardBackgroundImage.color = Color.white;
+        // When no longer hovered, hide the selection ring of the card
+        // Check that the card is not being dragged
+        if((Vector2)transform.position == savedPos) {
+            cardSelectionRing.SetActive(false);
+            canvas.sortingOrder = 0;
+        }
     }
 
     private void OnMouseDown() {
