@@ -14,9 +14,13 @@ public class CardObject : MonoBehaviour
     private TMP_Text cardNameText, cardDescriptionText;
 
     private Vector2 savedPos, dragOffset;
+    private Collider2D cardFieldCollider;
+    private bool isInField;
 
     private void Start() {
         savedPos = transform.position;
+        cardFieldCollider = CardManager.instance.FieldCollider;
+        isInField = false;
         cardSelectionRing.SetActive(false);
     }
 
@@ -61,8 +65,28 @@ public class CardObject : MonoBehaviour
         transform.position = GameManager.instance.GetMousePosition() + dragOffset;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.collider == cardFieldCollider) {
+            Debug.Log(string.Format("{0} card over field", cardNameText.text));
+            isInField = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision) {
+        if(collision.collider == cardFieldCollider) {
+            Debug.Log(string.Format("{0} card no longer over field", cardNameText.text));
+            isInField = false;
+        }
+    }
+
     private void OnMouseUpAsButton() {
-        // If let go while being dragged, move the card back to its original position
-        transform.position = savedPos;
+        // Card being dragged
+        if(isInField) {
+            // If card is over the main field, play it
+            Debug.Log(string.Format("{0} Played", cardNameText.text));
+        } else {
+            // Otherwise, move the card back to its original position
+            transform.position = savedPos;
+        }
     }
 }

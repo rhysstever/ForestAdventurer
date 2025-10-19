@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class MainHand : Card
 {
     private int damage;
@@ -6,5 +8,13 @@ public class MainHand : Card
 
     public MainHand(Rarity rarity, string name, int damage) : base(rarity, name) {
         this.damage = damage;
+    }
+
+    public override void Play(GameObject target) {
+        base.Play(target);
+
+        if(target.GetComponent<Enemy>() != null) {
+            target.GetComponent<Enemy>().TakeDamage(damage);
+        }
     }
 }

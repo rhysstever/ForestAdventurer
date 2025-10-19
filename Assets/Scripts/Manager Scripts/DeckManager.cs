@@ -9,13 +9,15 @@ public class DeckManager : MonoBehaviour
 
     // Instantiated in inspector
     [SerializeField]
+    private Player player;
+    [SerializeField]
     private Transform cardParentTrans;
     [SerializeField]
     private GameObject cardPrefab;
 
     // Instantiated in script
     private int currentDeckSize, currentHandSize;
-    private List<Card> deck, hand;
+    private List<Card> deck, hand, discard;
 
     private void Awake() {
         if(instance == null) {
@@ -52,6 +54,30 @@ public class DeckManager : MonoBehaviour
         List<Card> cards = new List<Card>();
 
         // === 12 card starter deck ===
+        // 4 main-hands cards
+        for(int i = 0; i < 4; i++) {
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.MainHand));
+        }
+        // 4 off-hands cards
+        for(int i = 0; i < 4; i++) {
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.OffHand));
+        }
+        // 2 spell cards
+        for(int i = 0; i < 2; i++) {
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.Spell));
+        }
+        // 2 drink cards
+        for(int i = 0; i < 2; i++) {
+            cards.Add(CardManager.instance.GetStarterCardData(Slot.Drink));
+        }
+
+        return cards;
+    }
+
+    public List<Card> GenerateDeck() {
+        List<Card> cards = new List<Card>();
+
+        // === 12 card deck ===
         // 4 main-hands cards
         for(int i = 0; i < 4; i++) {
             cards.Add(CardManager.instance.GetStarterCardData(Slot.MainHand));

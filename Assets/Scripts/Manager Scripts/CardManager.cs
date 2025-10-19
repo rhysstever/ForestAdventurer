@@ -17,9 +17,26 @@ public class CardManager : MonoBehaviour
     // Singleton
     public static CardManager instance = null;
 
+    // Instantiated in inspector
+    [SerializeField]
+    private Collider2D fieldCollider;
+
     // Instantiated in script
     private List<Card> mainHandCards, offHandCards, allyCards, spiritCards, spellCards, drinkCards;
     private Dictionary<Rarity, float> rarityPercentages;
+
+    // Slots
+    private MainHand mainHand;
+    private OffHand offHand;
+    private Spirit spirit;
+    private Ally ally;
+    private Spell spell;
+    private Drink drink;
+    // TODO: Add in passive slots
+    //private GameObject hat;
+    //private GameObject boots;
+
+    public Collider2D FieldCollider { get { return fieldCollider; } }
 
     private void Awake() {
         if(instance == null) {
@@ -34,6 +51,8 @@ public class CardManager : MonoBehaviour
         spiritCards = new List<Card>();
         spellCards = new List<Card>();
         drinkCards = new List<Card>();
+
+        Reset();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -182,5 +201,15 @@ public class CardManager : MonoBehaviour
         } else {
             return null;
         }
+    }
+
+    public void Reset() {
+        // Setup starter slots
+        mainHand = GetStarterCardData(Slot.MainHand) as MainHand;
+        offHand = GetStarterCardData(Slot.OffHand) as OffHand;
+        ally = GetStarterCardData(Slot.Ally) as Ally;
+        spirit = GetStarterCardData(Slot.Spirit) as Spirit;
+        spell = GetStarterCardData(Slot.Spell) as Spell;
+        drink = GetStarterCardData(Slot.Drink) as Drink;
     }
 }

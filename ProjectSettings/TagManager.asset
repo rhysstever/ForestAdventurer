@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - Card
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Text
     uniqueID: 4196883329
+    locked: 0
+  - name: 
+    uniqueID: 1771256265
     locked: 0
   m_RenderingLayers:
   - Default

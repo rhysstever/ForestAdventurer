@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7508007225387613685}
   - component: {fileID: 9159472951524918581}
   - component: {fileID: 3693185672189293445}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: cardBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 8384843684732029956}
   - component: {fileID: 6074075335965601261}
   - component: {fileID: 351264641113324039}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CardPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 3862838970620379119}
   - component: {fileID: 513103959977193406}
   - component: {fileID: 3046570058124863091}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: cardNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 1773075200813956762}
   - component: {fileID: 8087502215566682731}
   - component: {fileID: 2740179999078046788}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: cardArtImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 772317949241499503}
   - component: {fileID: 9133034047844619203}
   - component: {fileID: 7730670959043014566}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: cardSelectedRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -471,7 +471,7 @@ GameObject:
   - component: {fileID: 5290447276147656552}
   - component: {fileID: 5160119440328842419}
   - component: {fileID: 978683867238686871}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 1934470141507802629}
   - component: {fileID: 5151238827121654658}
   - component: {fileID: 7331113614904714865}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: cardDescriptionText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

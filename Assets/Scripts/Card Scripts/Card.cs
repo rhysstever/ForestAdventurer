@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public enum Rarity
 {
     Starter,
@@ -16,5 +18,9 @@ public class Card
     public Card(Rarity rarity, string name) {
         this.rarity = rarity;
         this.name = name;
+    }
+
+    public virtual void Play(GameObject target) {
+
     }
 }
