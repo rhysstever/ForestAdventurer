@@ -36,6 +36,7 @@ public class CardManager : MonoBehaviour
     //private GameObject hat;
     //private GameObject boots;
 
+    // Properties
     public Collider2D FieldCollider { get { return fieldCollider; } }
 
     private void Awake() {
@@ -45,19 +46,6 @@ public class CardManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        mainHandCards = new List<Card>();
-        offHandCards = new List<Card>();
-        allyCards = new List<Card>();
-        spiritCards = new List<Card>();
-        spellCards = new List<Card>();
-        drinkCards = new List<Card>();
-
-        Reset();
-    }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
         mainHandCards = MainHandCreation();
         offHandCards = OffHandCreation();
         allyCards = AllyCreation();
@@ -65,6 +53,12 @@ public class CardManager : MonoBehaviour
         spellCards = SpellCreation();
         drinkCards = DrinkCreation();
 
+        Reset();
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
         rarityPercentages = new Dictionary<Rarity, float>();
         rarityPercentages.Add(Rarity.Common, 0.75f);
         rarityPercentages.Add(Rarity.Rare, 0.25f);
@@ -164,24 +158,15 @@ public class CardManager : MonoBehaviour
     }
 
     private List<Card> GetCardList(Slot slotType) {
-        switch(slotType) {
-            case Slot.MainHand:
-                return mainHandCards;
-            case Slot.OffHand:
-                return offHandCards;
-            case Slot.Ally:
-                return allyCards;
-            case Slot.Spirit:
-                return spiritCards;
-            case Slot.Spell:
-                return spellCards;
-            case Slot.Drink:
-                return drinkCards;
-            default:
-                break;
-        }
-
-        return new List<Card>();
+        return slotType switch {
+            Slot.MainHand => mainHandCards,
+            Slot.OffHand => offHandCards,
+            Slot.Ally => allyCards,
+            Slot.Spirit => spiritCards,
+            Slot.Spell => spellCards,
+            Slot.Drink => drinkCards,
+            _ => new List<Card>(),
+        };
     }
 
     public Card GetRandomCardData(Slot slotType) {
@@ -201,6 +186,23 @@ public class CardManager : MonoBehaviour
         } else {
             return null;
         }
+    }
+
+    /// <summary>
+    /// Gets the object of a Card of the given slot
+    /// </summary>
+    /// <param name="slotType">The card type</param>
+    /// <returns>A Card object, if card exists, otherwise null</returns>
+    public Card GetCurrentCardData(Slot slotType) {
+        return slotType switch {
+            Slot.MainHand => mainHand,
+            Slot.OffHand => offHand,
+            Slot.Ally => ally,
+            Slot.Spirit => spirit,
+            Slot.Spell => spell,
+            Slot.Drink => drink,
+            _ => null,
+        };
     }
 
     public void Reset() {

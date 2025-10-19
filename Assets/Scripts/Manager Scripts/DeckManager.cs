@@ -32,7 +32,7 @@ public class DeckManager : MonoBehaviour
     {
         currentHandSize = 4;
 
-        deck = GenerateStarterDeck();
+        deck = GenerateDeck();
         currentDeckSize = deck.Count;
 
         hand = DrawCards(currentHandSize);
@@ -50,49 +50,33 @@ public class DeckManager : MonoBehaviour
         
     }
 
-    public List<Card> GenerateStarterDeck() {
-        List<Card> cards = new List<Card>();
-
-        // === 12 card starter deck ===
-        // 4 main-hands cards
-        for(int i = 0; i < 4; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.MainHand));
-        }
-        // 4 off-hands cards
-        for(int i = 0; i < 4; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.OffHand));
-        }
-        // 2 spell cards
-        for(int i = 0; i < 2; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.Spell));
-        }
-        // 2 drink cards
-        for(int i = 0; i < 2; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.Drink));
-        }
-
-        return cards;
-    }
-
     public List<Card> GenerateDeck() {
         List<Card> cards = new List<Card>();
 
-        // === 12 card deck ===
-        // 4 main-hands cards
+        // 4 main hand and 4 off hand cards
+        Card mainHand = CardManager.instance.GetCurrentCardData(Slot.MainHand);
+        Card offHand = CardManager.instance.GetCurrentCardData(Slot.OffHand);
         for(int i = 0; i < 4; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.MainHand));
+            cards.Add(mainHand);
+            cards.Add(offHand);
         }
-        // 4 off-hands cards
-        for(int i = 0; i < 4; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.OffHand));
-        }
-        // 2 spell cards
+        // 2 spell and 2 drink cards
+        Card spell = CardManager.instance.GetCurrentCardData(Slot.Spell);
+        Card drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
         for(int i = 0; i < 2; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.Spell));
+            cards.Add(spell);
+            cards.Add(drink);
         }
-        // 2 drink cards
-        for(int i = 0; i < 2; i++) {
-            cards.Add(CardManager.instance.GetStarterCardData(Slot.Drink));
+        // 3 ally and 3 spirit cards (if available)
+        Card ally = CardManager.instance.GetCurrentCardData(Slot.Ally);
+        Card spirit = CardManager.instance.GetCurrentCardData(Slot.Spirit);
+        for(int i = 0; i < 3; i++) {
+            if(ally != null) {
+                cards.Add(ally);
+            }
+            if(spirit != null) {
+                cards.Add(spirit);
+            }
         }
 
         return cards;
