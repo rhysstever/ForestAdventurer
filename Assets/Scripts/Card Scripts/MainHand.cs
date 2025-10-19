@@ -7,6 +7,7 @@ public class MainHand : Card
     public int Damage { get { return damage; } }
 
     public MainHand(Rarity rarity, string name, int damage) : base(rarity, name) {
+        slot = Slot.MainHand;
         this.damage = damage;
     }
 

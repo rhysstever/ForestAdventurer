@@ -13,6 +13,8 @@ public class CardObject : MonoBehaviour
     [SerializeField]
     private TMP_Text cardNameText, cardDescriptionText;
 
+    private Slot slot;
+
     private Vector2 savedPos, dragOffset;
     private Collider2D cardFieldCollider;
     private bool isInField;
@@ -34,6 +36,10 @@ public class CardObject : MonoBehaviour
 
     public void SetCardArtImage(Image cardArtImage) {
         this.cardArtImage = cardArtImage;
+    }
+
+    public void SetCardSlotType(Slot slot) {
+        this.slot = slot;
     }
 
     private void OnMouseOver() {
@@ -67,14 +73,12 @@ public class CardObject : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.collider == cardFieldCollider) {
-            Debug.Log(string.Format("{0} card over field", cardNameText.text));
             isInField = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
         if(collision.collider == cardFieldCollider) {
-            Debug.Log(string.Format("{0} card no longer over field", cardNameText.text));
             isInField = false;
         }
     }
@@ -83,7 +87,8 @@ public class CardObject : MonoBehaviour
         // Card being dragged
         if(isInField) {
             // If card is over the main field, play it
-            Debug.Log(string.Format("{0} Played", cardNameText.text));
+            CardManager.instance.PlaySlotCard(slot);
+            Destroy(gameObject);
         } else {
             // Otherwise, move the card back to its original position
             transform.position = savedPos;

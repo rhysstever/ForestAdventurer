@@ -15,6 +15,7 @@ public class Spell : Card
     public SpellTargetType TargetType { get { return targetType; } }
 
     public Spell(Rarity rarity, string name, int manaCost, SpellTargetType targetType) : base(rarity, name) {
+        slot = Slot.Spell;
         this.manaCost = manaCost;
         this.targetType = targetType;
     }

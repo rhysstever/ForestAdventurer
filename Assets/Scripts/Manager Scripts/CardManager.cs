@@ -205,6 +205,9 @@ public class CardManager : MonoBehaviour
         };
     }
 
+    /// <summary>
+    /// Reset card slots to starting cards
+    /// </summary>
     public void Reset() {
         // Setup starter slots
         mainHand = GetStarterCardData(Slot.MainHand) as MainHand;
@@ -213,5 +216,11 @@ public class CardManager : MonoBehaviour
         spirit = GetStarterCardData(Slot.Spirit) as Spirit;
         spell = GetStarterCardData(Slot.Spell) as Spell;
         drink = GetStarterCardData(Slot.Drink) as Drink;
+    }
+
+    public void PlaySlotCard(Slot slot) {
+        Card card = GetCurrentCardData(slot);
+
+        Debug.Log(string.Format("{0} played", card.Name));
     }
 }

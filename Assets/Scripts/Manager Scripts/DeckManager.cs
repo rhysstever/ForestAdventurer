@@ -110,6 +110,7 @@ public class DeckManager : MonoBehaviour
         GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, cardParentTrans);
         CardObject cardObj = newCard.GetComponent<CardObject>();
         cardObj.SetCardNameText(cardData.Name);
+        cardObj.SetCardSlotType(cardData.Slot);
 
         return newCard;
     }
