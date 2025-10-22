@@ -22,7 +22,7 @@ public class CardManager : MonoBehaviour
     private Collider2D fieldCollider;
 
     // Instantiated in script
-    private List<Card> mainHandCards, offHandCards, allyCards, spiritCards, spellCards, drinkCards;
+    private List<Card> cardLibrary;
     private Dictionary<Rarity, float> rarityPercentages;
 
     // Slots
@@ -46,12 +46,7 @@ public class CardManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        mainHandCards = MainHandCreation();
-        offHandCards = OffHandCreation();
-        allyCards = AllyCreation();
-        spiritCards = SpiritCreation();
-        spellCards = SpellCreation();
-        drinkCards = DrinkCreation();
+        cardLibrary = CardCreation();
 
         Reset();
     }
@@ -64,9 +59,10 @@ public class CardManager : MonoBehaviour
         rarityPercentages.Add(Rarity.Rare, 0.25f);
     }
 
-    #region Creation Methods
-    private List<Card> MainHandCreation() {
+    private List<Card> CardCreation() {
         List<Card> cards = new List<Card>();
+
+        // Main hand cards
         cards.Add(new MainHand(Rarity.Starter, "Shortsword", 1));
         cards.Add(new MainHand(Rarity.Common, "Wand", 1));
         cards.Add(new MainHand(Rarity.Common, "Longsword", 2));
@@ -75,21 +71,15 @@ public class CardManager : MonoBehaviour
         cards.Add(new MainHand(Rarity.Common, "Flail", 2));
         cards.Add(new MainHand(Rarity.Common, "Spear", 2));
         cards.Add(new MainHand(Rarity.Common, "Trident", 2));
-        return cards;
-    }
 
-    private List<Card> OffHandCreation() {
-        List<Card> cards = new List<Card>();
+        // Off hand cards
         cards.Add(new OffHand(Rarity.Starter, "Wooden Shield"));
         cards.Add(new OffHand(Rarity.Common, "Buckler"));
         cards.Add(new OffHand(Rarity.Common, "Tome"));
         cards.Add(new OffHand(Rarity.Common, "Spell Focus"));
         cards.Add(new OffHand(Rarity.Common, "Tower Shield"));
-        return cards;
-    }
 
-    private List<Card> AllyCreation() {
-        List<Card> cards = new List<Card>();
+        // Ally cards
         cards.Add(new Ally(Rarity.Common, "Squirrel"));
         cards.Add(new Ally(Rarity.Common, "Frog"));
         cards.Add(new Ally(Rarity.Common, "Rat"));
@@ -97,31 +87,22 @@ public class CardManager : MonoBehaviour
         cards.Add(new Ally(Rarity.Rare, "Newt"));
         cards.Add(new Ally(Rarity.Rare, "Porcupine"));
         cards.Add(new Ally(Rarity.Rare, "Hampster"));
-        return cards;
-    }
 
-    private List<Card> SpiritCreation() {
-        List<Card> cards = new List<Card>();
+        // Spirit cards
         cards.Add(new Spirit(Rarity.Common, "Air Spirit"));
         cards.Add(new Spirit(Rarity.Common, "Earth Spirit"));
         cards.Add(new Spirit(Rarity.Common, "Fire Spirit"));
         cards.Add(new Spirit(Rarity.Common, "Water Spirit"));
-        return cards;
-    }
 
-    private List<Card> SpellCreation() {
-        List<Card> cards = new List<Card>();
+        // Spell cards
         cards.Add(new Spell(Rarity.Starter, "Arcane Bolt", 2, SpellTargetType.Single));
         cards.Add(new Spell(Rarity.Common, "Fireball", 3, SpellTargetType.Adjacent));
         cards.Add(new Spell(Rarity.Common, "Life Drain", 2, SpellTargetType.Single));
         cards.Add(new Spell(Rarity.Rare, "Lightning Bolt", 3, SpellTargetType.Adjacent));
         cards.Add(new Spell(Rarity.Rare, "Heal", 2, SpellTargetType.Self));
         cards.Add(new Spell(Rarity.Rare, "Blizzard", 3, SpellTargetType.All));
-        return cards;
-    }
 
-    private List<Card> DrinkCreation() {
-        List<Card> cards = new List<Card>();
+        // Drink cards
         cards.Add(new Drink(Rarity.Starter, "Cup"));
         cards.Add(new Drink(Rarity.Common, "Pouch"));
         cards.Add(new Drink(Rarity.Common, "Tankard"));
@@ -131,7 +112,6 @@ public class CardManager : MonoBehaviour
         cards.Add(new Drink(Rarity.Rare, "Chalice"));
         return cards;
     }
-    #endregion Creation Methods
 
     private Rarity GetRandomRarity() {
         float currentRarityPercSum = 0f;
@@ -157,30 +137,20 @@ public class CardManager : MonoBehaviour
         return Rarity.Common;
     }
 
-    private List<Card> GetCardList(Slot slotType) {
-        return slotType switch {
-            Slot.MainHand => mainHandCards,
-            Slot.OffHand => offHandCards,
-            Slot.Ally => allyCards,
-            Slot.Spirit => spiritCards,
-            Slot.Spell => spellCards,
-            Slot.Drink => drinkCards,
-            _ => new List<Card>(),
-        };
-    }
-
     public Card GetRandomCardData(Slot slotType) {
-        List<Card> cardList = GetCardList(slotType);
         Rarity randomRarity = GetRandomRarity();
 
-        List<Card> filterList = cardList.Where(card => card.Rarity == randomRarity).ToList();
+        List<Card> filterList = cardLibrary
+            .FindAll(card => card.Slot == slotType)
+            .FindAll(card => card.Rarity == randomRarity);
         int randomIndex = Random.Range(0, filterList.Count);
         return filterList[randomIndex];
     }
 
     public Card GetStarterCardData(Slot slotType) {
-        List<Card> cardList = GetCardList(slotType);
-        List<Card> filteredList = cardList.Where(card => card.Rarity == Rarity.Starter).ToList();
+        List<Card> filteredList = cardLibrary
+            .FindAll(card => card.Slot == slotType)
+            .FindAll(card => card.Rarity == Rarity.Starter);
         if(filteredList.Count > 0) { 
             return filteredList[0];
         } else {
