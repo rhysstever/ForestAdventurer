@@ -23,7 +23,7 @@ public class CardManager : MonoBehaviour
     private Collider2D fieldCollider;
 
     // Instantiated in script
-    private List<Card> cardLibrary;
+    private List<CardData> cardLibrary;
     private Dictionary<Rarity, float> rarityPercentages;
 
     // Slots
@@ -61,8 +61,8 @@ public class CardManager : MonoBehaviour
     }
 
     #region Card Creation
-    private List<Card> CardCreation() {
-        List<Card> cards = new List<Card>();
+    private List<CardData> CardCreation() {
+        List<CardData> cards = new List<CardData>();
 
         // Main hand cards
         cards.Add(new MainHand(Rarity.Starter, "Shortsword", 1));
@@ -140,18 +140,18 @@ public class CardManager : MonoBehaviour
         return Rarity.Common;
     }
 
-    public Card GetRandomCardData(Slot slotType) {
+    public CardData GetRandomCardData(Slot slotType) {
         Rarity randomRarity = GetRandomRarity();
 
-        List<Card> filterList = cardLibrary
+        List<CardData> filterList = cardLibrary
             .FindAll(card => card.Slot == slotType)
             .FindAll(card => card.Rarity == randomRarity);
         int randomIndex = UnityEngine.Random.Range(0, filterList.Count);
         return filterList[randomIndex];
     }
 
-    public Card GetStarterCardData(Slot slotType) {
-        List<Card> filteredList = cardLibrary
+    public CardData GetStarterCardData(Slot slotType) {
+        List<CardData> filteredList = cardLibrary
             .FindAll(card => card.Slot == slotType)
             .FindAll(card => card.Rarity == Rarity.Starter);
         if(filteredList.Count > 0) { 
@@ -166,7 +166,7 @@ public class CardManager : MonoBehaviour
     /// </summary>
     /// <param name="slotType">The card type</param>
     /// <returns>A Card object, if card exists, otherwise null</returns>
-    public Card GetCurrentCardData(Slot slotType) {
+    public CardData GetCurrentCardData(Slot slotType) {
         return slotType switch {
             Slot.MainHand => mainHand,
             Slot.OffHand => offHand,
@@ -192,13 +192,13 @@ public class CardManager : MonoBehaviour
     }
 
     public void PlayCard(Slot slot) {
-        Card card = GetCurrentCardData(slot);
+        CardData card = GetCurrentCardData(slot);
 
         Debug.Log(string.Format("{0} played", card.Name));
     }
 
     public void PlayCard(Slot slot, GameObject target) {
-        Card card = GetCurrentCardData(slot);
+        CardData card = GetCurrentCardData(slot);
 
         Debug.Log(string.Format("{0} played at {1}", card.Name, target.name));
     }

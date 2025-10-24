@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class Drink : Card
+public class Drink : CardData
 {
     public Drink(Rarity rarity, string name, TargetType targetType) 
         : base(rarity, name, targetType) {
@@ -8,8 +6,4 @@ public class Drink : Card
     }
 
     public Drink(Rarity rarity, string name) : this(rarity, name, TargetType.Self) { }
-
-    public override void Play(GameObject target) {
-
-    }
 }

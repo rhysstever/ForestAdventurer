@@ -1,7 +1,4 @@
-using System;
-using UnityEngine;
-
-public class MainHand : Card
+public class MainHand : CardData
 {
     private int damage;
 
@@ -15,8 +12,4 @@ public class MainHand : Card
 
     public MainHand(Rarity rarity, string name, int damage) 
         : this(rarity, name, TargetType.Unit, damage) { }
-
-    public override void Play(GameObject target) {
-        
-    }
 }

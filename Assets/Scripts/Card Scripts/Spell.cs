@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class Spell : Card
+public class Spell : CardData
 {
     private int manaCost;
     private int damage;
@@ -13,9 +11,5 @@ public class Spell : Card
         slot = Slot.Spell;
         this.manaCost = manaCost;
         this.damage = damage;
-    }
-
-    public override void Play(GameObject target) {
-
     }
 }

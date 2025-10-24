@@ -17,7 +17,7 @@ public class DeckManager : MonoBehaviour
 
     // Instantiated in script
     private int currentDeckSize, currentHandSize;
-    private List<Card> deck, hand, discard;
+    private List<CardData> deck, hand, discard;
     [SerializeField]
     private bool isTargetting;
     [SerializeField]
@@ -60,26 +60,26 @@ public class DeckManager : MonoBehaviour
         
     }
 
-    public List<Card> GenerateDeck() {
-        List<Card> cards = new List<Card>();
+    public List<CardData> GenerateDeck() {
+        List<CardData> cards = new List<CardData>();
 
         // 4 main hand and 4 off hand cards
-        Card mainHand = CardManager.instance.GetCurrentCardData(Slot.MainHand);
-        Card offHand = CardManager.instance.GetCurrentCardData(Slot.OffHand);
+        CardData mainHand = CardManager.instance.GetCurrentCardData(Slot.MainHand);
+        CardData offHand = CardManager.instance.GetCurrentCardData(Slot.OffHand);
         for(int i = 0; i < 4; i++) {
             cards.Add(mainHand);
             cards.Add(offHand);
         }
         // 2 spell and 2 drink cards
-        Card spell = CardManager.instance.GetCurrentCardData(Slot.Spell);
-        Card drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
+        CardData spell = CardManager.instance.GetCurrentCardData(Slot.Spell);
+        CardData drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
         for(int i = 0; i < 2; i++) {
             cards.Add(spell);
             cards.Add(drink);
         }
         // 3 ally and 3 spirit cards (if available)
-        Card ally = CardManager.instance.GetCurrentCardData(Slot.Ally);
-        Card spirit = CardManager.instance.GetCurrentCardData(Slot.Spirit);
+        CardData ally = CardManager.instance.GetCurrentCardData(Slot.Ally);
+        CardData spirit = CardManager.instance.GetCurrentCardData(Slot.Spirit);
         for(int i = 0; i < 3; i++) {
             if(ally != null) {
                 cards.Add(ally);
@@ -92,7 +92,7 @@ public class DeckManager : MonoBehaviour
         return cards;
     }
 
-    public List<Card> DrawCards(int numberOfCardsToDraw) {
+    public List<CardData> DrawCards(int numberOfCardsToDraw) {
         List<int> cardIndicesToDraw = new List<int>();
 
         // For the number of cards to draw, find a unique index
@@ -111,12 +111,12 @@ public class DeckManager : MonoBehaviour
         return cardIndicesToDraw.Select(index => deck[index]).ToList();
     }
 
-    public GameObject SpawnCard(Card cardData) {
+    public GameObject SpawnCard(CardData cardData) {
         Vector2 defaultPos = new Vector2(0f, -5f);
         return SpawnCard(cardData, defaultPos);
     }
 
-    public GameObject SpawnCard(Card cardData, Vector2 position) {
+    public GameObject SpawnCard(CardData cardData, Vector2 position) {
         GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, cardParentTrans);
         CardObject cardObj = newCard.GetComponent<CardObject>();
         cardObj.SetCardData(cardData);

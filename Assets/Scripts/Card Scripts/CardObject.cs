@@ -18,10 +18,10 @@ public class CardObject : MonoBehaviour
     // Set in script at Start
     private Vector2 savedPos, dragOffset, hoverOffset;
     private Collider2D cardFieldCollider;
-    private bool isInField, isBeingDragged, readyToBePlayed;
+    private bool isInField, isBeingDragged;
 
     // Set in script after card is Instantiated (in DeckManager.SpawnCard())
-    private Card cardData;
+    private CardData cardData;
 
     private void Start() {
         savedPos = transform.position;
@@ -38,7 +38,7 @@ public class CardObject : MonoBehaviour
         this.cardArtImage = cardArtImage;
     }
 
-    public void SetCardData(Card cardData) {
+    public void SetCardData(CardData cardData) {
         this.cardData = cardData;
         cardNameText.text = cardData.Name;
         cardDescriptionText.text = cardData.Description;
@@ -94,7 +94,7 @@ public class CardObject : MonoBehaviour
     private void OnMouseUp() {
         // When Card is being dropped
         if(cardData.TargetType == TargetType.Unit) {
-            // If the card needs a target and has one, play it
+            // If the card targets and has one, play it
             if(DeckManager.instance.IsTargetting && DeckManager.instance.Target != null) {
                 CardManager.instance.PlayCard(cardData.Slot, DeckManager.instance.Target);
                 Destroy(gameObject);
@@ -103,18 +103,18 @@ public class CardObject : MonoBehaviour
                 Deselect();
             }
         } else {
-            // If the card does not need a target, check if it is ready to be played
-            // and play it if its ready
-            if(readyToBePlayed) {
+            // If the card does not target, check if it is in the playing field
+            // If it is, play it
+            if(isInField) {
                 CardManager.instance.PlayCard(cardData.Slot);
                 Destroy(gameObject);
             } else {
-                // If not ready, it should no longer be dragged
+                // If not in the playing field, it should no longer be dragged
                 isBeingDragged = false;
             }
         }
 
-        // If the card is not in the main field or required a target but didnt have one,
+        // If the card is not in the playing field OR targets but didnt have one,
         // move the card back to its original position
         transform.position = savedPos;
     }
@@ -132,7 +132,7 @@ public class CardObject : MonoBehaviour
         // Deprioritize the card in the sorting layer
         canvas.sortingOrder = 2;
 
-        // If the card needs a target, stop targetting
+        // If the card targets, stop targetting
         if(cardData.TargetType == TargetType.Unit) {
             DeckManager.instance.StopTargetting();
         }
@@ -145,20 +145,18 @@ public class CardObject : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        // If the card does not need a target AND it has collided
-        // with the field's collider, it is in the field and is ready to be played
+        // If the card does not target AND it has collided with the
+        // field's collider, it is in the field (ready to be played)
         if(cardData.TargetType != TargetType.Unit && collision.collider == cardFieldCollider) {
             isInField = true;
-            readyToBePlayed = true;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision) {
-        // If the card does not need a target AND it has left
-        // the field's collider, it is no longer in the field and cannot be played
+        // If the card does not target AND it has left the field's
+        // collider, it is no longer in the field (cannot be played)
         if(cardData.TargetType != TargetType.Unit && collision.collider == cardFieldCollider) {
             isInField = false;
-            readyToBePlayed = false;
         }
     }
 }
