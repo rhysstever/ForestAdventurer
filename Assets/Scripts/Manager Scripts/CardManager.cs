@@ -200,6 +200,29 @@ public class CardManager : MonoBehaviour
     public void PlayCard(Slot slot, GameObject target) {
         CardData card = GetCurrentCardData(slot);
 
+        switch(card.Slot) {
+            case Slot.MainHand:
+                MainHand mainHand = card as MainHand;
+                Attack(target.GetComponent<Enemy>(), mainHand.Damage);
+                break;
+            default:
+                break;
+        }
+
         Debug.Log(string.Format("{0} played at {1}", card.Name, target.name));
+    }
+
+    private void Attack(Enemy enemy, int damage) {
+        if(enemy == null) {
+            Debug.Log("Error: No target to attack!");
+            return;
+        }
+
+        if(damage < 1) {
+            Debug.Log(string.Format("Error: Not enough damage ({0})", damage));
+            return;
+        }
+
+        enemy.TakeDamage(damage);
     }
 }
