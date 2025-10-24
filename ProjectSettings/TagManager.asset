@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - UI
   - 
   - Card
-  - 
-  - 
+  - Field
+  - Enemy
   - 
   - 
   - 
@@ -44,7 +45,7 @@ TagManager:
   - name: Text
     uniqueID: 4196883329
     locked: 0
-  - name: 
+  - name: Collidable
     uniqueID: 1771256265
     locked: 0
   m_RenderingLayers:

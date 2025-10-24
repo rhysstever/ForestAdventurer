@@ -1,22 +1,21 @@
+using UnityEngine;
 
-public enum SpellTargetType
-{
-    Single,
-    Self,
-    Adjacent,
-    All
-}
 public class Spell : Card
 {
     private int manaCost;
-    private SpellTargetType targetType;
+    private int damage;
 
     public int ManaCost { get { return manaCost; } }
-    public SpellTargetType TargetType { get { return targetType; } }
+    public int Damage { get { return damage; } }
 
-    public Spell(Rarity rarity, string name, int manaCost, SpellTargetType targetType) : base(rarity, name) {
+    public Spell(Rarity rarity, string name, TargetType targetType, int manaCost, int damage) 
+        : base(rarity, name, targetType) {
         slot = Slot.Spell;
         this.manaCost = manaCost;
-        this.targetType = targetType;
+        this.damage = damage;
+    }
+
+    public override void Play(GameObject target) {
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MainHand : Card
@@ -6,16 +7,16 @@ public class MainHand : Card
 
     public int Damage { get { return damage; } }
 
-    public MainHand(Rarity rarity, string name, int damage) : base(rarity, name) {
+    public MainHand(Rarity rarity, string name, TargetType targetType, int damage) 
+        : base(rarity, name, targetType) {
         slot = Slot.MainHand;
         this.damage = damage;
     }
 
-    public override void Play(GameObject target) {
-        base.Play(target);
+    public MainHand(Rarity rarity, string name, int damage) 
+        : this(rarity, name, TargetType.Unit, damage) { }
 
-        if(target.GetComponent<Enemy>() != null) {
-            target.GetComponent<Enemy>().TakeDamage(damage);
-        }
+    public override void Play(GameObject target) {
+        
     }
 }

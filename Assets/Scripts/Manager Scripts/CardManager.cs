@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -59,6 +60,7 @@ public class CardManager : MonoBehaviour
         rarityPercentages.Add(Rarity.Rare, 0.25f);
     }
 
+    #region Card Creation
     private List<Card> CardCreation() {
         List<Card> cards = new List<Card>();
 
@@ -95,12 +97,12 @@ public class CardManager : MonoBehaviour
         cards.Add(new Spirit(Rarity.Common, "Water Spirit"));
 
         // Spell cards
-        cards.Add(new Spell(Rarity.Starter, "Arcane Bolt", 2, SpellTargetType.Single));
-        cards.Add(new Spell(Rarity.Common, "Fireball", 3, SpellTargetType.Adjacent));
-        cards.Add(new Spell(Rarity.Common, "Life Drain", 2, SpellTargetType.Single));
-        cards.Add(new Spell(Rarity.Rare, "Lightning Bolt", 3, SpellTargetType.Adjacent));
-        cards.Add(new Spell(Rarity.Rare, "Heal", 2, SpellTargetType.Self));
-        cards.Add(new Spell(Rarity.Rare, "Blizzard", 3, SpellTargetType.All));
+        cards.Add(new Spell(Rarity.Starter, "Arcane Bolt", TargetType.Unit, 2, 2));
+        cards.Add(new Spell(Rarity.Common, "Fireball", TargetType.AOE, 3, 2));
+        cards.Add(new Spell(Rarity.Common, "Life Drain", TargetType.Unit, 2, 2));
+        cards.Add(new Spell(Rarity.Rare, "Lightning Bolt", TargetType.Unit, 3, 8));
+        cards.Add(new Spell(Rarity.Rare, "Heal", TargetType.Self, 2, 5));
+        cards.Add(new Spell(Rarity.Rare, "Blizzard", TargetType.AOE, 3, 5));
 
         // Drink cards
         cards.Add(new Drink(Rarity.Starter, "Cup"));
@@ -112,11 +114,12 @@ public class CardManager : MonoBehaviour
         cards.Add(new Drink(Rarity.Rare, "Chalice"));
         return cards;
     }
+    #endregion Card Creation
 
     private Rarity GetRandomRarity() {
         float currentRarityPercSum = 0f;
         // Get a random float
-        float randomF = Random.Range(0f, 1f);
+        float randomF = UnityEngine.Random.Range(0f, 1f);
 
         for(int i = 0; i < rarityPercentages.Count; i++) {
             // Find the next rarity
@@ -143,7 +146,7 @@ public class CardManager : MonoBehaviour
         List<Card> filterList = cardLibrary
             .FindAll(card => card.Slot == slotType)
             .FindAll(card => card.Rarity == randomRarity);
-        int randomIndex = Random.Range(0, filterList.Count);
+        int randomIndex = UnityEngine.Random.Range(0, filterList.Count);
         return filterList[randomIndex];
     }
 
@@ -188,9 +191,15 @@ public class CardManager : MonoBehaviour
         drink = GetStarterCardData(Slot.Drink) as Drink;
     }
 
-    public void PlaySlotCard(Slot slot) {
+    public void PlayCard(Slot slot) {
         Card card = GetCurrentCardData(slot);
 
         Debug.Log(string.Format("{0} played", card.Name));
+    }
+
+    public void PlayCard(Slot slot, GameObject target) {
+        Card card = GetCurrentCardData(slot);
+
+        Debug.Log(string.Format("{0} played at {1}", card.Name, target.name));
     }
 }
