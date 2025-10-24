@@ -35,11 +35,13 @@ public class TargettingManager : MonoBehaviour
     }
 
     void Update() {
+        // If the player is targetting,
         if(cardTargetting != null) {
-            // Enable the mouse target if the player is targetting
+            // Enable the mouse aiming target and move it to the mouse
             mouseTargetAiming.SetActive(true);
             mouseTargetAiming.transform.position = GetMousePosition();
 
+            // If there is a target, enable the mouse target
             mouseTarget.SetActive(target != null);
 
             // If enabled, move the target to the mouse
@@ -47,6 +49,7 @@ public class TargettingManager : MonoBehaviour
                 mouseTarget.transform.position = GetMousePosition();
             }
         } else {
+            // Otherwise, disable both targets
             mouseTargetAiming.SetActive(false);
             mouseTarget.SetActive(false);
         }

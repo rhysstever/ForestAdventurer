@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CardObject : MonoBehaviour
@@ -36,6 +35,7 @@ public class CardObject : MonoBehaviour
     }
 
     private void Update() {
+        // If this card targets, enable it if this is the current targetting card and there is no target
         if(cardData.TargetType == TargetType.Unit) {
             cardToBePlayedRing.SetActive(
                 TargettingManager.instance.CardTargetting == gameObject && 
