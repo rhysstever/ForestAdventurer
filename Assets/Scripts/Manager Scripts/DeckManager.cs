@@ -18,13 +18,6 @@ public class DeckManager : MonoBehaviour
     // Instantiated in script
     private int currentDeckSize, currentHandSize;
     private List<CardData> deck, hand, discard;
-    [SerializeField]
-    private bool isTargetting;
-    [SerializeField]
-    private GameObject target;
-
-    public bool IsTargetting { get { return isTargetting; } }
-    public GameObject Target { get { return target; } }
 
     private void Awake() {
         if(instance == null) {
@@ -49,9 +42,6 @@ public class DeckManager : MonoBehaviour
         for(int i = 0; i < hand.Count; i++) { 
             SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
         }
-
-        isTargetting = false;
-        target = null;
     }
 
     // Update is called once per frame
@@ -122,17 +112,5 @@ public class DeckManager : MonoBehaviour
         cardObj.SetCardData(cardData);
 
         return newCard;
-    }
-
-    public void StartTargetting() {
-        isTargetting = true;
-    }
-
-    public void StopTargetting() {
-        isTargetting = false;
-    }
-
-    public void SetTarget(GameObject target) {
-        this.target = target;
     }
 }

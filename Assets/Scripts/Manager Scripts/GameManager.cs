@@ -37,10 +37,4 @@ public class GameManager : MonoBehaviour
     public void ChangeMenuState(MenuState newMenuState) {
         currentMenuState = newMenuState;
     }
-
-    public Vector2 GetMousePosition() {
-        Vector3 position = Input.mousePosition;
-        position.z = -Camera.main.transform.position.z;
-        return (Vector2)Camera.main.ScreenToWorldPoint(position);
-    }
 }

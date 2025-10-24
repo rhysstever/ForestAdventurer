@@ -21,14 +21,16 @@ public class Enemy : Unit
     }
 
     private void OnMouseEnter() {
-        if(DeckManager.instance.IsTargetting) {
-            DeckManager.instance.SetTarget(gameObject);
+        // If the player is currently targetting, set this enemy as the target
+        if(TargettingManager.instance.CardTargetting != null) {
+            TargettingManager.instance.SetTarget(gameObject);
         }
     }
 
     private void OnMouseExit() {
-        if(DeckManager.instance.IsTargetting) {
-            DeckManager.instance.SetTarget(null);
+        // If the player is currently targetting, remove this enemy as the target
+        if(TargettingManager.instance.CardTargetting != null) {
+            TargettingManager.instance.SetTarget(null);
         }
     }
 }

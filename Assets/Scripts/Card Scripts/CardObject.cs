@@ -9,7 +9,7 @@ public class CardObject : MonoBehaviour
     [SerializeField]
     private Canvas canvas;
     [SerializeField]
-    private GameObject cardSelectionRing;
+    private GameObject cardSelectionRing, cardToBePlayedRing;
     [SerializeField]
     private Image cardBackgroundImage, cardArtImage;
     [SerializeField]
@@ -32,6 +32,15 @@ public class CardObject : MonoBehaviour
         isBeingDragged = false;
 
         cardSelectionRing.SetActive(false);
+        cardToBePlayedRing.SetActive(false);
+    }
+
+    private void Update() {
+        if(cardData.TargetType == TargetType.Unit) {
+            cardToBePlayedRing.SetActive(
+                TargettingManager.instance.CardTargetting == gameObject && 
+                TargettingManager.instance.Target != null);
+        }
     }
 
     public void SetCardArtImage(Image cardArtImage) {
@@ -47,38 +56,49 @@ public class CardObject : MonoBehaviour
         // TODO: Set art image based on specific card
     }
 
-    private void OnMouseOver() {
-        // When hovered over, select the card
-        Select();
+    private void OnMouseEnter() {
+        // When the card is first hovered over, if the player is not already targetting,
+        if(TargettingManager.instance.CardTargetting == null) {
+            if(cardData.TargetType == TargetType.Unit) {
+                // If this card targets, move it up
+                transform.position += (Vector3)hoverOffset;
+            } else {
+                // If this card does not target, if it is not being dragged, move it up
+                if(!isBeingDragged) {
+                    transform.position += (Vector3)hoverOffset;
+                }
+            }
+        }
     }
 
-    private void OnMouseEnter() {
-        // When the card is first hovered over,
-        // If it is not being dragged, move it up
-        if(!isBeingDragged) {
-            transform.position += (Vector3)hoverOffset;
+    private void OnMouseOver() {
+        // When hovered over, select this card the player is not already targetting
+        if(TargettingManager.instance.CardTargetting == null) {
+            Select();
         }
     }
 
     private void OnMouseExit() {
-        // When the card is first no longer hovered,
-        // If the card targets, but is not currently targetting,
-        // OR the card does not target and is not being dragged,
+        // When this card is first no longer hovered,
+        // If this card targets, but the player is not currently targetting,
+        // OR this card does not target and is not being dragged,
         // Deselect it
-        if((cardData.TargetType == TargetType.Unit && !DeckManager.instance.IsTargetting)
+        if((cardData.TargetType == TargetType.Unit && TargettingManager.instance.CardTargetting == null)
             || (cardData.TargetType != TargetType.Unit && !isBeingDragged)) {
             Deselect();
         }
     }
 
     private void OnMouseDown() {
-        // If the clicked on card targets, start targetting
+        // When clicked on,
+        // If this card targets, start targetting it
         if(cardData.TargetType == TargetType.Unit) {
-            DeckManager.instance.StartTargetting();
+            TargettingManager.instance.StartTargetting(gameObject);
+            cardToBePlayedRing.SetActive(true);
         } else {
             // If it does not target, it is about to be dragged
             // Calculate the offset the mouse is from the center of the card
-            dragOffset = savedPos - GameManager.instance.GetMousePosition() + hoverOffset;
+            dragOffset = savedPos - TargettingManager.instance.GetMousePosition() + hoverOffset;
             isBeingDragged = true;
         }
     }
@@ -87,7 +107,7 @@ public class CardObject : MonoBehaviour
         // If the card does not target, drag it
         if(cardData.TargetType != TargetType.Unit) {
             // When dragging, move the card to the mouse's position, and account for an offset
-            transform.position = GameManager.instance.GetMousePosition() + dragOffset;
+            transform.position = TargettingManager.instance.GetMousePosition() + dragOffset;
         }
     }
 
@@ -95,13 +115,15 @@ public class CardObject : MonoBehaviour
         // When Card is being dropped
         if(cardData.TargetType == TargetType.Unit) {
             // If the card targets and has one, play it
-            if(DeckManager.instance.IsTargetting && DeckManager.instance.Target != null) {
-                CardManager.instance.PlayCard(cardData.Slot, DeckManager.instance.Target);
+            if(TargettingManager.instance.CardTargetting != null && TargettingManager.instance.Target != null) {
+                CardManager.instance.PlayCard(cardData.Slot, TargettingManager.instance.Target);
                 Destroy(gameObject);
             } else {
                 // Otherwise deselect it
-                Deselect();
+                Deselect();                
+                cardToBePlayedRing.SetActive(false);
             }
+            TargettingManager.instance.StopTargetting();
         } else {
             // If the card does not target, check if it is in the playing field
             // If it is, play it
@@ -134,7 +156,7 @@ public class CardObject : MonoBehaviour
 
         // If the card targets, stop targetting
         if(cardData.TargetType == TargetType.Unit) {
-            DeckManager.instance.StopTargetting();
+            TargettingManager.instance.StopTargetting();
         }
 
         // If the card is not already in its original, saved position,
@@ -149,6 +171,7 @@ public class CardObject : MonoBehaviour
         // field's collider, it is in the field (ready to be played)
         if(cardData.TargetType != TargetType.Unit && collision.collider == cardFieldCollider) {
             isInField = true;
+            cardToBePlayedRing.SetActive(true);
         }
     }
 
@@ -157,6 +180,7 @@ public class CardObject : MonoBehaviour
         // collider, it is no longer in the field (cannot be played)
         if(cardData.TargetType != TargetType.Unit && collision.collider == cardFieldCollider) {
             isInField = false;
+            cardToBePlayedRing.SetActive(false);
         }
     }
 }

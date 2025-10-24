@@ -48,5 +48,8 @@ TagManager:
   - name: Collidable
     uniqueID: 1771256265
     locked: 0
+  - name: Mouse
+    uniqueID: 722927429
+    locked: 0
   m_RenderingLayers:
   - Default
