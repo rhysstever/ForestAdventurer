@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public enum Rarity
 {
     Starter,
@@ -12,27 +14,33 @@ public enum TargetType
     Unit    // Targets a specific enemy
 }
 
-public abstract class CardData
+public class CardData
 {
-    protected Rarity rarity;
     protected string name;
     protected Slot slot;
+    protected Rarity rarity;
     protected string description;
     protected TargetType targetType;
 
-    public Rarity Rarity { get { return rarity; } }
     public string Name { get { return name; } }
     public Slot Slot { get { return slot; } }
+    public Rarity Rarity { get { return rarity; } }
     public string Description { get { return description; } }
     public TargetType TargetType { get { return targetType; } }
 
-    public CardData(Rarity rarity, string name, string description, TargetType targetType) {
-        this.rarity = rarity;
+    public CardData(string name, Slot slot, Rarity rarity, string description, TargetType targetType) {
         this.name = name;
+        this.slot = slot;
+        this.rarity = rarity;
         this.description = description;
         this.targetType = targetType;
     }
 
-    public CardData(Rarity rarity, string name, TargetType targetType)
-        : this(rarity, name, "", targetType) { }
+    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType) {
+        this.name = name;
+        this.slot = slot;
+        this.rarity = rarity;
+        this.description = "";
+        this.targetType = targetType;
+    }
 }

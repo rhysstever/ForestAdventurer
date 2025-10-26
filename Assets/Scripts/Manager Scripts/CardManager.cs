@@ -27,15 +27,10 @@ public class CardManager : MonoBehaviour
     private Dictionary<Rarity, float> rarityPercentages;
 
     // Slots
-    private MainHand mainHand;
-    private OffHand offHand;
-    private Spirit spirit;
-    private Ally ally;
-    private Spell spell;
-    private Drink drink;
+    private CardData mainHand, offHand, spirit, ally, spell, drink;
     // TODO: Add in passive slots
-    //private GameObject hat;
-    //private GameObject boots;
+    //private CardData hat;
+    //private CardData boots;
 
     // Properties
     public Collider2D FieldCollider { get { return fieldCollider; } }
@@ -65,53 +60,53 @@ public class CardManager : MonoBehaviour
         List<CardData> cards = new List<CardData>();
 
         // Main hand cards
-        cards.Add(new MainHand(Rarity.Starter, "Shortsword", 1));
-        cards.Add(new MainHand(Rarity.Common, "Wand", 1));
-        cards.Add(new MainHand(Rarity.Common, "Longsword", 2));
-        cards.Add(new MainHand(Rarity.Common, "Staff", 2));
-        cards.Add(new MainHand(Rarity.Common, "Mace", 2));
-        cards.Add(new MainHand(Rarity.Common, "Flail", 2));
-        cards.Add(new MainHand(Rarity.Common, "Spear", 2));
-        cards.Add(new MainHand(Rarity.Common, "Trident", 2));
+        cards.Add(new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit));
+        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.AOE));
+        cards.Add(new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit));
+        cards.Add(new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit));
 
         // Off hand cards
-        cards.Add(new OffHand(Rarity.Starter, "Wooden Shield"));
-        cards.Add(new OffHand(Rarity.Common, "Buckler"));
-        cards.Add(new OffHand(Rarity.Common, "Tome"));
-        cards.Add(new OffHand(Rarity.Common, "Spell Focus"));
-        cards.Add(new OffHand(Rarity.Common, "Tower Shield"));
+        cards.Add(new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self));
+        cards.Add(new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Spell Focus", Slot.OffHand, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self));
 
         // Ally cards
-        cards.Add(new Ally(Rarity.Common, "Squirrel"));
-        cards.Add(new Ally(Rarity.Common, "Frog"));
-        cards.Add(new Ally(Rarity.Common, "Rat"));
-        cards.Add(new Ally(Rarity.Common, "Bunny"));
-        cards.Add(new Ally(Rarity.Rare, "Newt"));
-        cards.Add(new Ally(Rarity.Rare, "Porcupine"));
-        cards.Add(new Ally(Rarity.Rare, "Hampster"));
+        cards.Add(new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Bunny", Slot.Ally, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Self));
 
         // Spirit cards
-        cards.Add(new Spirit(Rarity.Common, "Air Spirit"));
-        cards.Add(new Spirit(Rarity.Common, "Earth Spirit"));
-        cards.Add(new Spirit(Rarity.Common, "Fire Spirit"));
-        cards.Add(new Spirit(Rarity.Common, "Water Spirit"));
+        cards.Add(new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
 
         // Spell cards
-        cards.Add(new Spell(Rarity.Starter, "Arcane Bolt", TargetType.Unit, 2, 2));
-        cards.Add(new Spell(Rarity.Common, "Fireball", TargetType.AOE, 3, 2));
-        cards.Add(new Spell(Rarity.Common, "Life Drain", TargetType.Unit, 2, 2));
-        cards.Add(new Spell(Rarity.Rare, "Lightning Bolt", TargetType.Unit, 3, 8));
-        cards.Add(new Spell(Rarity.Rare, "Heal", TargetType.Self, 2, 5));
-        cards.Add(new Spell(Rarity.Rare, "Blizzard", TargetType.AOE, 3, 5));
+        cards.Add(new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.Unit));
+        cards.Add(new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE));
+        cards.Add(new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.Unit));
+        cards.Add(new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE));
 
         // Drink cards
-        cards.Add(new Drink(Rarity.Starter, "Cup"));
-        cards.Add(new Drink(Rarity.Common, "Pouch"));
-        cards.Add(new Drink(Rarity.Common, "Tankard"));
-        cards.Add(new Drink(Rarity.Common, "Flask"));
-        cards.Add(new Drink(Rarity.Rare, "Flagon"));
-        cards.Add(new Drink(Rarity.Rare, "Goblet"));
-        cards.Add(new Drink(Rarity.Rare, "Chalice"));
+        cards.Add(new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self));
+        cards.Add(new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Self));
         return cards;
     }
     #endregion Card Creation
@@ -183,46 +178,11 @@ public class CardManager : MonoBehaviour
     /// </summary>
     public void Reset() {
         // Setup starter slots
-        mainHand = GetStarterCardData(Slot.MainHand) as MainHand;
-        offHand = GetStarterCardData(Slot.OffHand) as OffHand;
-        ally = GetStarterCardData(Slot.Ally) as Ally;
-        spirit = GetStarterCardData(Slot.Spirit) as Spirit;
-        spell = GetStarterCardData(Slot.Spell) as Spell;
-        drink = GetStarterCardData(Slot.Drink) as Drink;
-    }
-
-    public void PlayCard(Slot slot) {
-        CardData card = GetCurrentCardData(slot);
-
-        Debug.Log(string.Format("{0} played", card.Name));
-    }
-
-    public void PlayCard(Slot slot, GameObject target) {
-        CardData card = GetCurrentCardData(slot);
-
-        switch(card.Slot) {
-            case Slot.MainHand:
-                MainHand mainHand = card as MainHand;
-                Attack(target.GetComponent<Enemy>(), mainHand.Damage);
-                break;
-            default:
-                break;
-        }
-
-        Debug.Log(string.Format("{0} played at {1}", card.Name, target.name));
-    }
-
-    private void Attack(Enemy enemy, int damage) {
-        if(enemy == null) {
-            Debug.Log("Error: No target to attack!");
-            return;
-        }
-
-        if(damage < 1) {
-            Debug.Log(string.Format("Error: Not enough damage ({0})", damage));
-            return;
-        }
-
-        enemy.TakeDamage(damage);
+        mainHand = GetStarterCardData(Slot.MainHand);
+        offHand = GetStarterCardData(Slot.OffHand);
+        ally = GetStarterCardData(Slot.Ally);
+        spirit = GetStarterCardData(Slot.Spirit);
+        spell = GetStarterCardData(Slot.Spell);
+        drink = GetStarterCardData(Slot.Drink);
     }
 }

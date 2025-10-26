@@ -38,7 +38,7 @@ public class CardObject : MonoBehaviour
         // If this card targets, enable it if this is the current targetting card and there is no target
         if(cardData.TargetType == TargetType.Unit) {
             cardToBePlayedRing.SetActive(
-                TargettingManager.instance.CardTargetting == gameObject && 
+                TargettingManager.instance.CardTargetting == gameObject &&
                 TargettingManager.instance.Target != null);
         }
     }
@@ -114,10 +114,9 @@ public class CardObject : MonoBehaviour
     private void OnMouseUp() {
         // When Card is being dropped
         if(cardData.TargetType == TargetType.Unit) {
-            // If the card targets and has one, play it
+            // If the card targets and has one, play it with the current target
             if(TargettingManager.instance.CardTargetting != null && TargettingManager.instance.Target != null) {
-                CardManager.instance.PlayCard(cardData.Slot, TargettingManager.instance.Target);
-                Destroy(gameObject);
+                PlayCard(TargettingManager.instance.Target);
             } else {
                 // Otherwise deselect it
                 Deselect();                
@@ -128,8 +127,7 @@ public class CardObject : MonoBehaviour
             // If the card does not target, check if it is in the playing field
             // If it is, play it
             if(isInField) {
-                CardManager.instance.PlayCard(cardData.Slot);
-                Destroy(gameObject);
+                PlayCard(null);
             } else {
                 // If not in the playing field, it should no longer be dragged
                 isBeingDragged = false;
@@ -139,6 +137,11 @@ public class CardObject : MonoBehaviour
         // If the card is not in the playing field OR targets but didnt have one,
         // move the card back to its original position
         transform.position = savedPos;
+    }
+
+    private void PlayCard(GameObject target) {
+        CardActionManager.instance.Play(cardData.Name, target);
+        Destroy(gameObject);
     }
 
     private void Select() {

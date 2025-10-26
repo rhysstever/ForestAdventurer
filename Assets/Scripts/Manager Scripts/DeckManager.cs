@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
@@ -18,6 +19,8 @@ public class DeckManager : MonoBehaviour
     // Instantiated in script
     private int currentDeckSize, currentHandSize;
     private List<CardData> deck, hand, discard;
+
+    public Player Player { get { return player; } }
 
     private void Awake() {
         if(instance == null) {
@@ -39,7 +42,7 @@ public class DeckManager : MonoBehaviour
 
         float cardXOffset = 3.5f;
         float cardRowXOffset = 4.5f;
-        for(int i = 0; i < hand.Count; i++) { 
+        for(int i = 0; i < hand.Count; i++) {
             SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
         }
     }
@@ -56,27 +59,57 @@ public class DeckManager : MonoBehaviour
         // 4 main hand and 4 off hand cards
         CardData mainHand = CardManager.instance.GetCurrentCardData(Slot.MainHand);
         CardData offHand = CardManager.instance.GetCurrentCardData(Slot.OffHand);
-        for(int i = 0; i < 4; i++) {
-            cards.Add(mainHand);
-            cards.Add(offHand);
-        }
-        // 2 spell and 2 drink cards
-        CardData spell = CardManager.instance.GetCurrentCardData(Slot.Spell);
-        CardData drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
-        for(int i = 0; i < 2; i++) {
-            cards.Add(spell);
-            cards.Add(drink);
-        }
-        // 3 ally and 3 spirit cards (if available)
         CardData ally = CardManager.instance.GetCurrentCardData(Slot.Ally);
         CardData spirit = CardManager.instance.GetCurrentCardData(Slot.Spirit);
-        for(int i = 0; i < 3; i++) {
-            if(ally != null) {
+        CardData spell = CardManager.instance.GetCurrentCardData(Slot.Spell);
+        CardData drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
+
+        if(mainHand != null) {
+            for(int i = 0; i < 4; i++) {
+                cards.Add(mainHand);
+            }
+        } else {
+            Debug.Log("Warning! No current MainHand card, not drawing");
+        }
+
+        if(offHand != null) {
+            for(int i = 0; i < 4; i++) {
+                cards.Add(offHand);
+            }
+        } else {
+            Debug.Log("Warning! No current OffHand card, not drawing");
+        }
+
+        if(ally != null) {
+            for(int i = 0; i < 3; i++) {
                 cards.Add(ally);
             }
-            if(spirit != null) {
+        } else {
+            Debug.Log("Warning! No current Ally card, not drawing");
+        }
+
+        if(spirit != null) {
+            for(int i = 0; i < 3; i++) {
                 cards.Add(spirit);
             }
+        } else {
+            Debug.Log("Warning! No current Spirit card, not drawing");
+        }
+
+        if(spell != null) {
+            for(int i = 0; i < 2; i++) {
+                cards.Add(spell);
+            }
+        } else {
+            Debug.Log("Warning! No current Spell card, not drawing");
+        }
+
+        if(drink != null) {
+            for(int i = 0; i < 2; i++) {
+                cards.Add(drink);
+            }
+        } else {
+            Debug.Log("Warning! No current Drink card, not drawing");
         }
 
         return cards;

@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 231419616}
   - component: {fileID: 231419617}
   - component: {fileID: 231419618}
+  - component: {fileID: 231419619}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -239,6 +240,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseTargetAiming: {fileID: 788393647}
   mouseTarget: {fileID: 297797404}
+--- !u!114 &231419619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231419612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca73b635b0abe4043a64980d8fbf619a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &297797404
 GameObject:
   m_ObjectHideFlags: 0
@@ -713,6 +726,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 1
+  currentLife: 0
+  currentDefense: 0
 --- !u!61 &1134185823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -990,6 +1005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 10
+  currentLife: 0
+  currentDefense: 0
 --- !u!1 &2025496380
 GameObject:
   m_ObjectHideFlags: 0
