@@ -34,10 +34,8 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         currentHandSize = 4;
-
         deck = GenerateDeck();
         currentDeckSize = deck.Count;
-
         hand = DrawCards(currentHandSize);
 
         float cardXOffset = 3.5f;
@@ -69,7 +67,7 @@ public class DeckManager : MonoBehaviour
                 cards.Add(mainHand);
             }
         } else {
-            Debug.Log("Warning! No current MainHand card, not drawing");
+            Debug.Log("Warning! No current MainHand card, not generating");
         }
 
         if(offHand != null) {
@@ -77,7 +75,7 @@ public class DeckManager : MonoBehaviour
                 cards.Add(offHand);
             }
         } else {
-            Debug.Log("Warning! No current OffHand card, not drawing");
+            Debug.Log("Warning! No current OffHand card, not generating");
         }
 
         if(ally != null) {
@@ -85,7 +83,7 @@ public class DeckManager : MonoBehaviour
                 cards.Add(ally);
             }
         } else {
-            Debug.Log("Warning! No current Ally card, not drawing");
+            Debug.Log("Warning! No current Ally card, not generating");
         }
 
         if(spirit != null) {
@@ -93,7 +91,7 @@ public class DeckManager : MonoBehaviour
                 cards.Add(spirit);
             }
         } else {
-            Debug.Log("Warning! No current Spirit card, not drawing");
+            Debug.Log("Warning! No current Spirit card, not generating");
         }
 
         if(spell != null) {
@@ -101,7 +99,7 @@ public class DeckManager : MonoBehaviour
                 cards.Add(spell);
             }
         } else {
-            Debug.Log("Warning! No current Spell card, not drawing");
+            Debug.Log("Warning! No current Spell card, not generating");
         }
 
         if(drink != null) {
@@ -109,7 +107,7 @@ public class DeckManager : MonoBehaviour
                 cards.Add(drink);
             }
         } else {
-            Debug.Log("Warning! No current Drink card, not drawing");
+            Debug.Log("Warning! No current Drink card, not generating");
         }
 
         return cards;

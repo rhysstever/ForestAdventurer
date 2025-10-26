@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum MenuState
@@ -11,6 +13,10 @@ public class GameManager : MonoBehaviour
 {
     // Singleton
     public static GameManager instance = null;
+
+    // Instantiated in inspector
+    [SerializeField]
+    private Transform enemies;
 
     private void Awake() {
         if(instance == null) {
@@ -36,5 +42,10 @@ public class GameManager : MonoBehaviour
 
     public void ChangeMenuState(MenuState newMenuState) {
         currentMenuState = newMenuState;
+    }
+
+    public List<Enemy> GetCurrentEnemies() {
+        return enemies.GetComponentsInChildren<Enemy>().ToList();
+        ;
     }
 }

@@ -61,11 +61,11 @@ public class CardManager : MonoBehaviour
 
         // Main hand cards
         cards.Add(new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit));
-        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None));
         cards.Add(new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.AOE));
+        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None));
+        cards.Add(new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE));
+        cards.Add(new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None));
         cards.Add(new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit));
         cards.Add(new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit));
 
@@ -77,36 +77,37 @@ public class CardManager : MonoBehaviour
         cards.Add(new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self));
 
         // Ally cards
-        cards.Add(new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Unit));
         cards.Add(new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None));
         cards.Add(new CardData("Bunny", Slot.Ally, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE));
         cards.Add(new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self));
-        cards.Add(new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit));
 
         // Spirit cards
-        cards.Add(new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None));
         cards.Add(new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit));
         cards.Add(new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
 
         // Spell cards
-        cards.Add(new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.Unit));
+        cards.Add(new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None));
         cards.Add(new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE));
         cards.Add(new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.Unit));
+        cards.Add(new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None));
         cards.Add(new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self));
         cards.Add(new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE));
 
         // Drink cards
         cards.Add(new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self));
         cards.Add(new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit));
+        cards.Add(new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None));
+        cards.Add(new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.None));
         cards.Add(new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self));
-        cards.Add(new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit));
+
         return cards;
     }
     #endregion Card Creation

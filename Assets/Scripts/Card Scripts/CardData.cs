@@ -9,6 +9,7 @@ public enum Rarity
 
 public enum TargetType
 {
+    None,   // Targets nothing
     Self,   // Targets the player
     AOE,    // Targets all enemies
     Unit    // Targets a specific enemy

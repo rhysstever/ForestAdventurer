@@ -7,7 +7,6 @@ public class Unit : MonoBehaviour
     protected int maxLife;
 
     // Instantiated in code
-    [SerializeField]    // TODO: Remove when no longer testing life and def
     protected int currentLife, currentDefense;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
