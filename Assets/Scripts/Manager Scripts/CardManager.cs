@@ -59,9 +59,9 @@ public class CardManager : MonoBehaviour
         List<CardData> cards = new List<CardData>();
         // Main hand cards
         cards.Add(new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1 damage."));
-        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage."));
+        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage. And some magic... nothing yet"));
         cards.Add(new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2 damage."));
-        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 2 damage."));
+        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 2 damage. And some magic... nothing yet"));
         cards.Add(new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack all for 3 damage."));
         cards.Add(new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 2 damage."));
         cards.Add(new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6 damage."));
