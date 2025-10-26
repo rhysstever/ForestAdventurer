@@ -20,28 +20,28 @@ public class CardData
     protected string name;
     protected Slot slot;
     protected Rarity rarity;
-    protected string description;
     protected TargetType targetType;
+    protected string description;
 
     public string Name { get { return name; } }
     public Slot Slot { get { return slot; } }
     public Rarity Rarity { get { return rarity; } }
-    public string Description { get { return description; } }
     public TargetType TargetType { get { return targetType; } }
+    public string Description { get { return description; } }
 
-    public CardData(string name, Slot slot, Rarity rarity, string description, TargetType targetType) {
+    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType, string description) {
         this.name = name;
         this.slot = slot;
         this.rarity = rarity;
-        this.description = description;
         this.targetType = targetType;
+        this.description = description;
     }
 
     public CardData(string name, Slot slot, Rarity rarity, TargetType targetType) {
         this.name = name;
         this.slot = slot;
         this.rarity = rarity;
-        this.description = "";
         this.targetType = targetType;
+        this.description = "";
     }
 }

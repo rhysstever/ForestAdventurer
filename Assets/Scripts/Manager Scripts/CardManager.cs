@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -58,55 +57,56 @@ public class CardManager : MonoBehaviour
     #region Card Creation
     private List<CardData> CardCreation() {
         List<CardData> cards = new List<CardData>();
+        // TODO: Add the other card's descriptions
 
         // Main hand cards
-        cards.Add(new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit));
-        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None));
-        cards.Add(new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None));
-        cards.Add(new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE));
-        cards.Add(new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None));
-        cards.Add(new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit));
-        cards.Add(new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit));
+        cards.Add(new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1 damage."));
+        cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage."));
+        cards.Add(new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2 damage."));
+        cards.Add(new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 2 damage."));
+        cards.Add(new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack all for 3 damage."));
+        cards.Add(new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 2 damage."));
+        cards.Add(new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6 damage."));
+        cards.Add(new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 5 damage. And some magic... nothing yet"));
 
         // Off hand cards
-        cards.Add(new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self));
-        cards.Add(new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Spell Focus", Slot.OffHand, Rarity.Rare, TargetType.Self));
-        cards.Add(new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self));
+        cards.Add(new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Gain 1 defense."));
+        cards.Add(new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Gain 2 defense."));
+        cards.Add(new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"));
+        cards.Add(new CardData("Spell Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"));
+        cards.Add(new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Gain 5 defense."));
 
         // Ally cards
-        cards.Add(new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None));
-        cards.Add(new CardData("Bunny", Slot.Ally, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE));
-        cards.Add(new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self));
-        cards.Add(new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit));
+        cards.Add(new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Unit, "Attack for 1 damage."));
+        cards.Add(new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1."));
+        cards.Add(new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None, "Randomly attack 3 times for 1 damage."));
+        cards.Add(new CardData("Bunny", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 2."));
+        cards.Add(new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE, "Attack all for 2 damage."));
+        cards.Add(new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self, "Gain 3 defense."));
+        cards.Add(new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."));
 
         // Spirit cards
-        cards.Add(new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None));
-        cards.Add(new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self));
+        cards.Add(new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage."));
+        cards.Add(new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Gain 2 defense."));
+        cards.Add(new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 2 damage."));
+        cards.Add(new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 2."));
 
         // Spell cards
-        cards.Add(new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None));
-        cards.Add(new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE));
-        cards.Add(new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None));
-        cards.Add(new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self));
-        cards.Add(new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE));
+        cards.Add(new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Randomly attack for 1 damage."));
+        cards.Add(new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE, "Attack all for 1 damage."));
+        cards.Add(new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit, "Attack for 2 damage. Heal for 1"));
+        cards.Add(new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None, "Randomly attack for 4 damage."));
+        cards.Add(new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5."));
+        cards.Add(new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE, "Attack all for 3 damage."));
 
         // Drink cards
-        cards.Add(new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self));
-        cards.Add(new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self));
-        cards.Add(new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit));
-        cards.Add(new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None));
-        cards.Add(new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.None));
-        cards.Add(new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self));
-        cards.Add(new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit));
+        cards.Add(new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1."));
+        cards.Add(new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Heal for 2."));
+        cards.Add(new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit, "Attack for 1 damage. Heal for 1"));
+        cards.Add(new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Randomly attack for 2 damage."));
+        cards.Add(new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.None, "Randomly attack for 2 damage. Heal for 3"));
+        cards.Add(new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4."));
+        cards.Add(new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit, "Attack for 1 damage. Heal for 3"));
 
         return cards;
     }
@@ -244,7 +244,7 @@ public class CardManager : MonoBehaviour
                 // TODO: Add Magic to Spell Focus Play()
                 break;
             case "Tower Shield":
-                Defend(4);
+                Defend(5);
                 break;
             #endregion Off Hand Card Actions
 
