@@ -140,7 +140,7 @@ public class CardObject : MonoBehaviour
     }
 
     private void PlayCard(GameObject target) {
-        CardActionManager.instance.Play(cardData.Name, target);
+        CardManager.instance.Play(cardData.Name, target);
         Destroy(gameObject);
     }
 
