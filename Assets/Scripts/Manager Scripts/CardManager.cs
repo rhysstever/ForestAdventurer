@@ -57,8 +57,6 @@ public class CardManager : MonoBehaviour
     #region Card Creation
     private List<CardData> CardCreation() {
         List<CardData> cards = new List<CardData>();
-        // TODO: Add the other card's descriptions
-
         // Main hand cards
         cards.Add(new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1 damage."));
         cards.Add(new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage."));
