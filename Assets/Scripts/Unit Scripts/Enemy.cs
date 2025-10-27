@@ -16,6 +16,7 @@ public class Enemy : Unit
         base.TakeDamage(amount);
 
         if(currentLife <= 0) {
+            EnemyManager.instance.CheckIfRoundIsOver();
             Destroy(gameObject);
         }
     }

@@ -14,10 +14,6 @@ public class GameManager : MonoBehaviour
     // Singleton
     public static GameManager instance = null;
 
-    // Instantiated in inspector
-    [SerializeField]
-    private Transform enemies;
-
     private void Awake() {
         if(instance == null) {
             instance = this;
@@ -32,6 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentMenuState = MenuState.Game;
+        StartRound();
     }
 
     // Update is called once per frame
@@ -44,8 +41,10 @@ public class GameManager : MonoBehaviour
         currentMenuState = newMenuState;
     }
 
-    public List<Enemy> GetCurrentEnemies() {
-        return enemies.GetComponentsInChildren<Enemy>().ToList();
-        ;
+    public void StartRound() {
+        // Spawn next round of enemies
+        EnemyManager.instance.SpawnNextRound();
+        // Deal Hand
+        DeckManager.instance.DealHand();
     }
 }

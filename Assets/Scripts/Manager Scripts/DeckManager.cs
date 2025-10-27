@@ -34,15 +34,6 @@ public class DeckManager : MonoBehaviour
     void Start()
     {
         currentHandSize = 4;
-        deck = GenerateDeck();
-        currentDeckSize = deck.Count;
-        hand = DrawCards(currentHandSize);
-
-        float cardXOffset = 3.5f;
-        float cardRowXOffset = 4.5f;
-        for(int i = 0; i < hand.Count; i++) {
-            SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
-        }
     }
 
     // Update is called once per frame
@@ -111,6 +102,18 @@ public class DeckManager : MonoBehaviour
         }
 
         return cards;
+    }
+
+    public void DealHand() {
+        deck = GenerateDeck();
+        currentDeckSize = deck.Count;
+        hand = DrawCards(currentHandSize);
+
+        float cardXOffset = 3.5f;
+        float cardRowXOffset = 4.5f;
+        for(int i = 0; i < hand.Count; i++) {
+            SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
+        }
     }
 
     public List<CardData> DrawCards(int numberOfCardsToDraw) {

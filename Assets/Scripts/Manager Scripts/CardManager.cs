@@ -358,13 +358,13 @@ public class CardManager : MonoBehaviour
     }
 
     private void AttackEveryEnemy(int damage) {
-        GameManager.instance.GetCurrentEnemies().ForEach(enemy => {
+        EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
             AttackUnit(damage, enemy);
         });
     }
 
     private void AttackRandomEnemy(int damage) {
-        List<Enemy> currentEnemies = GameManager.instance.GetCurrentEnemies();
+        List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
         int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
         AttackUnit(damage, currentEnemies[randomEnemyIndex]);
     }

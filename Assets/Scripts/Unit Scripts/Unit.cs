@@ -9,6 +9,8 @@ public class Unit : MonoBehaviour
     // Instantiated in code
     protected int currentLife, currentDefense;
 
+    public int CurrentLife { get { return currentLife; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
