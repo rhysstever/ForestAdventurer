@@ -17,7 +17,7 @@ public class DeckManager : MonoBehaviour
     private GameObject cardPrefab;
 
     // Instantiated in script
-    private int currentDeckSize, currentHandSize;
+    private int currentHandSize;
     private List<CardData> deck, hand, discard;
 
     public Player Player { get { return player; } }
@@ -28,6 +28,10 @@ public class DeckManager : MonoBehaviour
         } else if(instance != this) {
             Destroy(gameObject);
         }
+
+        deck = new List<CardData>();
+        hand = new List<CardData>();
+        discard = new List<CardData>();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,7 +43,14 @@ public class DeckManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         
+    }
+
+    public void SetupForNewRound() {
+        deck = GenerateDeck();
+        hand.Clear();
+        discard.Clear();
+        GameManager.instance.ChangeGameState(GameState.CombatPlayerTurn);
     }
 
     public List<CardData> GenerateDeck() {
@@ -104,9 +115,11 @@ public class DeckManager : MonoBehaviour
         return cards;
     }
 
+    public void DiscardHand() {
+        // TODO: Move rest of hand (if available) to the discard pile
+    }
+
     public void DealHand() {
-        deck = GenerateDeck();
-        currentDeckSize = deck.Count;
         hand = DrawCards(currentHandSize);
 
         float cardXOffset = 3.5f;
@@ -122,10 +135,10 @@ public class DeckManager : MonoBehaviour
         // For the number of cards to draw, find a unique index
         // of a card to draw from the deck
         for(int i = 0; i < numberOfCardsToDraw; i++) {
-            int newIndex = Random.Range(0, currentDeckSize);
+            int newIndex = Random.Range(0, deck.Count);
             if(cardIndicesToDraw.Count > 0) {
                 while(cardIndicesToDraw.Contains(newIndex)) {
-                    newIndex = Random.Range(0, currentDeckSize);
+                    newIndex = Random.Range(0, deck.Count);
                 }
             }
             cardIndicesToDraw.Add(newIndex);
@@ -133,6 +146,8 @@ public class DeckManager : MonoBehaviour
 
         // Map each int index to a card in the deck
         return cardIndicesToDraw.Select(index => deck[index]).ToList();
+
+        // TODO: Remove cards from deck
     }
 
     public GameObject SpawnCard(CardData cardData) {

@@ -9,6 +9,15 @@ public enum MenuState
     GameEnd
 }
 
+public enum GameState
+{
+    CombatStart,
+    CombatPlayerTurn,
+    CombatEnemyTurn,
+    CombatEnd,
+    CardSelection
+}
+
 public class GameManager : MonoBehaviour
 {
     // Singleton
@@ -23,12 +32,16 @@ public class GameManager : MonoBehaviour
     }
         
     private MenuState currentMenuState;
+    private GameState currentGameState;
+
+    public MenuState CurrentMenuState { get { return currentMenuState; } }
+    public GameState CurrentGameState { get { return currentGameState; } }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentMenuState = MenuState.Game;
-        StartRound();
+        ChangeMenuState(MenuState.Game);
+        ChangeGameState(GameState.CombatStart);
     }
 
     // Update is called once per frame
@@ -38,13 +51,34 @@ public class GameManager : MonoBehaviour
     }
 
     public void ChangeMenuState(MenuState newMenuState) {
+        switch(newMenuState) {
+            case MenuState.MainMenu:
+                break;
+            case MenuState.Game:
+                break;
+            case MenuState.GameEnd:
+                break;
+        }
+
         currentMenuState = newMenuState;
     }
 
-    public void StartRound() {
-        // Spawn next round of enemies
-        EnemyManager.instance.SpawnNextRound();
-        // Deal Hand
-        DeckManager.instance.DealHand();
+    public void ChangeGameState(GameState newGameState) {
+        switch(newGameState) {
+            case GameState.CombatStart:
+                DeckManager.instance.SetupForNewRound();
+                EnemyManager.instance.SpawnNextRound();
+                break;
+            case GameState.CombatPlayerTurn:
+                DeckManager.instance.DiscardHand();
+                DeckManager.instance.DealHand();
+                break;
+            case GameState.CombatEnemyTurn:
+                break;
+            case GameState.CombatEnd:
+                break;
+        }
+
+        currentGameState = newGameState;
     }
 }
