@@ -11,18 +11,6 @@ public class Unit : MonoBehaviour
 
     public int CurrentLife { get { return currentLife; } }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        Reset();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public virtual void TakeDamage(int amount) {
         if(amount < 0) {
             return;

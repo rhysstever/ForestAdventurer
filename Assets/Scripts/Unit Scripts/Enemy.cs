@@ -3,13 +3,7 @@ public class Enemy : Unit
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.Reset();
     }
 
     public override void TakeDamage(int amount) {
