@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
@@ -39,7 +41,7 @@ public class DeckManager : MonoBehaviour
         currentHandSize = 4;
     }
 
-    public void SetupForNewRound() {
+    public void SetupForNewCombat() {
         deck = GenerateDeck();
         hand.Clear();
         discard.Clear();
@@ -109,46 +111,50 @@ public class DeckManager : MonoBehaviour
     }
 
     public void DiscardHand() {
-        // TODO: Move rest of hand (if available) to the discard pile
+        // Destroy card objects from scene
+        for(int i = cardParentTrans.childCount - 1; i >= 0; i--) { 
+            Destroy(cardParentTrans.GetChild(i).gameObject);
+        }
+
+        // Create a list copy of the cards still in hand,
+        // add them to the discard list and clear the hand list
+        List<CardData> remainingCardsInHand = hand.ToList();
+        discard.AddRange(remainingCardsInHand);
+        hand.Clear();
     }
 
     public void DealHand() {
-        hand = DrawCards(currentHandSize);
+        DrawCards(currentHandSize);
+    }
+
+    public void DrawCards(int numberOfCardsToDraw) {
+        // Add the given number of cards from the deck into the hand
+        for(int i = 0; i < numberOfCardsToDraw; i++) {
+            // Get a random index of the deck list
+            int newIndex = UnityEngine.Random.Range(0, deck.Count);
+
+            // Get the card from the deck, add it to the hand, and remove it from the deck
+            CardData card = deck[newIndex];
+            hand.Add(card);
+            deck.RemoveAt(newIndex);
+        }
+
+        // TODO: Remove this and only add in the new cards
+        // Removes all cards currently shown in the scene
+        for(int i = cardParentTrans.childCount - 1; i >= 0; i--) {
+            Destroy(cardParentTrans.GetChild(i).gameObject);
+        }
 
         float cardXOffset = 3.5f;
         float cardRowXOffset = 4.5f;
+
+        // Spawn the all the cards in the scene
         for(int i = 0; i < hand.Count; i++) {
             SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
         }
     }
 
-    public List<CardData> DrawCards(int numberOfCardsToDraw) {
-        List<int> cardIndicesToDraw = new List<int>();
-
-        // For the number of cards to draw, find a unique index
-        // of a card to draw from the deck
-        for(int i = 0; i < numberOfCardsToDraw; i++) {
-            int newIndex = Random.Range(0, deck.Count);
-            if(cardIndicesToDraw.Count > 0) {
-                while(cardIndicesToDraw.Contains(newIndex)) {
-                    newIndex = Random.Range(0, deck.Count);
-                }
-            }
-            cardIndicesToDraw.Add(newIndex);
-        }
-
-        // Map each int index to a card in the deck
-        return cardIndicesToDraw.Select(index => deck[index]).ToList();
-
-        // TODO: Remove cards from deck
-    }
-
-    public GameObject SpawnCard(CardData cardData) {
-        Vector2 defaultPos = new Vector2(0f, -5f);
-        return SpawnCard(cardData, defaultPos);
-    }
-
-    public GameObject SpawnCard(CardData cardData, Vector2 position) {
+    private GameObject SpawnCard(CardData cardData, Vector2 position) {
         GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, cardParentTrans);
         CardObject cardObj = newCard.GetComponent<CardObject>();
         cardObj.SetCardData(cardData);
