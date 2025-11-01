@@ -22,6 +22,12 @@ public class GameManager : MonoBehaviour
 {
     // Singleton
     public static GameManager instance = null;
+        
+    private MenuState currentMenuState;
+    private GameState currentGameState;
+
+    public MenuState CurrentMenuState { get { return currentMenuState; } }
+    public GameState CurrentGameState { get { return currentGameState; } }
 
     private void Awake() {
         if(instance == null) {
@@ -30,24 +36,11 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-        
-    private MenuState currentMenuState;
-    private GameState currentGameState;
 
-    public MenuState CurrentMenuState { get { return currentMenuState; } }
-    public GameState CurrentGameState { get { return currentGameState; } }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ChangeMenuState(MenuState.Game);
         ChangeGameState(GameState.CombatStart);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void ChangeMenuState(MenuState newMenuState) {

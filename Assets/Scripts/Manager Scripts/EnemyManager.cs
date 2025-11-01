@@ -27,17 +27,10 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         enemyRounds = SetEnemyRounds();
         currentRoundNum = -1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private List<Round> SetEnemyRounds() {
@@ -58,8 +51,10 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void CheckIfRoundIsOver() {
+        // Check all enemies in the scene and if none have health, the round is over
         if(GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0) {
-            SpawnNextRound();
+            // If the round is over, end combat
+            GameManager.instance.ChangeGameState(GameState.CombatEnd);
         }
     }
 

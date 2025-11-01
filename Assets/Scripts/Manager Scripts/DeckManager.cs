@@ -34,16 +34,9 @@ public class DeckManager : MonoBehaviour
         discard = new List<CardData>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHandSize = 4;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-         
     }
 
     public void SetupForNewRound() {
