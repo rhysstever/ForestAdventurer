@@ -65,7 +65,6 @@ public class GameManager : MonoBehaviour
                 DeckManager.instance.SetupForNewCombat();
                 break;
             case GameState.CombatPlayerTurn:
-                DeckManager.instance.DiscardHand();
                 DeckManager.instance.DealHand();
                 break;
             case GameState.CombatEnemyTurn:

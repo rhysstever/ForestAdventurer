@@ -111,10 +111,7 @@ public class DeckManager : MonoBehaviour
     }
 
     public void DiscardHand() {
-        // Destroy card objects from scene
-        for(int i = cardParentTrans.childCount - 1; i >= 0; i--) { 
-            Destroy(cardParentTrans.GetChild(i).gameObject);
-        }
+        RemoveCardsFromScene();
 
         // Create a list copy of the cards still in hand,
         // add them to the discard list and clear the hand list
@@ -124,6 +121,7 @@ public class DeckManager : MonoBehaviour
     }
 
     public void DealHand() {
+        RemoveCardsFromScene();
         DrawCards(currentHandSize);
     }
 
@@ -137,13 +135,7 @@ public class DeckManager : MonoBehaviour
             CardData card = deck[newIndex];
             hand.Add(card);
             deck.RemoveAt(newIndex);
-        }
-
-        // TODO: Remove this and only add in the new cards
-        // Removes all cards currently shown in the scene
-        for(int i = cardParentTrans.childCount - 1; i >= 0; i--) {
-            Destroy(cardParentTrans.GetChild(i).gameObject);
-        }
+        }        
 
         float cardXOffset = 3.5f;
         float cardRowXOffset = 4.5f;
@@ -151,6 +143,12 @@ public class DeckManager : MonoBehaviour
         // Spawn the all the cards in the scene
         for(int i = 0; i < hand.Count; i++) {
             SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
+        }
+    }
+
+    private void RemoveCardsFromScene() {
+        for(int i = cardParentTrans.childCount - 1; i >= 0; i--) {
+            Destroy(cardParentTrans.GetChild(i).gameObject);
         }
     }
 
