@@ -1,9 +1,22 @@
 public class Enemy : Unit
 {
+    private int round;
+
+    public int Round {  get { return round; } }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Reset();
+    }
+
+    public override void Reset() {
         base.Reset();
+        round = 0;
+    }
+
+    public void IncrementRound() {
+        round++;
     }
 
     public override void TakeDamage(int amount) {
@@ -13,6 +26,10 @@ public class Enemy : Unit
             EnemyManager.instance.CheckIfWaveIsOver();
             Destroy(gameObject);
         }
+    }
+
+    public void Attack(int amount) {
+        DeckManager.instance.Player.TakeDamage(amount);
     }
 
     private void OnMouseEnter() {

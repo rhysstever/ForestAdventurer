@@ -57,8 +57,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void ChangeGameState(GameState newGameState) {
-        currentGameState = newGameState;
-
         switch(newGameState) {
             case GameState.CombatStart:
                 EnemyManager.instance.SpawnNextWave();
@@ -68,7 +66,8 @@ public class GameManager : MonoBehaviour
                 DeckManager.instance.DealHand();
                 break;
             case GameState.CombatEnemyTurn:
-                // TODO: Do next move, determined by current round
+                DeckManager.instance.DiscardHand();
+                EnemyManager.instance.PerformEnemyRoundActions();
                 break;
             case GameState.CombatEnd:
                 // TODO: Show rewards, including card selection
@@ -80,5 +79,7 @@ public class GameManager : MonoBehaviour
             case GameState.CardSelection:
                 break;
         }
+
+        currentGameState = newGameState;
     }
 }

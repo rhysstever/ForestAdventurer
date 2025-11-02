@@ -12,6 +12,7 @@ public class Player : Unit
 
     public override void TakeDamage(int amount) {
         base.TakeDamage(amount);
+        Debug.Log(string.Format("Player take damage! HP is now at: {0}", currentLife));
 
         // Check if the player has been killed, if so, end the game
         if(currentLife <= 0) {

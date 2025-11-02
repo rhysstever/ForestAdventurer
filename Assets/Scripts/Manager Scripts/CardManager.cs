@@ -309,7 +309,7 @@ public class CardManager : MonoBehaviour
                 break;
             #endregion Spell Card Actions
 
-            // Drink Cards
+            #region Drink Card Actions
             case "Cup":
                 Heal(1);
                 break;
@@ -337,6 +337,7 @@ public class CardManager : MonoBehaviour
             default:
                 Debug.Log(string.Format("Error! Card not found by name: {0}", cardName));
                 break;
+            #endregion Drink Card Actions
         }
     }
     #endregion Card Actions

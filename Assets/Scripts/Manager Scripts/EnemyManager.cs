@@ -50,6 +50,56 @@ public class EnemyManager : MonoBehaviour
         return combatRounds;
     }
 
+    public void PerformEnemyRoundActions() {
+        foreach(Enemy enemy in GetCurrentEnemiesInScene()) {
+            EnemyActions(enemy, enemy.Round);
+            enemy.IncrementRound();
+        }
+    }
+
+    private void EnemyActions(Enemy enemy, int combatRound) {
+        string enemyName = enemy.gameObject.name["enemy".Length..];
+        int actionsCount;
+        switch(enemyName) {
+            case "Boar":
+                actionsCount = 2;
+                combatRound %= actionsCount;
+                switch(combatRound) {
+                    case 0:
+                        enemy.GiveDefense(1);
+                        break;
+                    case 1:
+                        enemy.Attack(1);
+                        break;
+                    default:
+                        Debug.Log(string.Format("Error! Boar enemy action cannot be done for round {0}", combatRound));
+                        break;
+                }
+                break;
+            case "Mushroom":
+                actionsCount = 3;
+                combatRound %= actionsCount;
+                switch(combatRound) {
+                    case 0:
+                        enemy.GiveDefense(3);
+                        break;
+                    case 1:
+                        enemy.Attack(2);
+                        break;
+                    case 2:
+                        enemy.Attack(2);
+                        break;
+                    default:
+                        Debug.Log(string.Format("Error! Boar enemy action cannot be done for round {0}", combatRound));
+                        break;
+                }
+                break;
+            default:
+                Debug.Log(string.Format("Error! No enemy by the name of {0}", enemyName));
+                break;
+        }
+    }
+
     public void CheckIfWaveIsOver() {
         // Check all enemies in the scene and if none have health, the wave is over
         if(GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0) {
@@ -94,6 +144,7 @@ public class EnemyManager : MonoBehaviour
 
     private void SpawnEnemy(GameObject enemy, Vector2 position) {
         GameObject newSceneEnemy = Instantiate(enemy, position, Quaternion.identity, enemies);
+        newSceneEnemy.name = enemy.name;
     }
 
     public bool IsLastWave() {
