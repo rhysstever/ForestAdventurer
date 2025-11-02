@@ -29,7 +29,11 @@ public class Enemy : Unit
     }
 
     public void Attack(int amount) {
-        DeckManager.instance.Player.TakeDamage(amount);
+        Attack(amount, DeckManager.instance.Player);
+    }
+
+    public void Attack(int amount, Unit target) {
+        target.TakeDamage(amount);
     }
 
     private void OnMouseEnter() {

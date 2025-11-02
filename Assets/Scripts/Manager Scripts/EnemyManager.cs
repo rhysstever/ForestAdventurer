@@ -52,13 +52,16 @@ public class EnemyManager : MonoBehaviour
 
     public void PerformEnemyRoundActions() {
         foreach(Enemy enemy in GetCurrentEnemiesInScene()) {
-            EnemyActions(enemy, enemy.Round);
+            EnemyActions(enemy);
             enemy.IncrementRound();
         }
+
+        GameManager.instance.ChangeGameState(GameState.CombatPlayerTurn);
     }
 
-    private void EnemyActions(Enemy enemy, int combatRound) {
+    private void EnemyActions(Enemy enemy) {
         string enemyName = enemy.gameObject.name["enemy".Length..];
+        int combatRound = enemy.Round;
         int actionsCount;
         switch(enemyName) {
             case "Boar":
@@ -66,10 +69,10 @@ public class EnemyManager : MonoBehaviour
                 combatRound %= actionsCount;
                 switch(combatRound) {
                     case 0:
-                        enemy.GiveDefense(1);
+                        enemy.GiveDefense(1 + 3 * combatRound);
                         break;
                     case 1:
-                        enemy.Attack(1);
+                        enemy.Attack(1 + 2 * combatRound);
                         break;
                     default:
                         Debug.Log(string.Format("Error! Boar enemy action cannot be done for round {0}", combatRound));
@@ -81,13 +84,13 @@ public class EnemyManager : MonoBehaviour
                 combatRound %= actionsCount;
                 switch(combatRound) {
                     case 0:
-                        enemy.GiveDefense(3);
+                        enemy.GiveDefense(3 + 3 * combatRound);
                         break;
                     case 1:
-                        enemy.Attack(2);
+                        enemy.Attack(2 + 2 * combatRound);
                         break;
                     case 2:
-                        enemy.Attack(2);
+                        enemy.Heal(4 + 2 * combatRound);
                         break;
                     default:
                         Debug.Log(string.Format("Error! Boar enemy action cannot be done for round {0}", combatRound));

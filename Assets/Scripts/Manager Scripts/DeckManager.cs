@@ -128,6 +128,11 @@ public class DeckManager : MonoBehaviour
     public void DrawCards(int numberOfCardsToDraw) {
         // Add the given number of cards from the deck into the hand
         for(int i = 0; i < numberOfCardsToDraw; i++) {
+            if(deck.Count == 0) {
+                // If the deck is empty, move the discard pile into the deck
+                ShuffleDiscardPileIntoDeck();
+            }
+
             // Get a random index of the deck list
             int newIndex = UnityEngine.Random.Range(0, deck.Count);
 
@@ -144,6 +149,12 @@ public class DeckManager : MonoBehaviour
         for(int i = 0; i < hand.Count; i++) {
             SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
         }
+    }
+
+    public void ShuffleDiscardPileIntoDeck() {
+        List<CardData> cardsInDiscardPile = discard.ToList();
+        deck.AddRange(cardsInDiscardPile);
+        discard.Clear();
     }
 
     private void RemoveCardsFromScene() {

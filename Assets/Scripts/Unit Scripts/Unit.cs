@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour
     protected int maxLife;
 
     // Instantiated in code
+    [SerializeField]
     protected int currentLife, currentDefense;
 
     public int CurrentLife { get { return currentLife; } }
@@ -26,6 +27,17 @@ public class Unit : MonoBehaviour
             }
         } else {
             currentLife -= amount;
+        }
+    }
+
+    public void Heal(int amount) {
+        if(amount < 0) {
+            return;
+        }
+
+        currentLife += amount;
+        if(currentLife > maxLife) {
+            currentLife = maxLife;
         }
     }
 
