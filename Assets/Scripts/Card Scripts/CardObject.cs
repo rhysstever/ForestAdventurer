@@ -26,7 +26,7 @@ public class CardObject : MonoBehaviour
         savedPos = transform.position;
         dragOffset = Vector2.zero;
         hoverOffset = new Vector2(0f, 2f);
-        cardFieldCollider = CardManager.instance.FieldCollider;
+        cardFieldCollider = DeckManager.instance.FieldCollider;
         isInField = false;
         isBeingDragged = false;
 
@@ -43,17 +43,16 @@ public class CardObject : MonoBehaviour
         }
     }
 
-    public void SetCardArtImage(Image cardArtImage) {
-        this.cardArtImage = cardArtImage;
-    }
-
     public void SetCardData(CardData cardData) {
         this.cardData = cardData;
         cardNameText.text = cardData.Name;
         cardDescriptionText.text = cardData.Description;
-        // TODO: Set background image based on slot
 
-        // TODO: Set art image based on specific card
+        Sprite cardArtSprite = CardManager.instance.GetCardArtSprite(cardData.Name);
+        if(cardArtSprite != null) {
+            cardArtImage.sprite = cardArtSprite;
+        }
+        // TODO: Set background image based on slot
     }
 
     private void OnMouseEnter() {

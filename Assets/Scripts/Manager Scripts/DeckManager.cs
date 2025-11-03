@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 
 public class DeckManager : MonoBehaviour
@@ -16,13 +13,17 @@ public class DeckManager : MonoBehaviour
     [SerializeField]
     private Transform cardParentTrans;
     [SerializeField]
+    private Collider2D fieldCollider;
+    [SerializeField]
     private GameObject cardPrefab;
 
     // Instantiated in script
     private int currentHandSize;
     private List<CardData> deck, hand, discard;
 
+    // Properties
     public Player Player { get { return player; } }
+    public Collider2D FieldCollider { get { return fieldCollider; } }
 
     private void Awake() {
         if(instance == null) {

@@ -37,7 +37,8 @@ public class CardData
         this.description = description;
     }
 
-    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType) {
+    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType) 
+        : this(name, slot, rarity, targetType, "") {
         this.name = name;
         this.slot = slot;
         this.rarity = rarity;
