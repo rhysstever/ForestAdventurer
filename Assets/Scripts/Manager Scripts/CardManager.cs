@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -126,13 +127,15 @@ public class CardManager : MonoBehaviour
     }
 
     public Sprite GetCardArtSprite(string cardName) {
+        string formattedName = cardName.Replace(" ", "");
+
         for(int i = 0; i < cardArtList.Count; i++) {
-            if(cardArtList[i].name == cardName + "CardArt") {
+            if(cardArtList[i].name == formattedName + "CardArt") {
                 return cardArtList[i];
             }
         }
 
-        Debug.Log(string.Format("Error! No art found for {0}", cardName));
+        Debug.Log(string.Format("Error! No art found for {0}", formattedName));
         return null;
     }
     #endregion Card Creation
