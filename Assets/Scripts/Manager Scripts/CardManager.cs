@@ -142,7 +142,7 @@ public class CardManager : MonoBehaviour
             new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."),
 
             // Spirit cards
-            new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage."),
+            new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Randomly attack 2 times for 1 damage."),
             new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Gain 2 defense."),
             new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 2 damage."),
             new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 2."),
@@ -206,6 +206,11 @@ public class CardManager : MonoBehaviour
         return Rarity.Common;
     }
 
+    public CardData GetRandomCardData() {
+        Slot randomSlot = (Slot)UnityEngine.Random.Range(0, Enum.GetValues(typeof(Slot)).Length);
+        return GetRandomCardData(randomSlot);
+    }
+
     public CardData GetRandomCardData(Slot slotType) {
         Rarity randomRarity = GetRandomRarity();
 
@@ -254,6 +259,29 @@ public class CardManager : MonoBehaviour
             Slot.Drink => chosenCharacter.DrinkCardCount,
             _ => 0,
         };
+    }
+
+    public void UpdateSlot(CardData newCardData) {
+        switch(newCardData.Slot) {
+            case Slot.MainHand:
+                mainHand = newCardData;
+                break;
+            case Slot.OffHand:
+                offHand = newCardData;
+                break;
+            case Slot.Ally:
+                ally = newCardData;
+                break;
+            case Slot.Spirit:
+                spirit = newCardData;
+                break;
+            case Slot.Spell:
+                spell = newCardData;
+                break;
+            case Slot.Drink:
+                drink = newCardData;
+                break;
+        }
     }
 
     /// <summary>

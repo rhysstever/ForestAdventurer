@@ -417,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeText: {fileID: 4083335082813917755}
   defenseText: {fileID: 5947135020768083949}
-  maxLife: 10
+  maxLife: 8
   currentLife: 0
   currentDefense: 0
 --- !u!1 &7495658445084847941

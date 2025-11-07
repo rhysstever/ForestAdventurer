@@ -85,9 +85,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8384843684732029956}
   - component: {fileID: 6074075335965601261}
-  - component: {fileID: 351264641113324039}
+  - component: {fileID: 1708790967988248095}
   m_Layer: 7
-  m_Name: CardPrefab
+  m_Name: PlayableCardPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 20, y: 30}
   m_EdgeRadius: 0
---- !u!114 &351264641113324039
+--- !u!114 &1708790967988248095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1190030000763623090}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d2b785221b070545bbc668a91427a50, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b0a3ba6a2ce76a429716d57f20cdb60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 5290447276147656552}

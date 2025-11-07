@@ -2,21 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeckManager : MonoBehaviour
 {
     // Singleton
     public static DeckManager instance;
 
-    // Instantiated in inspector
+    // Set in inspector
     [SerializeField]
-    private Transform cardParentTrans;
+    private Transform cardParentTrans, cardSelectionCardParentTrans, cardSelectionCard1Pos, cardSelectionCard2Pos, cardSelectionCard3Pos;
     [SerializeField]
     private Collider2D fieldCollider;
     [SerializeField]
-    private GameObject cardPrefab;
+    private GameObject playableCardPrefab, displayCardPrefab;
 
-    // Instantiated in script
+    // Set in script
     private int currentHandSize;
     private List<CardData> deck, hand, discard;
 
@@ -104,7 +105,7 @@ public class DeckManager : MonoBehaviour
 
         // Spawn the all the cards in the scene
         for(int i = 0; i < hand.Count; i++) {
-            SpawnCard(hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f));
+            SpawnCard(playableCardPrefab, hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f), cardParentTrans);
         }
     }
 
@@ -120,11 +121,44 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    private GameObject SpawnCard(CardData cardData, Vector2 position) {
-        GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, cardParentTrans);
+    private GameObject SpawnCard(GameObject cardPrefab, CardData cardData, Vector2 position, Transform parent) {
+        GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, parent);
         CardObject cardObj = newCard.GetComponent<CardObject>();
         cardObj.SetCardData(cardData);
 
         return newCard;
+    }
+
+    public void SpawnCardSelectionDisplayCards() {
+        fieldCollider.gameObject.SetActive(false);
+        for(int i = 0; i < 3; i++) {
+            CardData newCardData = CardManager.instance.GetRandomCardData();
+            Vector2 position = Vector2.zero;
+            switch(i) {
+                case 0:
+                    position = cardSelectionCard1Pos.position;
+                    break;
+                case 1:
+                    position = cardSelectionCard2Pos.position;
+                    break;
+                case 2:
+                    position = cardSelectionCard3Pos.position;
+                    break;
+            }
+
+            GameObject newCard = SpawnCard(displayCardPrefab, newCardData, position, cardSelectionCardParentTrans);
+            newCard.GetComponent<Button>().onClick.AddListener(() => {
+                fieldCollider.gameObject.SetActive(true);
+                CardManager.instance.UpdateSlot(newCardData);
+                ClearCardSelectionDisplayCards();
+                GameManager.instance.ChangeGameState(GameState.Combat);
+            });
+        }
+    }
+
+    public void ClearCardSelectionDisplayCards() {
+        for(int i = cardSelectionCardParentTrans.childCount - 1; i >= 0; i--) {
+            Destroy(cardSelectionCardParentTrans.GetChild(i).gameObject);
+        }
     }
 }

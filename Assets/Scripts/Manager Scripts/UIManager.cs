@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject combatUIParent, combatWinUIParent, cardSelectionUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, endTurnButton, gameEndToMainMenuButton, badgerCharacterButton, beaverCharacterButton, foxCharacterButton;
+    private Button mainMenuToCharacterSelectButton, endTurnButton, skipCardButton, gameEndToMainMenuButton, badgerCharacterButton, beaverCharacterButton, foxCharacterButton;
 
     private void Awake() {
         if(instance == null) {
@@ -26,17 +26,21 @@ public class UIManager : MonoBehaviour
     {
         mainMenuToCharacterSelectButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.CharacterSelect));
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
+        skipCardButton.onClick.AddListener(() => {
+            DeckManager.instance.ClearCardSelectionDisplayCards();
+            GameManager.instance.ChangeGameState(GameState.Combat);
+        });
         gameEndToMainMenuButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.MainMenu));
 
-        badgerCharacterButton.onClick.AddListener(delegate {
+        badgerCharacterButton.onClick.AddListener(() => {
             CardManager.instance.ChooseCharacter("Badger");
             GameManager.instance.ChangeMenuState(MenuState.Game);
         });
-        beaverCharacterButton.onClick.AddListener(delegate {
+        beaverCharacterButton.onClick.AddListener(() => {
             CardManager.instance.ChooseCharacter("Beaver");
             GameManager.instance.ChangeMenuState(MenuState.Game);
         });
-        foxCharacterButton.onClick.AddListener(delegate {
+        foxCharacterButton.onClick.AddListener(() => {
             CardManager.instance.ChooseCharacter("Fox");
             GameManager.instance.ChangeMenuState(MenuState.Game);
         });
@@ -81,9 +85,12 @@ public class UIManager : MonoBehaviour
         switch(gameState) {
             case GameState.Combat:
                 combatUIParent.SetActive(true);
+                combatWinUIParent.SetActive(false);
+                endTurnButton.enabled = true;
                 break;
             case GameState.CombatWin:
                 combatWinUIParent.SetActive(true);
+                endTurnButton.enabled = false;
                 break;
             case GameState.None:
                 combatUIParent.SetActive(false);
@@ -93,6 +100,17 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateCombatUI(CombatState combatState) {
-
+        switch(combatState) {
+            case CombatState.CombatStart:
+                break;
+            case CombatState.CombatPlayerTurn:
+                break;
+            case CombatState.CombatEnemyTurn:
+                break;
+            case CombatState.CombatEnd:
+                break;
+            case CombatState.None:
+                break;
+        }
     }
 }

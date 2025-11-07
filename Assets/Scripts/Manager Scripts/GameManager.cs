@@ -10,11 +10,11 @@ public enum MenuState
 
 public enum GameState
 {
+    None,
     Combat,
     CombatWin,
     // TODO - Add other game states
     // Shop
-    None
 }
 
 public enum CombatState
@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.CombatWin:
                 ChangeCombatState(CombatState.None);
+                DeckManager.instance.SpawnCardSelectionDisplayCards();
                 break;
             case GameState.None:
                 DeckManager.instance.DiscardHand();
@@ -134,11 +135,7 @@ public class GameManager : MonoBehaviour
                 EnemyManager.instance.PerformEnemyRoundActions();
                 break;
             case CombatState.CombatEnd:
-                // TODO: Show rewards, including card selection
-                // If it is not the last wave, enter combat with the next one
-                if(!EnemyManager.instance.IsLastWave()) {
-                    ChangeCombatState(CombatState.CombatStart);
-                }
+                ChangeGameState(GameState.CombatWin);
                 break;
             case CombatState.None:
                 DeckManager.instance.DiscardHand();

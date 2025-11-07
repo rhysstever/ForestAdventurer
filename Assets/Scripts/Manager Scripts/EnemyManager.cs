@@ -107,8 +107,14 @@ public class EnemyManager : MonoBehaviour
     public void CheckIfWaveIsOver() {
         // Check all enemies in the scene and if none have health, the wave is over
         if(GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0) {
-            // If the wave is over, end combat
-            GameManager.instance.ChangeCombatState(CombatState.CombatEnd);
+            // If the wave is over, check if it is the last wave
+            if(IsLastWave()) {
+                // If it is the last wave, end the game
+                GameManager.instance.ChangeMenuState(MenuState.GameEnd);
+            } else {
+                // If there are more waves, change to CombatEnd to reward the player
+                GameManager.instance.ChangeCombatState(CombatState.CombatEnd);
+            }
         }
     }
 
