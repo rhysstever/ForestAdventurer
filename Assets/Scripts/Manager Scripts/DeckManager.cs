@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -50,59 +51,17 @@ public class DeckManager : MonoBehaviour
         List<CardData> cards = new List<CardData>();
         Character chosenCharacter = CardManager.instance.ChosenCharacter;
 
-        CardData mainHand = CardManager.instance.GetCurrentCardData(Slot.MainHand);
-        CardData offHand = CardManager.instance.GetCurrentCardData(Slot.OffHand);
-        CardData ally = CardManager.instance.GetCurrentCardData(Slot.Ally);
-        CardData spirit = CardManager.instance.GetCurrentCardData(Slot.Spirit);
-        CardData spell = CardManager.instance.GetCurrentCardData(Slot.Spell);
-        CardData drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
+        foreach(Slot slot in Enum.GetValues(typeof(Slot)).Cast<Slot>().ToList()) {
+            CardData cardData = CardManager.instance.GetCurrentCardData(slot);
 
-        if(mainHand != null) {
-            for(int i = 0; i < chosenCharacter.MainHandCardCount; i++) {
-                cards.Add(mainHand);
+            if(cardData != null) {
+                int cardCount = CardManager.instance.GetSlotCardCountOfChosenCharacter(slot);
+                for(int i = 0; i < chosenCharacter.MainHandCardCount; i++) {
+                    cards.Add(cardData);
+                }
+            } else {
+                Debug.LogWarningFormat("Warning! No current {0} card, not generating", slot);
             }
-        } else {
-            Debug.Log("Warning! No current MainHand card, not generating");
-        }
-
-        if(offHand != null) {
-            for(int i = 0; i < chosenCharacter.OffHandCardCount; i++) {
-                cards.Add(offHand);
-            }
-        } else {
-            Debug.Log("Warning! No current OffHand card, not generating");
-        }
-
-        if(ally != null) {
-            for(int i = 0; i < chosenCharacter.AllyCardCount; i++) {
-                cards.Add(ally);
-            }
-        } else {
-            Debug.Log("Warning! No current Ally card, not generating");
-        }
-
-        if(spirit != null) {
-            for(int i = 0; i < chosenCharacter.SpiritCardCount; i++) {
-                cards.Add(spirit);
-            }
-        } else {
-            Debug.Log("Warning! No current Spirit card, not generating");
-        }
-
-        if(spell != null) {
-            for(int i = 0; i < chosenCharacter.SpellCardCount; i++) {
-                cards.Add(spell);
-            }
-        } else {
-            Debug.Log("Warning! No current Spell card, not generating");
-        }
-
-        if(drink != null) {
-            for(int i = 0; i < chosenCharacter.DrinkCardCount; i++) {
-                cards.Add(drink);
-            }
-        } else {
-            Debug.Log("Warning! No current Drink card, not generating");
         }
 
         return cards;

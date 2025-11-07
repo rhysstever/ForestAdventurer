@@ -81,7 +81,7 @@ public class CardManager : MonoBehaviour
 
     public void ChooseCharacter(string name) {
         Character character = GetCharacter(name);
-        if(character != null) {
+        if(!string.IsNullOrEmpty(character.Name)) {
             chosenCharacter = character;
         } else {
             Debug.LogErrorFormat("Error! No character found with name: {0}. Defaulting to {1}", name, characters[0].Name);
@@ -90,13 +90,7 @@ public class CardManager : MonoBehaviour
     }
 
     private Character GetCharacter(string name) {
-        List<Character> filteredList = characters.Where(character => character.Name == name).ToList();
-
-        if(filteredList.Count == 1) {
-            return filteredList[0];
-        } else {
-            return null;
-        }
+        return characters.FirstOrDefault(character => character.Name == name);
     }
 
     #region Card Creation
@@ -247,6 +241,18 @@ public class CardManager : MonoBehaviour
             Slot.Spell => spell,
             Slot.Drink => drink,
             _ => null,
+        };
+    }
+
+    public int GetSlotCardCountOfChosenCharacter(Slot slotType) {
+        return slotType switch {
+            Slot.MainHand => chosenCharacter.MainHandCardCount,
+            Slot.OffHand => chosenCharacter.OffHandCardCount,
+            Slot.Ally => chosenCharacter.AllyCardCount,
+            Slot.Spirit => chosenCharacter.SpiritCardCount,
+            Slot.Spell => chosenCharacter.SpellCardCount,
+            Slot.Drink => chosenCharacter.DrinkCardCount,
+            _ => 0,
         };
     }
 
