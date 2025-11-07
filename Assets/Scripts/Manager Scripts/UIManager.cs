@@ -9,9 +9,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuUIParent, characterSelectUIParent, gameUIParent, gameEndUIParent;
     [SerializeField]
-    private GameObject combatUIParent, combatWinUIParent, cardSelectionUIParent;
+    private GameObject combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, endTurnButton, skipCardButton, gameEndToMainMenuButton, badgerCharacterButton, beaverCharacterButton, foxCharacterButton;
+    private Button mainMenuToCharacterSelectButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton, badgerCharacterButton, beaverCharacterButton, foxCharacterButton;
 
     private void Awake() {
         if(instance == null) {
@@ -26,10 +26,11 @@ public class UIManager : MonoBehaviour
     {
         mainMenuToCharacterSelectButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.CharacterSelect));
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
-        skipCardButton.onClick.AddListener(() => {
+        skipButton.onClick.AddListener(() => {
             DeckManager.instance.ClearCardSelectionDisplayCards();
             GameManager.instance.ChangeGameState(GameState.Combat);
         });
+        drinkWellButton.onClick.AddListener(() => GameManager.instance.Player.Heal(1000));
         gameEndToMainMenuButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.MainMenu));
 
         badgerCharacterButton.onClick.AddListener(() => {
@@ -85,16 +86,23 @@ public class UIManager : MonoBehaviour
         switch(gameState) {
             case GameState.Combat:
                 combatUIParent.SetActive(true);
-                combatWinUIParent.SetActive(false);
+                nonCombatUIParent.SetActive(false);
                 endTurnButton.enabled = true;
                 break;
-            case GameState.CombatWin:
-                combatWinUIParent.SetActive(true);
+            case GameState.CardSelection:
+                nonCombatUIParent.SetActive(true);
+                cardSelectionUIParent.SetActive(true);
+                wellUIParent.SetActive(false);
                 endTurnButton.enabled = false;
+                break;
+            case GameState.Well:
+                nonCombatUIParent.SetActive(true);
+                cardSelectionUIParent.SetActive(false);
+                wellUIParent.SetActive(true);
                 break;
             case GameState.None:
                 combatUIParent.SetActive(false);
-                combatWinUIParent.SetActive(false);
+                nonCombatUIParent.SetActive(false);
                 break;
         }
     }

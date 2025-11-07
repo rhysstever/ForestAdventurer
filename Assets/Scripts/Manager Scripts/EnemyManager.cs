@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour
     private List<Transform> enemySpawnPositions;
     [SerializeField]
     private GameObject boarEnemyPrefab, mushroomEnemyPrefab, entEnemyPrefab, undeadBoarEnemyPrefab, hagEnemyPrefab, oozeEnemyPrefab, batSwarmEnemyPrefab, zombieEnemyPrefab, shadowEnemyPrefab, necromancerEnemyPrefab;
+    [SerializeField]
+    private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal;
 
     // Instantiated in code
     private List<Round> enemyWaves;
@@ -52,55 +54,23 @@ public class EnemyManager : MonoBehaviour
 
     public void PerformEnemyRoundActions() {
         for(int i = 0; i < enemies.childCount; i++) { 
-            Enemy enemy = enemies.GetChild(i).GetComponent<Enemy>();
-            EnemyActions(enemy);
-            enemy.IncrementRound();
+            enemies.GetChild(i).GetComponent<Enemy>().PerformRoundAction();
         }
 
         GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
     }
 
-    private void EnemyActions(Enemy enemy) {
-        string enemyName = enemy.gameObject.name["enemy".Length..];
-        int combatRound = enemy.Round;
-        int actionsCount;
-        switch(enemyName) {
-            case "Boar":
-                actionsCount = 2;
-                combatRound %= actionsCount;
-                switch(combatRound) {
-                    case 0:
-                        enemy.GiveDefense(1 + 3 * combatRound);
-                        break;
-                    case 1:
-                        enemy.Attack(1 + 2 * combatRound);
-                        break;
-                    default:
-                        Debug.Log(string.Format("Error! Boar enemy action cannot be done for round {0}", combatRound));
-                        break;
-                }
-                break;
-            case "Mushroom":
-                actionsCount = 3;
-                combatRound %= actionsCount;
-                switch(combatRound) {
-                    case 0:
-                        enemy.GiveDefense(3 + 3 * combatRound);
-                        break;
-                    case 1:
-                        enemy.Attack(2 + 2 * combatRound);
-                        break;
-                    case 2:
-                        enemy.Heal(4 + 2 * combatRound);
-                        break;
-                    default:
-                        Debug.Log(string.Format("Error! Boar enemy action cannot be done for round {0}", combatRound));
-                        break;
-                }
-                break;
+    public Sprite GetActionSprite(string actionType) {
+        switch(actionType) {
+            case "Attack":
+                return actionIconSpriteAttack;
+            case "Defend":
+                return actionIconSpriteDefend;
+            case "Heal":
+                return actionIconSpriteHeal;
             default:
-                Debug.Log(string.Format("Error! No enemy by the name of {0}", enemyName));
-                break;
+                Debug.Log(string.Format("Error! No action sprite for action type {0}!", actionType));
+                return null;
         }
     }
 

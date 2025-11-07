@@ -84,7 +84,7 @@ public class CardManager : MonoBehaviour
         if(!string.IsNullOrEmpty(character.Name)) {
             chosenCharacter = character;
         } else {
-            Debug.LogErrorFormat("Error! No character found with name: {0}. Defaulting to {1}", name, characters[0].Name);
+            Debug.LogFormat("Error! No character found with name: {0}. Defaulting to {1}", name, characters[0].Name);
             chosenCharacter = characters[0]; 
         }
     }
@@ -177,7 +177,7 @@ public class CardManager : MonoBehaviour
             }
         }
 
-        Debug.Log(string.Format("Error! No art found for {0}", formattedName));
+        Debug.LogFormat("Error! No art found for {0}", formattedName);
         return null;
     }
     #endregion Card Creation

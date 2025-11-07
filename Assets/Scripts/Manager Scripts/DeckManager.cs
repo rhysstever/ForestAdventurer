@@ -61,7 +61,7 @@ public class DeckManager : MonoBehaviour
                     cards.Add(cardData);
                 }
             } else {
-                Debug.LogWarningFormat("Warning! No current {0} card, not generating", slot);
+                Debug.LogFormat("Warning! No current {0} card, not generating", slot);
             }
         }
 

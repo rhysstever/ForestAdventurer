@@ -12,8 +12,9 @@ public enum GameState
 {
     None,
     Combat,
-    CombatWin,
-    // TODO - Add other game states
+    CardSelection,
+    Well
+    // TODO - Add shop game states
     // Shop
 }
 
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
             case GameState.Combat:
                 ChangeCombatState(CombatState.CombatStart);
                 break;
-            case GameState.CombatWin:
+            case GameState.CardSelection:
                 ChangeCombatState(CombatState.None);
                 DeckManager.instance.SpawnCardSelectionDisplayCards();
                 break;
@@ -135,7 +136,7 @@ public class GameManager : MonoBehaviour
                 EnemyManager.instance.PerformEnemyRoundActions();
                 break;
             case CombatState.CombatEnd:
-                ChangeGameState(GameState.CombatWin);
+                ChangeGameState(GameState.CardSelection);
                 break;
             case CombatState.None:
                 DeckManager.instance.DiscardHand();
