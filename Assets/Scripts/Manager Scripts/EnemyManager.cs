@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         enemyWaves = SetEnemyRounds();
-        currentWaveNum = -1;
+        Reset();
     }
 
     private List<Round> SetEnemyRounds() {
@@ -51,12 +51,13 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void PerformEnemyRoundActions() {
-        foreach(Enemy enemy in GetCurrentEnemiesInScene()) {
+        for(int i = 0; i < enemies.childCount; i++) { 
+            Enemy enemy = enemies.GetChild(i).GetComponent<Enemy>();
             EnemyActions(enemy);
             enemy.IncrementRound();
         }
 
-        GameManager.instance.ChangeGameState(GameState.CombatPlayerTurn);
+        GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
     }
 
     private void EnemyActions(Enemy enemy) {
@@ -107,7 +108,7 @@ public class EnemyManager : MonoBehaviour
         // Check all enemies in the scene and if none have health, the wave is over
         if(GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0) {
             // If the wave is over, end combat
-            GameManager.instance.ChangeGameState(GameState.CombatEnd);
+            GameManager.instance.ChangeCombatState(CombatState.CombatEnd);
         }
     }
 
@@ -156,5 +157,13 @@ public class EnemyManager : MonoBehaviour
 
     public List<Enemy> GetCurrentEnemiesInScene() {
         return enemies.GetComponentsInChildren<Enemy>().ToList();
+    }
+
+    public void Reset() {
+        currentWaveNum = -1;
+
+        for(int i = enemies.childCount - 1; i >= 0; i--) { 
+            Destroy(enemies.GetChild(i).gameObject);
+        }
     }
 }

@@ -21,15 +21,19 @@ public class CardManager : MonoBehaviour
     public static CardManager instance = null;
 
     // Instantiated in script
+    private List<Character> characters;
     private List<CardData> cardLibrary;
     private Dictionary<Rarity, float> rarityPercentages;
     private List<Sprite> cardArtList;
+    private Character chosenCharacter;
 
     // Slots
     private CardData mainHand, offHand, spirit, ally, spell, drink;
     // TODO: Add in passive slots
     //private CardData hat;
     //private CardData boots;
+
+    public Character ChosenCharacter {  get { return chosenCharacter; } }
 
     private void Awake() {
         if(instance == null) {
@@ -38,6 +42,7 @@ public class CardManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        characters = CreateCharacters();
         cardArtList = LoadCardArtSprites();
         cardLibrary = CardCreation();
 
@@ -49,6 +54,49 @@ public class CardManager : MonoBehaviour
         rarityPercentages = new Dictionary<Rarity, float>();
         rarityPercentages.Add(Rarity.Common, 0.75f);
         rarityPercentages.Add(Rarity.Rare, 0.25f);
+
+        ChooseCharacter("Fox");
+    }
+
+    private List<Character> CreateCharacters() {
+        // Character    MH  OH  Al  Spi Spe Dr
+        // -----------------------------------
+        // Badger       4   4   3   3   2   2
+        // Beaver       3   4   3   2   2   4
+        // Fox          3   2   2   4   4   3
+        // Opossum      3   2   4   3   4   2
+        // Otter        4   2   2   4   3   3
+        // Skunk        2   3   2   4   3   4
+        List<Character> characters = new() {
+            new Character("Badger", 4, 4, 3, 3, 2, 2),
+            new Character("Beaver", 3, 4, 3, 2, 2, 4),
+            new Character("Fox", 3, 2, 2, 4, 4, 3),
+            new Character("Opossum", 3, 2, 4, 3, 4, 2),
+            new Character("Otter", 4, 2, 2, 4, 3, 3),
+            new Character("Skunk", 2, 3, 2, 4, 3, 4)
+        };
+
+        return characters;
+    }
+
+    public void ChooseCharacter(string name) {
+        Character character = GetCharacter(name);
+        if(character != null) {
+            chosenCharacter = character;
+        } else {
+            Debug.LogErrorFormat("Error! No character found with name: {0}. Defaulting to {1}", name, characters[0].Name);
+            chosenCharacter = characters[0]; 
+        }
+    }
+
+    private Character GetCharacter(string name) {
+        List<Character> filteredList = characters.Where(character => character.Name == name).ToList();
+
+        if(filteredList.Count == 1) {
+            return filteredList[0];
+        } else {
+            return null;
+        }
     }
 
     #region Card Creation
@@ -401,11 +449,11 @@ public class CardManager : MonoBehaviour
     }
 
     private void Defend(int amount) {
-        DeckManager.instance.Player.GiveDefense(amount);
+        GameManager.instance.Player.GiveDefense(amount);
     }
 
     private void Heal(int amount) {
-        DeckManager.instance.Player.Heal(amount);
+        GameManager.instance.Player.Heal(amount);
     }
     #endregion Effects
 }

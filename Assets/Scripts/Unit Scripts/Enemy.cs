@@ -29,7 +29,7 @@ public class Enemy : Unit
     }
 
     public void Attack(int amount) {
-        Attack(amount, DeckManager.instance.Player);
+        Attack(amount, GameManager.instance.Player);
     }
 
     public void Attack(int amount, Unit target) {

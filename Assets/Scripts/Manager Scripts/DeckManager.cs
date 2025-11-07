@@ -9,8 +9,6 @@ public class DeckManager : MonoBehaviour
 
     // Instantiated in inspector
     [SerializeField]
-    private Player player;
-    [SerializeField]
     private Transform cardParentTrans;
     [SerializeField]
     private Collider2D fieldCollider;
@@ -22,7 +20,6 @@ public class DeckManager : MonoBehaviour
     private List<CardData> deck, hand, discard;
 
     // Properties
-    public Player Player { get { return player; } }
     public Collider2D FieldCollider { get { return fieldCollider; } }
 
     private void Awake() {
@@ -46,13 +43,13 @@ public class DeckManager : MonoBehaviour
         deck = GenerateDeck();
         hand.Clear();
         discard.Clear();
-        GameManager.instance.ChangeGameState(GameState.CombatPlayerTurn);
+        GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
     }
 
     public List<CardData> GenerateDeck() {
         List<CardData> cards = new List<CardData>();
+        Character chosenCharacter = CardManager.instance.ChosenCharacter;
 
-        // 4 main hand and 4 off hand cards
         CardData mainHand = CardManager.instance.GetCurrentCardData(Slot.MainHand);
         CardData offHand = CardManager.instance.GetCurrentCardData(Slot.OffHand);
         CardData ally = CardManager.instance.GetCurrentCardData(Slot.Ally);
@@ -61,7 +58,7 @@ public class DeckManager : MonoBehaviour
         CardData drink = CardManager.instance.GetCurrentCardData(Slot.Drink);
 
         if(mainHand != null) {
-            for(int i = 0; i < 4; i++) {
+            for(int i = 0; i < chosenCharacter.MainHandCardCount; i++) {
                 cards.Add(mainHand);
             }
         } else {
@@ -69,7 +66,7 @@ public class DeckManager : MonoBehaviour
         }
 
         if(offHand != null) {
-            for(int i = 0; i < 4; i++) {
+            for(int i = 0; i < chosenCharacter.OffHandCardCount; i++) {
                 cards.Add(offHand);
             }
         } else {
@@ -77,7 +74,7 @@ public class DeckManager : MonoBehaviour
         }
 
         if(ally != null) {
-            for(int i = 0; i < 3; i++) {
+            for(int i = 0; i < chosenCharacter.AllyCardCount; i++) {
                 cards.Add(ally);
             }
         } else {
@@ -85,7 +82,7 @@ public class DeckManager : MonoBehaviour
         }
 
         if(spirit != null) {
-            for(int i = 0; i < 3; i++) {
+            for(int i = 0; i < chosenCharacter.SpiritCardCount; i++) {
                 cards.Add(spirit);
             }
         } else {
@@ -93,7 +90,7 @@ public class DeckManager : MonoBehaviour
         }
 
         if(spell != null) {
-            for(int i = 0; i < 2; i++) {
+            for(int i = 0; i < chosenCharacter.SpellCardCount; i++) {
                 cards.Add(spell);
             }
         } else {
@@ -101,7 +98,7 @@ public class DeckManager : MonoBehaviour
         }
 
         if(drink != null) {
-            for(int i = 0; i < 2; i++) {
+            for(int i = 0; i < chosenCharacter.DrinkCardCount; i++) {
                 cards.Add(drink);
             }
         } else {
