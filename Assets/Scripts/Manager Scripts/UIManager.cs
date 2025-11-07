@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,12 +7,15 @@ public class UIManager : MonoBehaviour
     // Singleton
     public static UIManager instance;
 
+    // Set in inspector
     [SerializeField]
     private GameObject mainMenuUIParent, characterSelectUIParent, gameUIParent, gameEndUIParent;
     [SerializeField]
     private GameObject combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton, badgerCharacterButton, beaverCharacterButton, foxCharacterButton;
+    private Button mainMenuToCharacterSelectButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    [SerializeField]
+    private TMP_Text characterSelectInfoText;
 
     private void Awake() {
         if(instance == null) {
@@ -21,7 +25,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         mainMenuToCharacterSelectButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.CharacterSelect));
@@ -32,25 +35,6 @@ public class UIManager : MonoBehaviour
         });
         drinkWellButton.onClick.AddListener(() => GameManager.instance.Player.Heal(1000));
         gameEndToMainMenuButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.MainMenu));
-
-        badgerCharacterButton.onClick.AddListener(() => {
-            CardManager.instance.ChooseCharacter("Badger");
-            GameManager.instance.ChangeMenuState(MenuState.Game);
-        });
-        beaverCharacterButton.onClick.AddListener(() => {
-            CardManager.instance.ChooseCharacter("Beaver");
-            GameManager.instance.ChangeMenuState(MenuState.Game);
-        });
-        foxCharacterButton.onClick.AddListener(() => {
-            CardManager.instance.ChooseCharacter("Fox");
-            GameManager.instance.ChangeMenuState(MenuState.Game);
-        });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void UpdateMenuUI(MenuState menuState) {
@@ -64,6 +48,7 @@ public class UIManager : MonoBehaviour
             case MenuState.CharacterSelect:
                 mainMenuUIParent.SetActive(false);
                 characterSelectUIParent.SetActive(true);
+                UpdateCharacterSelectInfo();
                 gameUIParent.SetActive(false);
                 gameEndUIParent.SetActive(false);
                 break;
@@ -120,5 +105,28 @@ public class UIManager : MonoBehaviour
             case CombatState.None:
                 break;
         }
+    }
+
+    public void UpdateCharacterSelectInfo() {
+        characterSelectInfoText.text = "Choose Your Character";
+    }
+
+    public void UpdateCharacterSelectInfo(Character character) {
+        int[] deckStructure = CharacterManager.instance.GetCharacterDeckStructure(character);
+        characterSelectInfoText.text = string.Format(
+            "{0}\n\nDeck:" +
+            "\n{1} Main Hand Cards" +
+            "\n{2} Off Hand Cards" +
+            "\n{3} Ally Cards" +
+            "\n{4} Spirit Cards" +
+            "\n{5} Spell Cards" +
+            "\n{6} Drink Cards", 
+            character.ToString(),
+            deckStructure[0],
+            deckStructure[1],
+            deckStructure[2],
+            deckStructure[3],
+            deckStructure[4],
+            deckStructure[5]);
     }
 }

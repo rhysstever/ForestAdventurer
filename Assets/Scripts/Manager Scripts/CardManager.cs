@@ -20,20 +20,16 @@ public class CardManager : MonoBehaviour
     // Singleton
     public static CardManager instance = null;
 
-    // Instantiated in script
-    private List<Character> characters;
+    // Set in script
     private List<CardData> cardLibrary;
     private Dictionary<Rarity, float> rarityPercentages;
     private List<Sprite> cardArtList;
-    private Character chosenCharacter;
 
     // Slots
     private CardData mainHand, offHand, spirit, ally, spell, drink;
     // TODO: Add in passive slots
     //private CardData hat;
     //private CardData boots;
-
-    public Character ChosenCharacter {  get { return chosenCharacter; } }
 
     private void Awake() {
         if(instance == null) {
@@ -42,7 +38,6 @@ public class CardManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        characters = CreateCharacters();
         cardArtList = LoadCardArtSprites();
         cardLibrary = CardCreation();
 
@@ -54,43 +49,6 @@ public class CardManager : MonoBehaviour
         rarityPercentages = new Dictionary<Rarity, float>();
         rarityPercentages.Add(Rarity.Common, 0.75f);
         rarityPercentages.Add(Rarity.Rare, 0.25f);
-
-        ChooseCharacter("Fox");
-    }
-
-    private List<Character> CreateCharacters() {
-        // Character    MH  OH  Al  Spi Spe Dr
-        // -----------------------------------
-        // Badger       4   4   3   3   2   2
-        // Beaver       3   4   3   2   2   4
-        // Fox          3   2   2   4   4   3
-        // Opossum      3   2   4   3   4   2
-        // Otter        4   2   2   4   3   3
-        // Skunk        2   3   2   4   3   4
-        List<Character> characters = new() {
-            new Character("Badger", 4, 4, 3, 3, 2, 2),
-            new Character("Beaver", 3, 4, 3, 2, 2, 4),
-            new Character("Fox", 3, 2, 2, 4, 4, 3),
-            new Character("Opossum", 3, 2, 4, 3, 4, 2),
-            new Character("Otter", 4, 2, 2, 4, 3, 3),
-            new Character("Skunk", 2, 3, 2, 4, 3, 4)
-        };
-
-        return characters;
-    }
-
-    public void ChooseCharacter(string name) {
-        Character character = GetCharacter(name);
-        if(!string.IsNullOrEmpty(character.Name)) {
-            chosenCharacter = character;
-        } else {
-            Debug.LogFormat("Error! No character found with name: {0}. Defaulting to {1}", name, characters[0].Name);
-            chosenCharacter = characters[0]; 
-        }
-    }
-
-    private Character GetCharacter(string name) {
-        return characters.FirstOrDefault(character => character.Name == name);
     }
 
     #region Card Creation
@@ -246,18 +204,6 @@ public class CardManager : MonoBehaviour
             Slot.Spell => spell,
             Slot.Drink => drink,
             _ => null,
-        };
-    }
-
-    public int GetSlotCardCountOfChosenCharacter(Slot slotType) {
-        return slotType switch {
-            Slot.MainHand => chosenCharacter.MainHandCardCount,
-            Slot.OffHand => chosenCharacter.OffHandCardCount,
-            Slot.Ally => chosenCharacter.AllyCardCount,
-            Slot.Spirit => chosenCharacter.SpiritCardCount,
-            Slot.Spell => chosenCharacter.SpellCardCount,
-            Slot.Drink => chosenCharacter.DrinkCardCount,
-            _ => 0,
         };
     }
 

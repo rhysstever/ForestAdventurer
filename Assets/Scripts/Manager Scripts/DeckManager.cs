@@ -50,14 +50,14 @@ public class DeckManager : MonoBehaviour
 
     public List<CardData> GenerateDeck() {
         List<CardData> cards = new List<CardData>();
-        Character chosenCharacter = CardManager.instance.ChosenCharacter;
+        Character chosenCharacter = CharacterManager.instance.ChosenCharacter;
 
         foreach(Slot slot in Enum.GetValues(typeof(Slot)).Cast<Slot>().ToList()) {
             CardData cardData = CardManager.instance.GetCurrentCardData(slot);
 
             if(cardData != null) {
-                int cardCount = CardManager.instance.GetSlotCardCountOfChosenCharacter(slot);
-                for(int i = 0; i < chosenCharacter.MainHandCardCount; i++) {
+                int cardCount = CharacterManager.instance.GetSlotCardCountOfChosenCharacter(slot);
+                for(int i = 0; i < cardCount; i++) {
                     cards.Add(cardData);
                 }
             } else {

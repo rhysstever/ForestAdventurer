@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
                 ChangeCombatState(CombatState.None);
                 break;
             case MenuState.CharacterSelect:
+                CharacterManager.instance.ShowCharacterSelectIcons();
                 ChangeGameState(GameState.None);
                 ChangeCombatState(CombatState.None);
                 break;
