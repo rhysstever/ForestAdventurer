@@ -15,6 +15,8 @@ public class Player : Unit
 
         // Check if the player has been killed, if so, end the game
         if(currentLife <= 0) {
+            currentLife = 0;
+            UpdateLifeUIText();
             GameManager.instance.ChangeMenuState(MenuState.GameEnd);
         }
     }
