@@ -73,7 +73,7 @@ public class CardManager : MonoBehaviour
 
     private List<CardData> CardCreation() {
         List<CardData> cards = new() {
-            // Main hand cards
+            // Main hand cards - 8 total
             new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1 damage."),
             new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage. And some magic... nothing yet"),
             new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2 damage."),
@@ -83,14 +83,14 @@ public class CardManager : MonoBehaviour
             new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6 damage."),
             new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 5 damage. And some magic... nothing yet"),
 
-            // Off hand cards
+            // Off hand cards - 5 total
             new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Gain 1 defense."),
             new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Gain 2 defense."),
             new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Spell Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Gain 5 defense."),
 
-            // Ally cards
+            // Ally cards - 7 total
             new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Unit, "Attack for 1 damage."),
             new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1."),
             new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None, "Randomly attack 3 times for 1 damage."),
@@ -99,13 +99,13 @@ public class CardManager : MonoBehaviour
             new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self, "Gain 3 defense."),
             new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."),
 
-            // Spirit cards
+            // Spirit cards - 4 total
             new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 1 damage."),
             new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Gain 3 defense."),
             new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 3 damage."),
             new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 3."),
 
-            // Spell cards
+            // Spell cards - 6 total
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Randomly attack for 1 damage."),
             new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE, "Attack all for 1 damage."),
             new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit, "Attack for 2 damage. Heal for 1"),
@@ -113,7 +113,7 @@ public class CardManager : MonoBehaviour
             new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5."),
             new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE, "Attack all for 3 damage."),
 
-            // Drink cards
+            // Drink cards - 7 total
             new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1."),
             new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Heal for 2."),
             new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit, "Attack for 1 damage. Heal for 1"),
@@ -123,6 +123,7 @@ public class CardManager : MonoBehaviour
             new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit, "Attack for 1 damage. Heal for 3")
         };
 
+        // 37 cards total
         return cards;
     }
 
