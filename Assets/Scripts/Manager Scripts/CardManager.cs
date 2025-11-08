@@ -100,10 +100,10 @@ public class CardManager : MonoBehaviour
             new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."),
 
             // Spirit cards
-            new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Randomly attack 2 times for 1 damage."),
-            new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Gain 2 defense."),
-            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 2 damage."),
-            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 2."),
+            new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 1 damage."),
+            new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Gain 3 defense."),
+            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 3 damage."),
+            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 3."),
 
             // Spell cards
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Randomly attack for 1 damage."),
@@ -334,15 +334,16 @@ public class CardManager : MonoBehaviour
             case "Air Spirit":
                 AttackRandomEnemy(1);
                 AttackRandomEnemy(1);
+                AttackRandomEnemy(1);
                 break;
             case "Earth Spirit":
-                Defend(2);
+                Defend(3);
                 break;
             case "Fire Spirit":
-                AttackUnit(2, target.GetComponent<Enemy>());
+                AttackUnit(3, target.GetComponent<Enemy>());
                 break;
             case "Water Spirit":
-                Heal(2);
+                Heal(3);
                 break;
             #endregion Spirit Card Actions
 
