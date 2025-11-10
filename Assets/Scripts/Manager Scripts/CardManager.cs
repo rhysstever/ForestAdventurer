@@ -87,7 +87,7 @@ public class CardManager : MonoBehaviour
             new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Gain 1 defense."),
             new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Gain 2 defense."),
             new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
-            new CardData("Spell Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
+            new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Gain 5 defense."),
 
             // Ally cards - 7 total
@@ -97,7 +97,7 @@ public class CardManager : MonoBehaviour
             new CardData("Bunny", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 2."),
             new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE, "Attack all for 2 damage."),
             new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self, "Gain 3 defense."),
-            new CardData("Hampster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."),
+            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."),
 
             // Spirit cards - 4 total
             new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 1 damage."),
