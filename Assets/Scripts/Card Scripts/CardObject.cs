@@ -10,7 +10,7 @@ public class CardObject : MonoBehaviour
     [SerializeField]
     protected GameObject cardSelectionRing;
     [SerializeField]
-    private Image cardBackgroundImage, cardArtImage;
+    private Image cardBackgroundImage, cardArtImage, cardSlotImage;
     [SerializeField]
     private TMP_Text cardNameText, cardDescriptionText;
 
@@ -34,7 +34,9 @@ public class CardObject : MonoBehaviour
         if(cardArtSprite != null) {
             cardArtImage.sprite = cardArtSprite;
         }
-        // TODO: Set background image based on slot and rarity
+
+        cardBackgroundImage.sprite = CardManager.instance.GetCardBaseSprite(cardData.Rarity);
+        // TODO: Set card slot image
     }
 
     private void OnMouseOver() {

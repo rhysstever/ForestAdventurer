@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: efa74b964ab7b93489746393ce95d181
+guid: 5aa95ed6f8b76f2419054742d73789d5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7560894977010240419
-    second: card_base_0
+      213: -8901695763195538030
+    second: card_bases_0
+  - first:
+      213: -8234349255869646583
+    second: card_bases_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,12 +103,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: card_base_0
+      name: card_bases_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 0
-        width: 46
+        x: 0
+        y: 128
+        width: 64
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +118,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ab0bb81ce1bde860800000000000000
-      internalID: 7560894977010240419
+      spriteID: 2955128ddd2d67480800000000000000
+      internalID: -8901695763195538030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: card_bases_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 909336faaf6b9bd80800000000000000
+      internalID: -8234349255869646583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: card_bases_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 406f31dbce906944fbdb0aff431b585a
+      internalID: 543260975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: card_bases_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f510c59c5fa973a46b1d5549f2b44d02
+      internalID: -70794281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: card_bases_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c24822496812d874b8da78c6ea8afe0e
+      internalID: 178733707
       vertices: []
       indices: 
       edges: []
@@ -125,7 +216,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 396e59b09f585b243ad0895dbf85ed13
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +224,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      card_base_0: 7560894977010240419
+      card_bases_0: -8901695763195538030
+      card_bases_1: -8234349255869646583
+      card_bases_2: 543260975
+      card_bases_3: -70794281
+      card_bases_4: 178733707
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

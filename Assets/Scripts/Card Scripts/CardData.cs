@@ -4,7 +4,9 @@ public enum Rarity
 {
     Starter,
     Common,
-    Rare
+    Rare,
+    VeryRare,
+    Legendary
 }
 
 public enum TargetType

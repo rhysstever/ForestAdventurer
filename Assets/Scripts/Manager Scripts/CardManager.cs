@@ -20,6 +20,10 @@ public class CardManager : MonoBehaviour
     // Singleton
     public static CardManager instance = null;
 
+    // Set in inspector
+    [SerializeField]
+    private Sprite cardBase, cardBaseUncommon, cardBaseRare, cardBaseVeryRare, cardBaseLegendary;
+
     // Set in script
     private List<CardData> cardLibrary;
     private Dictionary<Rarity, float> rarityPercentages;
@@ -205,6 +209,17 @@ public class CardManager : MonoBehaviour
             Slot.Spell => spell,
             Slot.Drink => drink,
             _ => null,
+        };
+    }
+
+    public Sprite GetCardBaseSprite(Rarity rarity) {
+        return rarity switch {
+            Rarity.Starter => cardBase,
+            Rarity.Common => cardBase,
+            Rarity.Rare => cardBaseRare,
+            Rarity.VeryRare => cardBaseVeryRare,
+            Rarity.Legendary => cardBaseLegendary,
+            _ => cardBase,
         };
     }
 
