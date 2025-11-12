@@ -160,6 +160,18 @@ PrefabInstance:
       value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1404945760096809877, guid: 0055bd6e5706f264e95bd140e6a11484, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404945760096809877, guid: 0055bd6e5706f264e95bd140e6a11484, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404945760096809877, guid: 0055bd6e5706f264e95bd140e6a11484, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404945760096809877, guid: 0055bd6e5706f264e95bd140e6a11484, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -193,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1404945760096809877, guid: 0055bd6e5706f264e95bd140e6a11484, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 1404945760096809877, guid: 0055bd6e5706f264e95bd140e6a11484, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -260,7 +272,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 1000, y: 300}
+  m_SizeDelta: {x: 1500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &166809876
 MonoBehaviour:
@@ -282,10 +294,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Forest Adventurer
+  m_text: Forest Adventure
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
-  m_sharedMaterial: {fileID: 6138963775850149764, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
+  m_sharedMaterial: {fileID: 1267354866193280412, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -853,8 +865,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Select a new Card
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
-  m_sharedMaterial: {fileID: 6138963775850149764, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
+  m_sharedMaterial: {fileID: 1267354866193280412, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1126,10 +1138,11 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Character
 
-    CharacterInfo'
+
+    Deck Info'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
-  m_sharedMaterial: {fileID: 6138963775850149764, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
+  m_sharedMaterial: {fileID: 1267354866193280412, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3454,8 +3467,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game End
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
-  m_sharedMaterial: {fileID: 6138963775850149764, guid: 5f242557cbf8b2a40b16e8b9acbee36b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
+  m_sharedMaterial: {fileID: 1267354866193280412, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
