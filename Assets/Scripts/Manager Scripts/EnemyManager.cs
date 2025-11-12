@@ -14,8 +14,6 @@ public class EnemyManager : MonoBehaviour
     private List<Transform> enemySpawnPositions;
     [SerializeField]
     private GameObject boarEnemyPrefab, mushroomEnemyPrefab, entEnemyPrefab, undeadBoarEnemyPrefab, hagEnemyPrefab, oozeEnemyPrefab, batSwarmEnemyPrefab, zombieEnemyPrefab, shadowEnemyPrefab, necromancerEnemyPrefab;
-    [SerializeField]
-    private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal;
 
     // Instantiated in code
     private List<Round> enemyWaves;
@@ -58,20 +56,6 @@ public class EnemyManager : MonoBehaviour
         }
 
         GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
-    }
-
-    public Sprite GetActionSprite(string actionType) {
-        switch(actionType) {
-            case "Attack":
-                return actionIconSpriteAttack;
-            case "Defend":
-                return actionIconSpriteDefend;
-            case "Heal":
-                return actionIconSpriteHeal;
-            default:
-                Debug.Log(string.Format("Error! No action sprite for action type {0}!", actionType));
-                return null;
-        }
     }
 
     public void CheckIfWaveIsOver() {

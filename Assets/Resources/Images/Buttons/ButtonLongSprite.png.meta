@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: 6a9766e68245de946a4a81db07478054
+guid: 16c225b814517d244b2bafd6cb9b27d3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1161201145128540330
-    second: Icons_0
+      213: 8026746337256856060
+    second: ButtonLongSprite_0
   - first:
-      213: 2130535880278150251
-    second: Icons_1
+      213: 2786953436503101554
+    second: ButtonLongSprite_1
   - first:
-      213: 184950751378207249
-    second: Icons_2
+      213: -8190526932154735554
+    second: ButtonLongSprite_2
   - first:
-      213: 1202984965197363600
-    second: Icons_3
-  - first:
-      213: 5543941588292853863
-    second: Icons_4
+      213: 7682752527705913312
+    second: ButtonLongSprite_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,13 +109,57 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Icons_0
+      name: ButtonLongSprite_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf9dc56244bb46f60800000000000000
+      internalID: 8026746337256856060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLongSprite_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2705254726f3da620800000000000000
+      internalID: 2786953436503101554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonLongSprite_2
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 16
-        height: 16
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,86 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa8d9280a4a6d1010800000000000000
-      internalID: 1161201145128540330
+      spriteID: e34a5a58627655e80800000000000000
+      internalID: -8190526932154735554
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Icons_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b6c0435581f219d10800000000000000
-      internalID: 2130535880278150251
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 112f6dc7ab3119200800000000000000
-      internalID: 184950751378207249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_3
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 09979b0c37cd1b010800000000000000
-      internalID: 1202984965197363600
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_4
+      name: ButtonLongSprite_3
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 96
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -215,30 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 760e5b1608900fc40800000000000000
-      internalID: 5543941588292853863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Icons_5
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5834c52f4d1a22d45a7ed29b76ec55f8
-      internalID: -2062123709
+      spriteID: 0e7352f08be9e9a60800000000000000
+      internalID: 7682752527705913312
       vertices: []
       indices: 
       edges: []
@@ -247,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8d6bd1062cbcba34fa7141c2146510fc
+    spriteID: eaa85cf61feffa242b6dc760749402e5
     internalID: 0
     vertices: []
     indices: 
@@ -257,14 +210,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":96.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Icons_0: 1161201145128540330
-      Icons_1: 2130535880278150251
-      Icons_2: 184950751378207249
-      Icons_3: 1202984965197363600
-      Icons_4: 5543941588292853863
-      Icons_5: -2062123709
+      ButtonLongSprite_0: 8026746337256856060
+      ButtonLongSprite_1: 2786953436503101554
+      ButtonLongSprite_2: -8190526932154735554
+      ButtonLongSprite_3: 7682752527705913312
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

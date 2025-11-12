@@ -21,8 +21,10 @@ public class CardManager : MonoBehaviour
     public static CardManager instance = null;
 
     // Set in inspector
-    [SerializeField]
+    [SerializeField]    // Card base sprites
     private Sprite cardBase, cardBaseUncommon, cardBaseRare, cardBaseVeryRare, cardBaseLegendary;
+    [SerializeField]    // Action icon sprites
+    private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal, actionIconSpriteFire, actionIconSpritePoison, actionIconSpriteSummon;
 
     // Set in script
     private List<CardData> cardLibrary;
@@ -221,6 +223,26 @@ public class CardManager : MonoBehaviour
             Rarity.Legendary => cardBaseLegendary,
             _ => cardBase,
         };
+    }
+
+    public Sprite GetActionSprite(string actionType) {
+        switch(actionType) {
+            case "Attack":
+                return actionIconSpriteAttack;
+            case "Defend":
+                return actionIconSpriteDefend;
+            case "Heal":
+                return actionIconSpriteHeal;
+            case "Fire":
+                return actionIconSpriteFire;
+            case "Poison":
+                return actionIconSpritePoison;
+            case "Summon":
+                return actionIconSpriteSummon;
+            default:
+                Debug.Log(string.Format("Error! No action sprite for action type {0}!", actionType));
+                return null;
+        }
     }
 
     public void UpdateSlot(CardData newCardData) {

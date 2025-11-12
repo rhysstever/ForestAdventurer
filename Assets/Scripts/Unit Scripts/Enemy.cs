@@ -98,7 +98,7 @@ public class Enemy : Unit
     public void UpdateNextActionUI() {
         string[] nextAction = ParseRoundAction();
         nextActionText.text = nextAction[1];
-        nextActionIcon.sprite = EnemyManager.instance.GetActionSprite(nextAction[0]);
+        nextActionIcon.sprite = CardManager.instance.GetActionSprite(nextAction[0]);
 
         nextActionText.gameObject.SetActive(true);
         nextActionIcon.gameObject.SetActive(true);

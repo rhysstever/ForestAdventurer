@@ -115,12 +115,12 @@ public class UIManager : MonoBehaviour
         int[] deckStructure = CharacterManager.instance.GetCharacterDeckStructure(character);
         characterSelectInfoText.text = string.Format(
             "{0}\n\nDeck:" +
-            "\n{1} Main Hand Cards" +
-            "\n{2} Off Hand Cards" +
-            "\n{3} Ally Cards" +
-            "\n{4} Spirit Cards" +
-            "\n{5} Spell Cards" +
-            "\n{6} Drink Cards", 
+            "\n{1} main hands" +
+            "\n{2} off hands" +
+            "\n{3} allies" +
+            "\n{4} spirits" +
+            "\n{5} spells" +
+            "\n{6} drinks", 
             character.ToString(),
             deckStructure[0],
             deckStructure[1],
