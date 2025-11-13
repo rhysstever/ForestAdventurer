@@ -13,9 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    private Button mainMenuToCharacterSelectButton, quitButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
-    private TMP_Text characterSelectInfoText;
+    private TMP_Text characterSelectInfoText, gameEndHeaderText, gameEndDeckInfoText;
 
     private void Awake() {
         if(instance == null) {
@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
             mainMenuButtonsParent.SetActive(false);
             Camera.main.GetComponent<CameraPan>().PanCameraDown();
         });
+        quitButton.onClick.AddListener(() => Application.Quit());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
         skipButton.onClick.AddListener(() => {
             DeckManager.instance.ClearCardSelectionDisplayCards();
@@ -67,6 +68,7 @@ public class UIManager : MonoBehaviour
                 characterSelectUIParent.SetActive(false);
                 gameUIParent.SetActive(false);
                 gameEndUIParent.SetActive(true);
+                UpdateGameEndText();
                 break;
         }
     }
@@ -135,5 +137,33 @@ public class UIManager : MonoBehaviour
             deckStructure[5]);
 
         characterSelectInfoText.verticalAlignment = VerticalAlignmentOptions.Top;
+    }
+
+    public void UpdateGameEndText() {
+        bool victory = GameManager.instance.Player.CurrentLife > 0;
+        if(victory) {
+            gameEndHeaderText.text = "VICTORY";
+        } else {
+            gameEndHeaderText.text = string.Format(
+                "SLAIN ON {0}-{1}", 
+                EnemyManager.instance.CurrentAreaNum + 1, 
+                EnemyManager.instance.CurrentWaveNum + 1);
+        }
+        gameEndDeckInfoText.text = string.Format(
+            "Character: {0}" +
+            "\n\nDeck" +
+            "\nMain Hand: {1}" +
+            "\nOff Hand: {2}" +
+            "\nAlly: {3}" +
+            "\nSpirit: {4}" +
+            "\nSpell: {5}" +
+            "\nDrink: {6}",
+            CharacterManager.instance.ChosenCharacter,
+            CardManager.instance.GetCurrentCardData(Slot.MainHand),
+            CardManager.instance.GetCurrentCardData(Slot.OffHand),
+            CardManager.instance.GetCurrentCardData(Slot.Ally),
+            CardManager.instance.GetCurrentCardData(Slot.Spirit),
+            CardManager.instance.GetCurrentCardData(Slot.Spell),
+            CardManager.instance.GetCurrentCardData(Slot.Drink));
     }
 }

@@ -17,7 +17,11 @@ public class EnemyManager : MonoBehaviour
 
     // Instantiated in code
     private List<Round> enemyWaves;
+    private int currentAreaNum;
     private int currentWaveNum;
+
+    public int CurrentAreaNum { get { return currentAreaNum; } }
+    public int CurrentWaveNum { get { return currentWaveNum; } }
 
     private void Awake() {
         if(instance == null) {
@@ -29,14 +33,14 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        enemyWaves = SetEnemyRounds();
+        enemyWaves = SetEnemyWaves();
         Reset();
     }
 
-    private List<Round> SetEnemyRounds() {
+    private List<Round> SetEnemyWaves() {
         List<Round> combatRounds = new() {
             new(new List<GameObject>() { boarEnemyPrefab }),
-            new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
+            //new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
             //new(new List<GameObject>() { entEnemyPrefab }),
             //new(new List<GameObject>() { undeadBoarEnemyPrefab, undeadBoarEnemyPrefab }),
             //new(new List<GameObject>() { hagEnemyPrefab }),
