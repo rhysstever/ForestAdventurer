@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        mainMenuToCharacterSelectButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.CharacterSelect));
+        mainMenuToCharacterSelectButton.onClick.AddListener(() => GameManager.instance.MainCamera.gameObject.GetComponent<CameraMove>().MoveCameraDown());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
         skipButton.onClick.AddListener(() => {
             DeckManager.instance.ClearCardSelectionDisplayCards();
@@ -109,12 +109,13 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCharacterSelectInfo() {
         characterSelectInfoText.text = "Choose Your Character";
+        characterSelectInfoText.verticalAlignment = VerticalAlignmentOptions.Middle;
     }
 
     public void UpdateCharacterSelectInfo(Character character) {
         int[] deckStructure = CharacterManager.instance.GetCharacterDeckStructure(character);
         characterSelectInfoText.text = string.Format(
-            "{0}\n\nDeck:" +
+            "{0}\n" +
             "\n{1} main hands" +
             "\n{2} off hands" +
             "\n{3} allies" +
@@ -128,5 +129,7 @@ public class UIManager : MonoBehaviour
             deckStructure[3],
             deckStructure[4],
             deckStructure[5]);
+
+        characterSelectInfoText.verticalAlignment = VerticalAlignmentOptions.Top;
     }
 }
