@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuUIParent, characterSelectUIParent, gameUIParent, gameEndUIParent;
     [SerializeField]
-    private GameObject combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
+    private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
     private Button mainMenuToCharacterSelectButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
@@ -27,7 +27,10 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        mainMenuToCharacterSelectButton.onClick.AddListener(() => GameManager.instance.MainCamera.gameObject.GetComponent<CameraMove>().MoveCameraDown());
+        mainMenuToCharacterSelectButton.onClick.AddListener(() => {
+            mainMenuButtonsParent.SetActive(false);
+            Camera.main.GetComponent<CameraPan>().PanCameraDown();
+        });
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
         skipButton.onClick.AddListener(() => {
             DeckManager.instance.ClearCardSelectionDisplayCards();
@@ -41,6 +44,7 @@ public class UIManager : MonoBehaviour
         switch(menuState) {
             case MenuState.MainMenu:
                 mainMenuUIParent.SetActive(true);
+                mainMenuButtonsParent.SetActive(true);
                 characterSelectUIParent.SetActive(false);
                 gameUIParent.SetActive(false);
                 gameEndUIParent.SetActive(false);

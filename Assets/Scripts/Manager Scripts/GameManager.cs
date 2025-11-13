@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour
 
     // Instantiated in inspector
     [SerializeField]
-    private Camera mainCamera;
-    [SerializeField]
     private GameObject playerPrefab;
     [SerializeField]
     private Transform playerPostion;
@@ -49,7 +47,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private CombatState currentCombatState;
     
-    public Camera MainCamera { get { return mainCamera; } }
     public Player Player { get { return player; } }
     public MenuState CurrentMenuState { get { return currentMenuState; } }
     public GameState CurrentGameState { get { return currentGameState; } }

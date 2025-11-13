@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CameraMove : MonoBehaviour
+public class CameraPan : MonoBehaviour
 {
     float moveAmount = 1.87f;
 
@@ -17,11 +17,11 @@ public class CameraMove : MonoBehaviour
         
     }
 
-    public void MoveCameraDown() {
-        StartCoroutine(Move());
+    public void PanCameraDown() {
+        StartCoroutine(PanDown());
     }
 
-    IEnumerator Move() {
+    IEnumerator PanDown() {
 
         for(int i = 0; i < moveAmount * 100; i++) {
             transform.position = new Vector3(
