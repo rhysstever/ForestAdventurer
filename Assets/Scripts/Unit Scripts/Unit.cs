@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Unit : MonoBehaviour
 {
@@ -7,13 +8,22 @@ public class Unit : MonoBehaviour
     [SerializeField]
     private TMP_Text lifeText, defenseText;
     [SerializeField]
+    private GameObject effectsParent;
+    [SerializeField]
+    private Transform effectTrans1, effectTrans2;
+    [SerializeField]
     protected int maxLife;
 
     // Instantiated in code
     [SerializeField]
     protected int currentLife, currentDefense, currentBurn, currentPoison, currentSpike;
+    private float effectOffset;
 
     public int CurrentLife { get { return currentLife; } }
+
+    protected virtual void Start() {
+        effectOffset = effectTrans2.localPosition.x - effectTrans1.localPosition.x;
+    }
     
     public virtual void TakeDamage(int amount) {
         TakeDamage(amount, null, true);
@@ -32,10 +42,7 @@ public class Unit : MonoBehaviour
                 // subtract the difference from the unit's health
                 currentLife -= (amount - currentDefense);
                 currentDefense = 0;
-                // Check if spike damage should be returned
-                if(attacker != null) {
-                    attacker.TakeDamage(currentSpike);
-                }
+                
             } else {
                 // If the damage dealth is less than the unit's defense,
                 // subtract it from the current defense
@@ -46,10 +53,10 @@ public class Unit : MonoBehaviour
         } else {
             // If the unit has no defense, subtract the damage from its health
             currentLife -= amount;
-            // Check if spike damage should be returned
-            if(attacker != null) {
-                attacker.TakeDamage(currentSpike);
-            }
+        }
+        // If there is an attack and the unit has spikes, reflect spike damage to the attacker
+        if(attacker != null && currentSpike > 0) {
+            attacker.TakeDamage(currentSpike);
         }
         // Update life UI text
         UpdateLifeUIText();
@@ -65,6 +72,7 @@ public class Unit : MonoBehaviour
         }
         // Cure any poison when healing
         currentPoison -= amount;
+        UpdateEffectsUI();
         if(currentPoison < 0) {
             currentPoison = 0;
         }
@@ -90,6 +98,7 @@ public class Unit : MonoBehaviour
             return;
         }
         currentBurn += amount;
+        UpdateEffectsUI();
     }
 
     public void GivePoison(int amount) {
@@ -97,6 +106,7 @@ public class Unit : MonoBehaviour
             return;
         }
         currentPoison += amount;
+        UpdateEffectsUI();
     }
 
     public void GiveSpike(int amount) {
@@ -104,17 +114,20 @@ public class Unit : MonoBehaviour
             return;
         }
         currentSpike += amount;
+        UpdateEffectsUI();
     }
 
     public void Cleanse() {
         currentPoison = 0;
         currentBurn = 0;
+        UpdateEffectsUI();
     }
 
     public void ProcessEffects() {
         if(currentBurn > 0) {
             TakeDamage(currentBurn, null, true);
             currentBurn--;
+            UpdateEffectsUI();
         }
 
         if(currentPoison > 0) {
@@ -130,14 +143,51 @@ public class Unit : MonoBehaviour
         defenseText.text = currentDefense.ToString();
     }
 
-    public virtual void Reset() {
-        currentLife = maxLife; 
+    protected void RemoveEffectsUI() {
+        for(int i = effectsParent.transform.childCount - 1; i >= 2; i--) {
+            Destroy(effectsParent.transform.GetChild(i).gameObject);
+        }
+    }
+
+    protected void UpdateEffectsUI() {
+        RemoveEffectsUI();
+        int effectsCount = 0;
+
+        // Create Effect UI elements
+        if(currentBurn > 0) {
+            CreateNewEffectUIObject(currentBurn, "Burn", effectsCount);
+            effectsCount++;
+        }
+        if(currentPoison > 0) {
+            CreateNewEffectUIObject(currentPoison, "Poison", effectsCount);
+            effectsCount++;
+        }
+        if(currentSpike > 0) {
+            CreateNewEffectUIObject(currentSpike, "Spike", effectsCount);
+            effectsCount++;
+        }
+    }
+
+    private void CreateNewEffectUIObject(int amount, string effectName, int currentEffectsCount) {
+        Vector2 position = effectTrans1.localPosition;
+        position.x += effectOffset * currentEffectsCount;
+        GameObject effectObject = Instantiate(CardManager.instance.EffectUIPrefab, effectsParent.transform);
+        effectObject.transform.localPosition = position;
+        effectObject.GetComponent<EffectUIObject>().UpdateEffectUIObject(amount, CardManager.instance.GetActionSprite(effectName));
+    }
+
+    public void PostCombatReset() {
         currentDefense = 0;
         currentBurn = 0;
         currentPoison = 0;
         currentSpike = 0;
-        // Update both UI text
-        UpdateLifeUIText();
+        RemoveEffectsUI();
         UpdateDefenseUIText();
+    }
+
+    public virtual void Reset() {
+        currentLife = maxLife;
+        PostCombatReset();
+        UpdateLifeUIText();
     }
 }

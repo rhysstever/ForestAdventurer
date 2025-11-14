@@ -134,11 +134,17 @@ public class GameManager : MonoBehaviour
                 DeckManager.instance.DealHand();
                 break;
             case CombatState.CombatEnemyTurn:
-                EnemyManager.instance.ProcessEnemiesOnEffects();
+                EnemyManager.instance.ProcessEffectsOnEnemies();
                 DeckManager.instance.DiscardHand();
-                EnemyManager.instance.PerformEnemyRoundActions();
+                if(EnemyManager.instance.IsWaveOver()) {
+                    ChangeCombatState(CombatState.CombatEnd);
+                    return;
+                } else {
+                    EnemyManager.instance.PerformEnemyRoundActions();
+                }
                 break;
             case CombatState.CombatEnd:
+                player.PostCombatReset();
                 ChangeGameState(GameState.CardSelection);
                 break;
             case CombatState.None:

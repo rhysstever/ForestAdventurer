@@ -24,7 +24,9 @@ public class CardManager : MonoBehaviour
     [SerializeField]    // Card base sprites
     private Sprite cardBase, cardBaseUncommon, cardBaseRare, cardBaseVeryRare, cardBaseLegendary;
     [SerializeField]    // Action icon sprites
-    private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal, actionIconSpriteFire, actionIconSpritePoison, actionIconSpriteSummon;
+    private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal, actionIconSpriteFire, actionIconSpritePoison, actionIconSpriteSpike, actionIconSpriteSummon;
+    [SerializeField]
+    private GameObject effectUIPrefab;
 
     // Set in script
     private List<CardData> cardLibrary;
@@ -36,6 +38,8 @@ public class CardManager : MonoBehaviour
     // TODO: Add in passive slots
     //private CardData hat;
     //private CardData boots;
+
+    public GameObject EffectUIPrefab { get { return effectUIPrefab; } }
 
     private void Awake() {
         if(instance == null) {
@@ -76,9 +80,9 @@ public class CardManager : MonoBehaviour
 
             // Main hand cards
             new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
-            new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),
-            new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),
-            new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack for 3 to all"),
+            new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
+            new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
+            new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack for 3, to all"),
             new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None, "Attack for 2, randomly, 3 times"),
             new CardData("Flame Sword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2. Burn for 2"),
             new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6. Poison for 2"),
@@ -88,10 +92,10 @@ public class CardManager : MonoBehaviour
             // Off hand cards
             new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Defend for 1"),
             new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 2"),
-            new CardData("Spike Shield", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 3\nSpike for 2"),
-            new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
-            new CardData("Scroll", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
-            new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
+            new CardData("Spike Shield", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 3. Spike for 2"),
+            new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),   // TODO: make magic
+            new CardData("Scroll", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),   // TODO: make magic
+            new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),   // TODO: make magic
             new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Defend for 5"),
 
             // Ally cards
@@ -104,14 +108,14 @@ public class CardManager : MonoBehaviour
             new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Draw 1 card"),
 
             // Spirit cards
-            new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Attack for 1, randomly, 3 times"),
+            new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, "Attack for 1, randomly, 3 times"),
             new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Defend for 3"),
-            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 3"),
+            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Burn for 3"),
             new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 3"),
 
             // Spell cards
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Attack for 1, randomly"),
-            new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE, "Attack for 1, to all"),
+            new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.Unit, "Burn for 3"),
             new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit, "Attack for 2. Heal for 2"),
             new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None, "Attack for 4, randomly"),
             new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5"),
@@ -122,7 +126,7 @@ public class CardManager : MonoBehaviour
             new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Draw 1 card"),
             new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit, "Heal for 2"),
             new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Heal for 1. Attack for 2, randomly"),
-            new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.None, "Heal for 2. Poison for 2"),
+            new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 2. Poison for 2"),
             new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4"),
             new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 3. Cleanse")
         };
@@ -348,13 +352,14 @@ public class CardManager : MonoBehaviour
     }
 
     public Sprite GetActionSprite(string actionType) {
-        return actionType switch {
-            "Attack" => actionIconSpriteAttack,
-            "Defend" => actionIconSpriteDefend,
-            "Heal" => actionIconSpriteHeal,
-            "Fire" => actionIconSpriteFire,
-            "Poison" => actionIconSpritePoison,
-            "Summon" => actionIconSpriteSummon,
+        return actionType.ToLower() switch {
+            "attack" => actionIconSpriteAttack,
+            "defend" => actionIconSpriteDefend,
+            "heal" => actionIconSpriteHeal,
+            "burn" => actionIconSpriteFire,
+            "poison" => actionIconSpritePoison,
+            "spike" => actionIconSpriteSpike,
+            "summon" => actionIconSpriteSummon,
             _ => null
         };
     }

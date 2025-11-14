@@ -40,6 +40,11 @@ public class EnemyManager : MonoBehaviour
     private List<Round> SetEnemyWaves() {
         List<Round> combatRounds = new() {
             new(new List<GameObject>() { boarEnemyPrefab }),
+            new(new List<GameObject>() { boarEnemyPrefab }),
+            new(new List<GameObject>() { boarEnemyPrefab }),
+            new(new List<GameObject>() { boarEnemyPrefab }),
+            new(new List<GameObject>() { boarEnemyPrefab }),
+            new(new List<GameObject>() { boarEnemyPrefab }),
             //new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
             //new(new List<GameObject>() { entEnemyPrefab }),
             //new(new List<GameObject>() { undeadBoarEnemyPrefab, undeadBoarEnemyPrefab }),
@@ -55,16 +60,21 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void PerformEnemyRoundActions() {
-        for(int i = 0; i < enemies.childCount; i++) { 
+        for(int i = 0; i < enemies.childCount; i++) {
             enemies.GetChild(i).GetComponent<Enemy>().PerformRoundAction();
         }
 
         GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
     }
 
+    public bool IsWaveOver() {
+        // Check all enemies in the scene and if none have health, the wave is over
+        return GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0;
+    }
+
     public void CheckIfWaveIsOver() {
         // Check all enemies in the scene and if none have health, the wave is over
-        if(GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0) {
+        if(IsWaveOver()) {
             // If the wave is over, check if it is the last wave
             if(IsLastWave()) {
                 // If it is the last wave, end the game
@@ -123,7 +133,7 @@ public class EnemyManager : MonoBehaviour
         return enemies.GetComponentsInChildren<Enemy>().ToList();
     }
 
-    public void ProcessEnemiesOnEffects() {
+    public void ProcessEffectsOnEnemies() {
         GetCurrentEnemiesInScene().ForEach(enemy => enemy.ProcessEffects());
     }
 
