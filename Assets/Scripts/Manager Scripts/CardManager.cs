@@ -58,24 +58,6 @@ public class CardManager : MonoBehaviour
     }
 
     #region Card Creation
-    private List<Sprite> LoadCardArtSprites() {
-        List<Sprite> spriteList = new List<Sprite>();
-
-        string cardArtFilePath = "Assets/Resources/Images/Card Art/PNG";
-        string[] files = Directory.GetFiles(cardArtFilePath, "*.png", SearchOption.TopDirectoryOnly);
-
-        foreach(var file in files) {
-            var sprite = AssetDatabase.LoadAssetAtPath(file, typeof(Sprite));
-
-            if(sprite != null) {
-                spriteList.Add((Sprite)sprite);
-            } else {
-                Debug.Log("Error! Sprite not loaded");
-            }
-        }
-
-        return spriteList;
-    }
 
     private List<CardData> CardCreation() {
         List<CardData> cards = new() {
@@ -147,6 +129,131 @@ public class CardManager : MonoBehaviour
 
         return cards;
     }
+    #endregion Card Creation
+
+    #region Card Actions
+    public void Play(CardData cardData) {
+        Play(cardData, null);
+    }
+
+    public void Play(CardData cardData, Enemy targetEnemy) {
+        string description = cardData.Description;
+
+        description.Split(". ").ToList().ForEach(action =>
+            PerformCardAction(action, targetEnemy)
+        );
+    }
+
+    private void PerformCardAction(string action, Enemy target) {
+        string firstWord = action.Split(" ")[0];
+        int amount;
+
+        switch(firstWord) {
+            case "Attack":
+                string[] attackParts = action.Split(", ");
+
+                // Figure out if the attack is AOE, random, and/or multi
+                bool isAOE = false;
+                bool isRandom = false;
+                int isMulti = 1;
+                for(int i = 1; i < attackParts.Length; i++) {
+                    if(attackParts[i].Contains("to all")) {
+                        isAOE = true;
+                    } else if(attackParts[i].Contains("randomly")) {
+                        isRandom = true;
+                    } else if(attackParts[i].Contains("times")) {
+                        isMulti = int.Parse(attackParts[i].Split(" ")[0]);
+                    }
+                }
+
+                // Attack based on the parsed info
+                for(int i = 0; i < isMulti; i++) {
+                    amount = int.Parse(attackParts[0].Split(" ")[2]);
+                    if(isAOE) {
+                        AttackEveryEnemy(amount);
+                    } else if(isRandom) {
+                        AttackRandomEnemy(amount);
+                    } else {
+                        AttackUnit(amount, target);
+                    }
+                }
+                break;
+            case "Defend":
+                amount = int.Parse(action.Split(" ")[2]);
+                GameManager.instance.Player.GiveDefense(amount);
+                break;
+            case "Heal":
+                amount = int.Parse(action.Split(" ")[2]);
+                GameManager.instance.Player.Heal(amount);
+                break;
+            case "Burn":
+                amount = int.Parse(action.Split(" ")[2]);
+                target.GiveBurn(amount);
+                break;
+            case "Poison":
+                amount = int.Parse(action.Split(" ")[2]);
+                target.GivePoison(amount);
+                break;
+            case "Spike":
+                // TODO : Implement Spike action
+                break;
+            case "Draw":
+                // TODO : Implement Draw action
+                break;
+            case "Cleanse":
+                GameManager.instance.Player.Cleanse();
+                break;
+            default:
+                Debug.Log(string.Format("Error! No action found for: {0}", action));
+                break;
+        }
+    }
+
+    private void AttackUnit(int amount, Enemy enemy) {
+        if(enemy == null) {
+            Debug.Log("Error: No target to attack!");
+            return;
+        }
+
+        if(amount < 1) {
+            Debug.Log(string.Format("Error: Not enough damage ({0})", amount));
+            return;
+        }
+
+        enemy.TakeDamage(amount);
+    }
+
+    private void AttackEveryEnemy(int damage) {
+        EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
+            AttackUnit(damage, enemy);
+        });
+    }
+
+    private void AttackRandomEnemy(int damage) {
+        List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
+        int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
+        AttackUnit(damage, currentEnemies[randomEnemyIndex]);
+    }
+    #endregion Card Actions
+    
+    private List<Sprite> LoadCardArtSprites() {
+        List<Sprite> spriteList = new List<Sprite>();
+
+        string cardArtFilePath = "Assets/Resources/Images/Card Art/PNG";
+        string[] files = Directory.GetFiles(cardArtFilePath, "*.png", SearchOption.TopDirectoryOnly);
+
+        foreach(var file in files) {
+            var sprite = AssetDatabase.LoadAssetAtPath(file, typeof(Sprite));
+
+            if(sprite != null) {
+                spriteList.Add((Sprite)sprite);
+            } else {
+                Debug.Log("Error! Sprite not loaded");
+            }
+        }
+
+        return spriteList;
+    }
 
     public Sprite GetCardArtSprite(string cardName) {
         string formattedName = cardName.Replace(" ", "");
@@ -160,7 +267,6 @@ public class CardManager : MonoBehaviour
         Debug.LogFormat("Error! No art found for {0}", formattedName);
         return null;
     }
-    #endregion Card Creation
 
     private Rarity GetRandomRarity() {
         float currentRarityPercSum = 0f;
@@ -287,147 +393,4 @@ public class CardManager : MonoBehaviour
         spell = GetStarterCardData(Slot.Spell);
         drink = GetStarterCardData(Slot.Drink);
     }
-
-    #region Card Actions
-    public void Play(CardData cardData) {
-        Play(cardData, null);
-    }
-
-    public void Play(CardData cardData, Enemy targetEnemy) {
-        string description = cardData.Description;
-
-        description.Split(". ").ToList().ForEach(action =>
-            PerformCardAction(action, targetEnemy)
-        );
-    }
-
-    private void PerformCardAction(string action, Enemy target) {
-        string firstWord = action.Split(" ")[0];
-        int amount;
-
-        switch(firstWord) {
-            case "Attack":
-                string[] attackParts = action.Split(", ");
-
-                // Figure out if the attack is AOE, random, and/or multi
-                bool isAOE = false;
-                bool isRandom = false;
-                int isMulti = 1;
-                for(int i = 1; i < attackParts.Length; i++) {
-                    if(attackParts[i].Contains("to all")) {
-                        isAOE = true;
-                    } else if(attackParts[i].Contains("randomly")) {
-                        isRandom = true;
-                    } else if(attackParts[i].Contains("times")) {
-                        isMulti = int.Parse(attackParts[i].Split(" ")[0]);
-                    }
-                }
-
-                // Attack based on the parsed info
-                for(int i = 0; i < isMulti; i++) {
-                    amount = int.Parse(attackParts[0].Split(" ")[2]);
-                    if(isAOE) {
-                        AttackEveryEnemy(amount);
-                    } else if(isRandom) {
-                        AttackRandomEnemy(amount);
-                    } else {
-                        AttackUnit(amount, target);
-                    }
-                }
-                break;
-            case "Defend":
-                amount = int.Parse(action.Split(" ")[2]);
-                GameManager.instance.Player.GiveDefense(amount);
-                break;
-            case "Heal":
-                amount = int.Parse(action.Split(" ")[2]);
-                GameManager.instance.Player.Heal(amount);
-                break;
-            case "Burn":
-                amount = int.Parse(action.Split(" ")[2]);
-                target.GiveBurn(amount);
-                break;
-            case "Poison":
-                amount = int.Parse(action.Split(" ")[2]);
-                target.GivePoison(amount);
-                break;
-            case "Spike":
-                // TODO : Implement Spike action
-                break;
-            case "Draw":
-                // TODO : Implement Draw action
-                break;
-            case "Cleanse":
-                GameManager.instance.Player.Cleanse();
-                break;
-            default:
-                Debug.Log(string.Format("Error! No action found for: {0}", action));
-                break;
-        }
-    }
-    #endregion Card Actions
-
-    #region Effects
-    private void AttackUnit(int amount, Enemy enemy) {
-        if(enemy == null) {
-            Debug.Log("Error: No target to attack!");
-            return;
-        }
-
-        if(amount < 1) {
-            Debug.Log(string.Format("Error: Not enough damage ({0})", amount));
-            return;
-        }
-
-        enemy.TakeDamage(amount);
-    }
-
-    private void AttackEveryEnemy(int damage) {
-        EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
-            AttackUnit(damage, enemy);
-        });
-    }
-
-    private void AttackRandomEnemy(int damage) {
-        List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
-        int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
-        AttackUnit(damage, currentEnemies[randomEnemyIndex]);
-    }
-
-    private void Defend(int amount) {
-        GameManager.instance.Player.GiveDefense(amount);
-    }
-
-    private void Heal(int amount) {
-        GameManager.instance.Player.Heal(amount);
-    }
-
-    private void BurnEnemy(int amount, Enemy enemy) {
-        if(enemy == null) {
-            Debug.Log("Error: No target to burn!");
-            return;
-        }
-
-        if(amount < 1) {
-            Debug.Log(string.Format("Error: Not enough burn ({0})", amount));
-            return;
-        }
-
-        enemy.GiveBurn(amount);
-    }
-
-    private void PoisonEnemy(int amount, Enemy enemy) {
-        if(enemy == null) {
-            Debug.Log("Error: No target to poison!");
-            return;
-        }
-
-        if(amount < 1) {
-            Debug.Log(string.Format("Error: Not enough poison ({0})", amount));
-            return;
-        }
-
-        enemy.GivePoison(amount);
-    }
-    #endregion Effects
 }
