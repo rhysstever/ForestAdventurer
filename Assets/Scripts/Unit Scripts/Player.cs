@@ -11,7 +11,11 @@ public class Player : Unit
     }
 
     public override void TakeDamage(int amount) {
-        base.TakeDamage(amount);
+        base.TakeDamage(amount, null, true);
+    }
+
+    public override void TakeDamage(int amount, Unit attacker, bool isDamageBlockable) {
+        base.TakeDamage(amount, attacker, isDamageBlockable);
 
         // Check if the player has been killed, if so, end the game
         if(currentLife <= 0) {

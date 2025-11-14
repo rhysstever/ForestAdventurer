@@ -123,6 +123,10 @@ public class EnemyManager : MonoBehaviour
         return enemies.GetComponentsInChildren<Enemy>().ToList();
     }
 
+    public void ProcessEnemiesOnEffects() {
+        GetCurrentEnemiesInScene().ForEach(enemy => enemy.ProcessEffects());
+    }
+
     public void Reset() {
         currentWaveNum = -1;
 

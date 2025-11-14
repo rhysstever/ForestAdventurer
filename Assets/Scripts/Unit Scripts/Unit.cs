@@ -11,23 +11,31 @@ public class Unit : MonoBehaviour
 
     // Instantiated in code
     [SerializeField]
-    protected int currentLife, currentDefense, currentBurn, currentPoison;
+    protected int currentLife, currentDefense, currentBurn, currentPoison, currentSpike;
 
     public int CurrentLife { get { return currentLife; } }
-
+    
     public virtual void TakeDamage(int amount) {
+        TakeDamage(amount, null, true);
+    }
+
+    public virtual void TakeDamage(int amount, Unit attacker, bool isDamageBlockable) {
         if(amount < 0) {
             return;
         }
 
         // Damage is dealt to defense before health
-        if(currentDefense > 0) {
+        if(isDamageBlockable && currentDefense > 0) {
             // If the unit has defense, account for damaging the defense first
             if(amount > currentDefense) {
                 // If the damage dealt is more than the unit's defense,
                 // subtract the difference from the unit's health
                 currentLife -= (amount - currentDefense);
                 currentDefense = 0;
+                // Check if spike damage should be returned
+                if(attacker != null) {
+                    attacker.TakeDamage(currentSpike);
+                }
             } else {
                 // If the damage dealth is less than the unit's defense,
                 // subtract it from the current defense
@@ -38,6 +46,10 @@ public class Unit : MonoBehaviour
         } else {
             // If the unit has no defense, subtract the damage from its health
             currentLife -= amount;
+            // Check if spike damage should be returned
+            if(attacker != null) {
+                attacker.TakeDamage(currentSpike);
+            }
         }
         // Update life UI text
         UpdateLifeUIText();
@@ -73,13 +85,6 @@ public class Unit : MonoBehaviour
         UpdateDefenseUIText();
     }
 
-    public void GivePoison(int amount) {
-        if(amount < 0) {
-            return;
-        }
-        currentPoison += amount;
-    }
-
     public void GiveBurn(int amount) {
         if(amount < 0) {
             return;
@@ -87,9 +92,34 @@ public class Unit : MonoBehaviour
         currentBurn += amount;
     }
 
+    public void GivePoison(int amount) {
+        if(amount < 0) {
+            return;
+        }
+        currentPoison += amount;
+    }
+
+    public void GiveSpike(int amount) {
+        if(amount < 0) {
+            return;
+        }
+        currentSpike += amount;
+    }
+
     public void Cleanse() {
         currentPoison = 0;
         currentBurn = 0;
+    }
+
+    public void ProcessEffects() {
+        if(currentBurn > 0) {
+            TakeDamage(currentBurn, null, true);
+            currentBurn--;
+        }
+
+        if(currentPoison > 0) {
+            TakeDamage(currentPoison, null, false);
+        }
     }
 
     protected void UpdateLifeUIText() {
@@ -105,6 +135,7 @@ public class Unit : MonoBehaviour
         currentDefense = 0;
         currentBurn = 0;
         currentPoison = 0;
+        currentSpike = 0;
         // Update both UI text
         UpdateLifeUIText();
         UpdateDefenseUIText();

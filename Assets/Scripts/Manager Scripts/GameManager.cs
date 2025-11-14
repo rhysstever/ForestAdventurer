@@ -130,9 +130,11 @@ public class GameManager : MonoBehaviour
                 DeckManager.instance.SetupForNewCombat();
                 break;
             case CombatState.CombatPlayerTurn:
+                player.ProcessEffects();
                 DeckManager.instance.DealHand();
                 break;
             case CombatState.CombatEnemyTurn:
+                EnemyManager.instance.ProcessEnemiesOnEffects();
                 DeckManager.instance.DiscardHand();
                 EnemyManager.instance.PerformEnemyRoundActions();
                 break;

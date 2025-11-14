@@ -73,8 +73,12 @@ public class Enemy : Unit
         UpdateNextActionUI();
     }
 
-    public override void TakeDamage(int amount) {
-        base.TakeDamage(amount);
+    public override void TakeDamage(int amount) { 
+        TakeDamage(amount, null, true);
+    }
+
+    public override void TakeDamage(int amount, Unit attacker, bool isDamageBlockable) {
+        base.TakeDamage(amount, attacker, isDamageBlockable);
 
         if(currentLife <= 0) {
             EnemyManager.instance.CheckIfWaveIsOver();
@@ -87,7 +91,7 @@ public class Enemy : Unit
     }
 
     public void Attack(int amount, Unit target) {
-        target.TakeDamage(amount);
+        target.TakeDamage(amount, this, true);
     }
 
     public void HideNextActionUI() {

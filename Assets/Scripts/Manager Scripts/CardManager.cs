@@ -97,11 +97,11 @@ public class CardManager : MonoBehaviour
             // Ally cards
             new CardData("Squirrel", Slot.Ally, Rarity.Starter, TargetType.Unit, "Attack for 1"),
             new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1"),
-            new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None, "Attack for 1, randomly, 3 times"),
-            new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Heal for 2"),
-            new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE, "Attack for 2, to all"),
-            new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self, "Defend for 3"),
-            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3"),
+            new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Unit, "Poison for 1"),
+            new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Heal for 2"),   // TODO: make magic
+            new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.Unit, "Burn for 2"),
+            new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.None, "Spike for 1"),
+            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Draw 1 card"),
 
             // Spirit cards
             new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Attack for 1, randomly, 3 times"),
@@ -195,7 +195,8 @@ public class CardManager : MonoBehaviour
                 target.GivePoison(amount);
                 break;
             case "Spike":
-                // TODO : Implement Spike action
+                amount = int.Parse(action.Split(" ")[2]);
+                GameManager.instance.Player.GiveSpike(amount);
                 break;
             case "Draw":
                 // TODO : Implement Draw action
@@ -209,6 +210,18 @@ public class CardManager : MonoBehaviour
         }
     }
 
+    private void AttackEveryEnemy(int damage) {
+        EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
+            AttackUnit(damage, enemy);
+        });
+    }
+
+    private void AttackRandomEnemy(int damage) {
+        List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
+        int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
+        AttackUnit(damage, currentEnemies[randomEnemyIndex]);
+    }
+
     private void AttackUnit(int amount, Enemy enemy) {
         if(enemy == null) {
             Debug.Log("Error: No target to attack!");
@@ -220,19 +233,7 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-        enemy.TakeDamage(amount);
-    }
-
-    private void AttackEveryEnemy(int damage) {
-        EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
-            AttackUnit(damage, enemy);
-        });
-    }
-
-    private void AttackRandomEnemy(int damage) {
-        List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
-        int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
-        AttackUnit(damage, currentEnemies[randomEnemyIndex]);
+        enemy.TakeDamage(amount, GameManager.instance.Player, true);
     }
     #endregion Card Actions
     
