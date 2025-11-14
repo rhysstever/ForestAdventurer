@@ -149,6 +149,13 @@ public class UIManager : MonoBehaviour
                 EnemyManager.instance.CurrentAreaNum + 1, 
                 EnemyManager.instance.CurrentWaveNum + 1);
         }
+
+        // Check for the current spirit card, which has no starter
+        string spiritText = "None";
+        if(CardManager.instance.GetCurrentCardData(Slot.Spirit) != null) {
+            spiritText = CardManager.instance.GetCurrentCardData(Slot.Spirit).Name;
+        }
+
         gameEndDeckInfoText.text = string.Format(
             "Character: {0}" +
             "\n\nDeck" +
@@ -162,7 +169,7 @@ public class UIManager : MonoBehaviour
             CardManager.instance.GetCurrentCardData(Slot.MainHand).Name,
             CardManager.instance.GetCurrentCardData(Slot.OffHand).Name,
             CardManager.instance.GetCurrentCardData(Slot.Ally).Name,
-            CardManager.instance.GetCurrentCardData(Slot.Spirit).Name,
+            spiritText,
             CardManager.instance.GetCurrentCardData(Slot.Spell).Name,
             CardManager.instance.GetCurrentCardData(Slot.Drink).Name);
     }
