@@ -290,7 +290,7 @@ public class CardManager : MonoBehaviour
 
     #region Card Actions
     public void Play(CardData cardData) {
-        Play2(cardData, null);
+        Play(cardData, null);
     }
 
     public void Play(CardData cardData, Enemy targetEnemy) {
