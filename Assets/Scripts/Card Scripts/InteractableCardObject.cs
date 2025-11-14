@@ -101,7 +101,11 @@ public class InteractableCardObject : CardObject
     }
 
     private void PlayCard(GameObject target) {
-        CardManager.instance.Play(cardData.Name, target);
+        if(target != null) {
+            CardManager.instance.Play(cardData, target.GetComponent<Enemy>());
+        } else {
+            CardManager.instance.Play(cardData);
+        }
         Destroy(gameObject);
     }
 

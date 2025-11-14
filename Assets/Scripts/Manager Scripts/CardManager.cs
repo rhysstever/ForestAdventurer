@@ -79,57 +79,72 @@ public class CardManager : MonoBehaviour
 
     private List<CardData> CardCreation() {
         List<CardData> cards = new() {
-            // Main hand cards - 8 total
-            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1 damage."),
-            new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 1 damage. And some magic... nothing yet"),
-            new CardData("Longsword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2 damage."),
-            new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Randomly attack 2 times for 2 damage. And some magic... nothing yet"),
-            new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack all for 3 damage."),
-            new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 2 damage."),
-            new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6 damage."),
-            new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 5 damage. And some magic... nothing yet"),
+            // ===== Description Format =====
+            // Normal Attack: "Attack for X"
+            // Random Attack: "Attack for X, randomly"
+            // AOE Attack: "Attack for X, to all"
+            // Multi Attack: "Attack for X, Y times"
+            // Heal: "Heal for X"
+            // Gain defense: "Defend for X"
+            // Burn: "Burn for X"
+            // Poison: "Poison for X"
+            // Gain Spikes: "Spike for X"
+            // Draw Cards: "Draw X cards"
+            // Cleamse Debuffs: "Cleanse"
 
-            // Off hand cards - 5 total
-            new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Gain 1 defense."),
-            new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Gain 2 defense."),
+            // Main hand cards
+            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
+            new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),
+            new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),
+            new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack for 3 to all"),
+            new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None, "Attack for 2, randomly, 3 times"),
+            new CardData("Flame Sword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2. Burn for 2"),
+            new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6. Poison for 2"),
+            new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 4. Heal for 4"),
+            new CardData("Scythe", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 3. Poison for 3. Heal for 3"),
+
+            // Off hand cards
+            new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Defend for 1"),
+            new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 2"),
+            new CardData("Spike Shield", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 3\nSpike for 2"),
             new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
+            new CardData("Scroll", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
-            new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Gain 5 defense."),
+            new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Defend for 5"),
 
-            // Ally cards - 7 total
-            new CardData("Squirrel", Slot.Ally, Rarity.Common, TargetType.Unit, "Attack for 1 damage."),
-            new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1."),
-            new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None, "Randomly attack 3 times for 1 damage."),
-            new CardData("Bunny", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 2."),
-            new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE, "Attack all for 2 damage."),
-            new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self, "Gain 3 defense."),
-            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3 damage."),
+            // Ally cards
+            new CardData("Squirrel", Slot.Ally, Rarity.Starter, TargetType.Unit, "Attack for 1"),
+            new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1"),
+            new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.None, "Attack for 1, randomly, 3 times"),
+            new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Heal for 2"),
+            new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.AOE, "Attack for 2, to all"),
+            new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.Self, "Defend for 3"),
+            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Attack for 3"),
 
-            // Spirit cards - 4 total
-            new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Randomly attack 3 times for 1 damage."),
-            new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Gain 3 defense."),
-            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 3 damage."),
-            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 3."),
+            // Spirit cards
+            new CardData("Air Spirit", Slot.Spirit, Rarity.Rare, TargetType.None, "Attack for 1, randomly, 3 times"),
+            new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Defend for 3"),
+            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Attack for 3"),
+            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 3"),
 
-            // Spell cards - 6 total
-            new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Randomly attack for 1 damage."),
-            new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE, "Attack all for 1 damage."),
-            new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit, "Attack for 2 damage. Heal for 1"),
-            new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None, "Randomly attack for 4 damage."),
-            new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5."),
-            new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE, "Attack all for 3 damage."),
+            // Spell cards
+            new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Attack for 1, randomly"),
+            new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.AOE, "Attack for 1, to all"),
+            new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit, "Attack for 2. Heal for 2"),
+            new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None, "Attack for 4, randomly"),
+            new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5"),
+            new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE, "Attack for 3, to all"),
 
-            // Drink cards - 7 total
-            new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1."),
-            new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Heal for 2."),
-            new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit, "Attack for 1 damage. Heal for 1"),
-            new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Randomly attack for 2 damage."),
-            new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.None, "Randomly attack for 2 damage. Heal for 3"),
-            new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4."),
-            new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit, "Attack for 1 damage. Heal for 3")
+            // Drink cards
+            new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1"),
+            new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Draw 1 card"),
+            new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit, "Heal for 2"),
+            new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Heal for 1. Attack for 2, randomly"),
+            new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.None, "Heal for 2. Poison for 2"),
+            new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4"),
+            new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 3. Cleanse")
         };
 
-        // 37 cards total
         return cards;
     }
 
@@ -226,23 +241,15 @@ public class CardManager : MonoBehaviour
     }
 
     public Sprite GetActionSprite(string actionType) {
-        switch(actionType) {
-            case "Attack":
-                return actionIconSpriteAttack;
-            case "Defend":
-                return actionIconSpriteDefend;
-            case "Heal":
-                return actionIconSpriteHeal;
-            case "Fire":
-                return actionIconSpriteFire;
-            case "Poison":
-                return actionIconSpritePoison;
-            case "Summon":
-                return actionIconSpriteSummon;
-            default:
-                Debug.Log(string.Format("Error! No action sprite for action type {0}!", actionType));
-                return null;
-        }
+        return actionType switch {
+            "Attack" => actionIconSpriteAttack,
+            "Defend" => actionIconSpriteDefend,
+            "Heal" => actionIconSpriteHeal,
+            "Fire" => actionIconSpriteFire,
+            "Poison" => actionIconSpritePoison,
+            "Summon" => actionIconSpriteSummon,
+            _ => null
+        };
     }
 
     public void UpdateSlot(CardData newCardData) {
@@ -282,177 +289,97 @@ public class CardManager : MonoBehaviour
     }
 
     #region Card Actions
-    public void Play(string cardName) {
-        Play(cardName, null);
+    public void Play(CardData cardData) {
+        Play2(cardData, null);
     }
 
-    public void Play(string cardName, GameObject target) {
-        switch(cardName) {
-            #region Main Hand Card Actions
-            case "Shortsword":
-                AttackUnit(1, target.GetComponent<Enemy>());
-                break;
-            case "Wand":
-                AttackRandomEnemy(1);
-                AttackRandomEnemy(1);
-                // TODO: Add Magic to Wand Play()
-                break;
-            case "Longsword":
-                AttackUnit(2, target.GetComponent<Enemy>());
-                break;
-            case "Staff":
-                AttackRandomEnemy(2);
-                AttackRandomEnemy(2);
-                // TODO: Add Magic to Staff Play()
-                break;
-            case "Mace":
-                AttackEveryEnemy(3);
-                break;
-            case "Flail":
-                AttackRandomEnemy(2);
-                AttackRandomEnemy(2);
-                AttackRandomEnemy(2);
-                break;
-            case "Spear":
-                AttackUnit(6, target.GetComponent<Enemy>());
-                break;
-            case "Trident":
-                AttackUnit(4, target.GetComponent<Enemy>());
-                // TODO: Add Magic to Trident Play()
-                break;
-            #endregion Main Hand Card Actions
+    public void Play(CardData cardData, Enemy targetEnemy) {
+        string description = cardData.Description;
 
-            #region Off Hand Card Actions
-            case "Wooden Shield":
-                Defend(1);
-                break;
-            case "Buckler":
-                Defend(2);
-                break;
-            case "Tome":
-                Defend(0);
-                // TODO: Add Magic to Tome Play()
-                break;
-            case "Spell Focus":
-                Defend(0);
-                // TODO: Add Magic to Spell Focus Play()
-                break;
-            case "Tower Shield":
-                Defend(5);
-                break;
-            #endregion Off Hand Card Actions
+        description.Split(". ").ToList().ForEach(action =>
+            PerformCardAction(action, targetEnemy)
+        );
+    }
 
-            #region Ally Card Actions
-            case "Squirrel":
-                AttackUnit(1, target.GetComponent<Enemy>());
-                break;
-            case "Frog":
-                Heal(1);
-                break;
-            case "Rat":
-                AttackRandomEnemy(1);
-                AttackRandomEnemy(1);
-                AttackRandomEnemy(1);
-                break;
-            case "Bunny":
-                Heal(2);
-                break;
-            case "Newt":
-                AttackEveryEnemy(2);
-                break;
-            case "Porcupine":
-                Defend(3);
-                break;
-            case "Hampster":
-                AttackUnit(3, target.GetComponent<Enemy>());
-                break;
-            #endregion Ally Card Actions
+    private void PerformCardAction(string action, Enemy target) {
+        string firstWord = action.Split(" ")[0];
+        int amount;
 
-            #region Spirit Card Actions
-            case "Air Spirit":
-                AttackRandomEnemy(1);
-                AttackRandomEnemy(1);
-                AttackRandomEnemy(1);
-                break;
-            case "Earth Spirit":
-                Defend(3);
-                break;
-            case "Fire Spirit":
-                AttackUnit(3, target.GetComponent<Enemy>());
-                break;
-            case "Water Spirit":
-                Heal(3);
-                break;
-            #endregion Spirit Card Actions
+        switch(firstWord) {
+            case "Attack":
+                string[] attackParts = action.Split(", ");
 
-            #region Spell Card Actions
-            case "Arcane Bolt":
-                AttackRandomEnemy(1);
+                // Figure out if the attack is AOE, random, and/or multi
+                bool isAOE = false;
+                bool isRandom = false;
+                int isMulti = 1;
+                for(int i = 1; i < attackParts.Length; i++) {
+                    if(attackParts[i].Contains("to all")) {
+                        isAOE = true;
+                    } else if(attackParts[i].Contains("randomly")) {
+                        isRandom = true;
+                    } else if(attackParts[i].Contains("times")) {
+                        isMulti = int.Parse(attackParts[i].Split(" ")[0]);
+                    }
+                }
+
+                // Attack based on the parsed info
+                for(int i = 0; i < isMulti; i++) {
+                    amount = int.Parse(attackParts[0].Split(" ")[2]);
+                    if(isAOE) {
+                        AttackEveryEnemy(amount);
+                    } else if(isRandom) {
+                        AttackRandomEnemy(amount);
+                    } else {
+                        AttackUnit(amount, target);
+                    }
+                }
                 break;
-            case "Fireball":
-                AttackEveryEnemy(1);
-                break;
-            case "Life Drain":
-                AttackUnit(2, target.GetComponent<Enemy>());
-                Heal(1);
-                break;
-            case "Lighning Bolt":
-                AttackRandomEnemy(4);
+            case "Defend":
+                amount = int.Parse(action.Split(" ")[2]);
+                GameManager.instance.Player.GiveDefense(amount);
                 break;
             case "Heal":
-                Heal(5);
+                amount = int.Parse(action.Split(" ")[2]);
+                GameManager.instance.Player.Heal(amount);
                 break;
-            case "Blizzard":
-                AttackEveryEnemy(3);
+            case "Burn":
+                amount = int.Parse(action.Split(" ")[2]);
+                target.GiveBurn(amount);
                 break;
-            #endregion Spell Card Actions
-
-            #region Drink Card Actions
-            case "Cup":
-                Heal(1);
+            case "Poison":
+                amount = int.Parse(action.Split(" ")[2]);
+                target.GivePoison(amount);
                 break;
-            case "Pouch":
-                Heal(2);
+            case "Spike":
+                // TODO : Implement Spike action
                 break;
-            case "Tankard":
-                AttackUnit(1, target.GetComponent<Enemy>());
-                Heal(1);
+            case "Draw":
+                // TODO : Implement Draw action
                 break;
-            case "Flask":
-                AttackRandomEnemy(2);
-                break;
-            case "Flagon":
-                AttackRandomEnemy(2);
-                Heal(3);
-                break;
-            case "Goblet":
-                Heal(4);
-                break;
-            case "Chalice":
-                AttackUnit(1, target.GetComponent<Enemy>());
-                Heal(2);
+            case "Cleanse":
+                GameManager.instance.Player.Cleanse();
                 break;
             default:
-                Debug.Log(string.Format("Error! Card not found by name: {0}", cardName));
+                Debug.Log(string.Format("Error! No action found for: {0}", action));
                 break;
-            #endregion Drink Card Actions
         }
     }
     #endregion Card Actions
 
     #region Effects
-    private void AttackUnit(int damage, Enemy enemy) {
+    private void AttackUnit(int amount, Enemy enemy) {
         if(enemy == null) {
             Debug.Log("Error: No target to attack!");
             return;
         }
 
-        if(damage < 1) {
-            Debug.Log(string.Format("Error: Not enough damage ({0})", damage));
+        if(amount < 1) {
+            Debug.Log(string.Format("Error: Not enough damage ({0})", amount));
             return;
         }
 
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(amount);
     }
 
     private void AttackEveryEnemy(int damage) {
@@ -473,6 +400,34 @@ public class CardManager : MonoBehaviour
 
     private void Heal(int amount) {
         GameManager.instance.Player.Heal(amount);
+    }
+
+    private void BurnEnemy(int amount, Enemy enemy) {
+        if(enemy == null) {
+            Debug.Log("Error: No target to burn!");
+            return;
+        }
+
+        if(amount < 1) {
+            Debug.Log(string.Format("Error: Not enough burn ({0})", amount));
+            return;
+        }
+
+        enemy.GiveBurn(amount);
+    }
+
+    private void PoisonEnemy(int amount, Enemy enemy) {
+        if(enemy == null) {
+            Debug.Log("Error: No target to poison!");
+            return;
+        }
+
+        if(amount < 1) {
+            Debug.Log(string.Format("Error: Not enough poison ({0})", amount));
+            return;
+        }
+
+        enemy.GivePoison(amount);
     }
     #endregion Effects
 }
