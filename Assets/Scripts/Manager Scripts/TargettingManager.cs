@@ -26,11 +26,7 @@ public class TargettingManager : MonoBehaviour
 
     void Start()
     {
-        cardTargetting = null;
-        target = null;
-
-        mouseTargetAiming.SetActive(false);
-        mouseTarget.SetActive(false);
+        Reset();
     }
 
     void Update() {
@@ -70,5 +66,14 @@ public class TargettingManager : MonoBehaviour
 
     public void SetTarget(GameObject target) {
         this.target = target;
+    }
+
+    public void Reset()
+    {
+        StopTargetting();
+        SetTarget(null);
+
+        mouseTargetAiming.SetActive(false);
+        mouseTarget.SetActive(false);
     }
 }

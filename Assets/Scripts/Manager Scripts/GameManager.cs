@@ -46,7 +46,10 @@ public class GameManager : MonoBehaviour
     private GameState currentGameState;
     [SerializeField]
     private CombatState currentCombatState;
-    
+    private int currentAreaIndex;
+    private int currentStageIndex;
+
+    // Properties
     public Player Player { get { return player; } }
     public MenuState CurrentMenuState { get { return currentMenuState; } }
     public GameState CurrentGameState { get { return currentGameState; } }
@@ -74,6 +77,8 @@ public class GameManager : MonoBehaviour
                 if(player != null) {
                     Destroy(player.gameObject);
                 }
+                currentAreaIndex = -1;
+                currentStageIndex = -1;
                 EnemyManager.instance.Reset();
                 ChangeGameState(GameState.None);
                 ChangeCombatState(CombatState.None);
@@ -83,15 +88,7 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(GameState.None);
                 ChangeCombatState(CombatState.None);
                 break;
-            case MenuState.Game:
-                // If the player does not exist, create one
-                if(player == null) {
-                    GameObject playerObj = Instantiate(playerPrefab, playerPostion.position, Quaternion.identity, transform);
-                    player = playerObj.GetComponent<Player>();
-                    // TODO - set the player sprite based on the chosen character
-                }
-                // TODO - remove this and start combat at the appropriate time 
-                ChangeGameState(GameState.Combat);
+            case MenuState.Game:                
                 break;
             case MenuState.GameEnd:
                 ChangeGameState(GameState.None);
@@ -112,6 +109,8 @@ public class GameManager : MonoBehaviour
             case GameState.CardSelection:
                 ChangeCombatState(CombatState.None);
                 DeckManager.instance.SpawnCardSelectionDisplayCards();
+                break;
+            case GameState.Well:
                 break;
             case GameState.None:
                 DeckManager.instance.DiscardHand();
@@ -153,5 +152,62 @@ public class GameManager : MonoBehaviour
         }
 
         UIManager.instance.UpdateCombatUI(newCombatState);
+    }
+
+    public void StartGame()
+    {
+        ChangeMenuState(MenuState.Game);
+
+        // Create Player
+        GameObject playerObj = Instantiate(playerPrefab, playerPostion.position, Quaternion.identity, transform);
+        player = playerObj.GetComponent<Player>();
+        // TODO - set the player sprite based on the chosen character
+
+        EnterArea();
+    }
+
+    private void EnterArea()
+    {
+        currentAreaIndex++;
+        currentStageIndex = 0;
+        GoToNextStage();
+    }
+
+    public void GoToNextStage()
+    {
+        currentStageIndex++;
+        // Location Order:
+        // 0) Combat, Wave 0
+        // 1) Combat, Wave 1
+        // 2) Well
+        // 3) Combat, Wave 2
+        // 4) Combat, Wave 3 (Mini Boss)
+        // 5) Well
+        // 6) Combat, Wave 4 (Boss)
+        switch(currentStageIndex)
+        {
+            case 2:
+            case 5:
+                ChangeGameState(GameState.Well);
+                break;
+            default:
+                ChangeGameState(GameState.Combat);
+                break;
+        }
+
+        UIManager.instance.UpdateStageText();
+    }
+
+    public string GetCurrentStageText()
+    {
+        int area = currentAreaIndex + 1;
+        string stageText = currentStageIndex switch
+        {
+            2 => "W",
+            5 => "W",
+            _ => currentStageIndex.ToString(),
+        };
+
+        return string.Format("{0}-{1}", area, stageText);
     }
 }

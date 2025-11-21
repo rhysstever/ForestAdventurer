@@ -17,11 +17,7 @@ public class EnemyManager : MonoBehaviour
 
     // Instantiated in code
     private List<Round> enemyWaves;
-    private int currentAreaNum;
     private int currentWaveNum;
-
-    public int CurrentAreaNum { get { return currentAreaNum; } }
-    public int CurrentWaveNum { get { return currentWaveNum; } }
 
     private void Awake() {
         if(instance == null) {

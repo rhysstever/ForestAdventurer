@@ -103,6 +103,7 @@ public class InteractableCardObject : CardObject
     private void PlayCard(GameObject target) {
         if(target != null) {
             CardManager.instance.Play(cardData, target.GetComponent<Enemy>());
+            TargettingManager.instance.Reset();
         } else {
             CardManager.instance.Play(cardData);
         }

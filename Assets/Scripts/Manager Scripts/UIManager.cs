@@ -13,9 +13,9 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, quitButton, endTurnButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    private Button mainMenuToCharacterSelectButton, quitButton, endTurnButton, continueButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
-    private TMP_Text characterSelectInfoText, gameEndHeaderText, gameEndDeckInfoText;
+    private TMP_Text characterSelectInfoText, gameAreaStageText, gameEndHeaderText, gameEndDeckInfoText;
 
     private void Awake() {
         if(instance == null) {
@@ -33,9 +33,12 @@ public class UIManager : MonoBehaviour
         });
         quitButton.onClick.AddListener(() => Application.Quit());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
+        continueButton.onClick.AddListener(() => {
+            GameManager.instance.GoToNextStage();
+        });
         skipButton.onClick.AddListener(() => {
             DeckManager.instance.ClearCardSelectionDisplayCards();
-            GameManager.instance.ChangeGameState(GameState.Combat);
+            GameManager.instance.GoToNextStage();
         });
         drinkWellButton.onClick.AddListener(() => GameManager.instance.Player.Heal(1000));
         gameEndToMainMenuButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.MainMenu));
@@ -139,15 +142,19 @@ public class UIManager : MonoBehaviour
         characterSelectInfoText.verticalAlignment = VerticalAlignmentOptions.Top;
     }
 
+    public void UpdateStageText()
+    {
+        gameAreaStageText.text = GameManager.instance.GetCurrentStageText();
+    }
+
     public void UpdateGameEndText() {
         bool victory = GameManager.instance.Player.CurrentLife > 0;
         if(victory) {
             gameEndHeaderText.text = "VICTORY";
         } else {
             gameEndHeaderText.text = string.Format(
-                "SLAIN ON {0}-{1}", 
-                EnemyManager.instance.CurrentAreaNum + 1, 
-                EnemyManager.instance.CurrentWaveNum + 1);
+                "SLAIN ON {0}", 
+                GameManager.instance.GetCurrentStageText());
         }
 
         // Check for the current spirit card, which has no starter

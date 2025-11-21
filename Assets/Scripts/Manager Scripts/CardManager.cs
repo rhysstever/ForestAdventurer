@@ -35,9 +35,6 @@ public class CardManager : MonoBehaviour
 
     // Slots
     private CardData mainHand, offHand, spirit, ally, spell, drink;
-    // TODO: Add in passive slots
-    //private CardData hat;
-    //private CardData boots;
 
     public GameObject EffectUIPrefab { get { return effectUIPrefab; } }
 

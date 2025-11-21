@@ -20,7 +20,7 @@ public class CharacterSelectIcon : MonoBehaviour
     private void OnMouseUpAsButton() {
         CharacterManager.instance.ChooseCharacter(character);
         CharacterManager.instance.HideCharacterSelectIcons();
-        GameManager.instance.ChangeMenuState(MenuState.Game);
+        GameManager.instance.StartGame();
     }
 
     private void OnMouseEnter() {
