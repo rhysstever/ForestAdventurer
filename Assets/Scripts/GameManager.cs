@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
                 EnemyManager.instance.Reset();
                 ChangeGameState(GameState.None);
                 ChangeCombatState(CombatState.None);
+                Camera.main.GetComponent<CameraPan>().ResetCameraPosition();
                 break;
             case MenuState.CharacterSelect:
                 CharacterManager.instance.ShowCharacterSelectIcons();
