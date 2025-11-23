@@ -138,8 +138,8 @@ public class DeckManager : MonoBehaviour
         fieldCollider.gameObject.SetActive(false);
 
         // Create the card selection cards to display
-        for(int i = 0; i < 3; i++) {
-            CardData newCardData = CardManager.instance.GetRandomCardData();
+        List<CardData> cardDatasToDisplay = CardManager.instance.GetRandomCardDatas(3);
+        for(int i = 0; i < cardDatasToDisplay.Count; i++) {
             Vector2 position = Vector2.zero;
             switch(i) {
                 case 0:
@@ -153,7 +153,7 @@ public class DeckManager : MonoBehaviour
                     break;
             }
 
-            SpawnCard(displayCardPrefab, newCardData, position, cardSelectionCardParentTrans);
+            SpawnCard(displayCardPrefab, cardDatasToDisplay[i], position, cardSelectionCardParentTrans);
         }
 
         // Reset the current selection

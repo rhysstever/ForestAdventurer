@@ -76,8 +76,7 @@ public class CardManager : MonoBehaviour
             // Cleamse Debuffs: "Cleanse"
 
             // Main hand cards
-            //new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
-            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Spike for 1"),
+            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
             new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
             new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
             new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack for 3, to all"),
@@ -293,6 +292,22 @@ public class CardManager : MonoBehaviour
         // Display an error and return Common if no rarity was hit
         Debug.Log("Error! Rarity defaulted to Common for random num: $randomF");
         return Rarity.Common;
+    }
+
+    public List<CardData> GetRandomCardDatas(int numOfCardData)
+    {
+        List<CardData> cardDatas = new List<CardData>();
+
+        while(cardDatas.Count < numOfCardData)
+        {
+            CardData randomCardData = GetRandomCardData();
+            if(!cardDatas.Contains(randomCardData))
+            { 
+                cardDatas.Add(randomCardData);
+            }
+        }
+
+        return cardDatas;
     }
 
     public CardData GetRandomCardData() {
