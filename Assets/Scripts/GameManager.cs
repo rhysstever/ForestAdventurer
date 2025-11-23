@@ -40,11 +40,8 @@ public class GameManager : MonoBehaviour
 
     // Instantiated in code
     private Player player;
-    [SerializeField]
     private MenuState currentMenuState;
-    [SerializeField]
     private GameState currentGameState;
-    [SerializeField]
     private CombatState currentCombatState;
     private int currentAreaIndex;
     private int currentStageIndex;
@@ -108,12 +105,13 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.CardSelection:
                 ChangeCombatState(CombatState.None);
-                DeckManager.instance.SpawnCardSelectionDisplayCards();
+                DeckManager.instance.SetupCardSelection();
                 break;
             case GameState.Well:
+                ChangeCombatState(CombatState.None);
                 break;
             case GameState.None:
-                DeckManager.instance.DiscardHand();
+                ChangeCombatState(CombatState.None);
                 break;
         }
 
@@ -169,7 +167,7 @@ public class GameManager : MonoBehaviour
     private void EnterArea()
     {
         currentAreaIndex++;
-        currentStageIndex = 0;
+        currentStageIndex = -1;
         GoToNextStage();
     }
 
@@ -205,7 +203,7 @@ public class GameManager : MonoBehaviour
         {
             2 => "W",
             5 => "W",
-            _ => currentStageIndex.ToString(),
+            _ => (currentStageIndex + 1).ToString(),
         };
 
         return string.Format("{0}-{1}", area, stageText);

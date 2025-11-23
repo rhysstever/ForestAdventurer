@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, quitButton, endTurnButton, continueButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    private Button mainMenuToCharacterSelectButton, quitButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
     private TMP_Text characterSelectInfoText, gameAreaStageText, gameEndHeaderText, gameEndDeckInfoText;
 
@@ -33,14 +33,18 @@ public class UIManager : MonoBehaviour
         });
         quitButton.onClick.AddListener(() => Application.Quit());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
-        continueButton.onClick.AddListener(() => {
+        selectCardButton.onClick.AddListener(() => {
+            DeckManager.instance.AddSelectedCardToDeck();
             GameManager.instance.GoToNextStage();
         });
         skipButton.onClick.AddListener(() => {
             DeckManager.instance.ClearCardSelectionDisplayCards();
             GameManager.instance.GoToNextStage();
         });
-        drinkWellButton.onClick.AddListener(() => GameManager.instance.Player.Heal(1000));
+        drinkWellButton.onClick.AddListener(() => {
+            GameManager.instance.Player.HealFull();
+            GameManager.instance.GoToNextStage();
+        });
         gameEndToMainMenuButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.MainMenu));
     }
 
@@ -81,13 +85,16 @@ public class UIManager : MonoBehaviour
             case GameState.Combat:
                 combatUIParent.SetActive(true);
                 nonCombatUIParent.SetActive(false);
-                endTurnButton.enabled = true;
+
+                endTurnButton.gameObject.SetActive(true);
                 break;
             case GameState.CardSelection:
                 nonCombatUIParent.SetActive(true);
                 cardSelectionUIParent.SetActive(true);
                 wellUIParent.SetActive(false);
-                endTurnButton.enabled = false;
+
+                endTurnButton.gameObject.SetActive(false);
+                
                 break;
             case GameState.Well:
                 nonCombatUIParent.SetActive(true);
@@ -145,6 +152,11 @@ public class UIManager : MonoBehaviour
     public void UpdateStageText()
     {
         gameAreaStageText.text = GameManager.instance.GetCurrentStageText();
+    }
+
+    public void SetCardSelectionButton(bool isACardSelected)
+    {
+        selectCardButton.interactable = isACardSelected;
     }
 
     public void UpdateGameEndText() {

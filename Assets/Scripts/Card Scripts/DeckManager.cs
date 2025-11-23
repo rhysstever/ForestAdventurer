@@ -18,11 +18,13 @@ public class DeckManager : MonoBehaviour
     private GameObject playableCardPrefab, displayCardPrefab;
 
     // Set in script
-    private int currentHandSize;
     private List<CardData> deck, hand, discard;
+    private int currentHandSize;
+    private CardData currentCardSelection;
 
     // Properties
     public Collider2D FieldCollider { get { return fieldCollider; } }
+    public CardData CurrentCardSelection { get { return currentCardSelection; } }
 
     private void Awake() {
         if(instance == null) {
@@ -38,6 +40,7 @@ public class DeckManager : MonoBehaviour
 
     void Start()
     {
+        currentCardSelection = null;
         currentHandSize = 4;
     }
 
@@ -45,6 +48,7 @@ public class DeckManager : MonoBehaviour
         deck = GenerateDeck();
         hand.Clear();
         discard.Clear();
+        fieldCollider.gameObject.SetActive(true);
         GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
     }
 
@@ -129,8 +133,11 @@ public class DeckManager : MonoBehaviour
         return newCard;
     }
 
-    public void SpawnCardSelectionDisplayCards() {
+    public void SetupCardSelection() {
+        // Hide the field collider
         fieldCollider.gameObject.SetActive(false);
+
+        // Create the card selection cards to display
         for(int i = 0; i < 3; i++) {
             CardData newCardData = CardManager.instance.GetRandomCardData();
             Vector2 position = Vector2.zero;
@@ -146,13 +153,31 @@ public class DeckManager : MonoBehaviour
                     break;
             }
 
-            GameObject newCard = SpawnCard(displayCardPrefab, newCardData, position, cardSelectionCardParentTrans);
-            newCard.GetComponent<Button>().onClick.AddListener(() => {
-                fieldCollider.gameObject.SetActive(true);
-                CardManager.instance.UpdateSlot(newCardData);
-                ClearCardSelectionDisplayCards();
-                GameManager.instance.ChangeGameState(GameState.Combat);
-            });
+            SpawnCard(displayCardPrefab, newCardData, position, cardSelectionCardParentTrans);
+        }
+
+        // Reset the current selection
+        SetCurrentCardSelection(null);
+    }
+
+    public void SetCurrentCardSelection(CardData cardSelected)
+    {
+        currentCardSelection = cardSelected;
+        // Update UI
+        UIManager.instance.SetCardSelectionButton(cardSelected != null);
+    }
+
+    public void AddSelectedCardToDeck()
+    {
+        if(cardSelectionCardParentTrans != null)
+        {
+            fieldCollider.gameObject.SetActive(true);
+            CardManager.instance.UpdateSlot(currentCardSelection);
+            ClearCardSelectionDisplayCards();
+        }
+        else
+        {
+            Debug.Log("Error! No card selected");
         }
     }
 

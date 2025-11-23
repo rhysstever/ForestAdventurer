@@ -45,6 +45,11 @@ public class Player : Unit
         currentGold += amount;
     }
 
+    public void HealFull()
+    {
+        Heal(maxLife);
+    }
+
     public override void Reset() {
         maxLife = 10;
         currentGold = 0;

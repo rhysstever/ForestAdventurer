@@ -17,6 +17,12 @@ TextureImporter:
   - first:
       213: 5543941588292853863
     second: Icons_4
+  - first:
+      213: -1863859237976802683
+    second: Icons_5
+  - first:
+      213: 7576617242518483205
+    second: Icons_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -159,8 +165,8 @@ TextureImporter:
       name: Icons_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 16
+        x: 32
+        y: 32
         width: 16
         height: 16
       alignment: 0
@@ -181,7 +187,7 @@ TextureImporter:
       name: Icons_3
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 16
         width: 16
         height: 16
@@ -203,8 +209,8 @@ TextureImporter:
       name: Icons_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 16
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -225,7 +231,29 @@ TextureImporter:
       name: Icons_5
       rect:
         serializedVersion: 2
-        x: 16
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58aff01f5ed3226e0800000000000000
+      internalID: -1863859237976802683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons_6
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 16
         height: 16
@@ -235,10 +263,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 5834c52f4d1a22d45a7ed29b76ec55f8
-      internalID: -2062123709
+      spriteID: 501f96b4d3d852960800000000000000
+      internalID: 7576617242518483205
       vertices: []
       indices: 
       edges: []
@@ -247,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8d6bd1062cbcba34fa7141c2146510fc
+    spriteID: 02a3e7a7eff512247bd5b1e9d9f9ce12
     internalID: 0
     vertices: []
     indices: 
@@ -264,7 +292,8 @@ TextureImporter:
       Icons_2: 184950751378207249
       Icons_3: 1202984965197363600
       Icons_4: 5543941588292853863
-      Icons_5: -2062123709
+      Icons_5: -1863859237976802683
+      Icons_6: 7576617242518483205
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -2,27 +2,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardObject : MonoBehaviour
+public abstract class CardObject : MonoBehaviour
 {
     // Set in inspector
     [SerializeField]
     protected Canvas canvas;
     [SerializeField]
-    protected GameObject cardSelectionRing;
+    protected GameObject cardSelectionRing, cardToBePlayedRing;
     [SerializeField]
     private Image cardBackgroundImage, cardArtImage, cardSlotImage;
     [SerializeField]
     private TMP_Text cardNameText, cardDescriptionText;
 
     // Set at Start
-    protected bool isBeingDragged;
+    protected bool isSelected, isBeingDragged;
 
     // Set in script after card is Instantiated (in DeckManager.SpawnCard())
     protected CardData cardData;
 
+    public CardData CardData { get { return cardData; } }
+
     protected virtual void Start() {
         cardSelectionRing.SetActive(false);
+        cardToBePlayedRing.SetActive(false);
+        isSelected = false;
         isBeingDragged = false;
+
+        Deselect();
     }
 
     public void SetCardData(CardData cardData) {
@@ -62,6 +68,8 @@ public class CardObject : MonoBehaviour
         cardSelectionRing.SetActive(true);
         // Prioritize the card in the sorting layer
         canvas.sortingOrder = 3;
+
+        isSelected = true;
     }
 
     protected virtual void Deselect() {
@@ -69,5 +77,7 @@ public class CardObject : MonoBehaviour
         cardSelectionRing.SetActive(false);
         // Deprioritize the card in the sorting layer
         canvas.sortingOrder = 2;
+
+        isSelected = false;
     }
 }

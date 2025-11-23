@@ -60,7 +60,14 @@ public class EnemyManager : MonoBehaviour
             enemies.GetChild(i).GetComponent<Enemy>().PerformRoundAction();
         }
 
-        GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
+        if(IsWaveOver())
+        {
+            CheckIfWaveIsOver();
+        }
+        else
+        {
+            GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
+        }
     }
 
     public bool IsWaveOver() {
@@ -71,7 +78,7 @@ public class EnemyManager : MonoBehaviour
     public void CheckIfWaveIsOver() {
         // Check all enemies in the scene and if none have health, the wave is over
         if(IsWaveOver()) {
-            // If the wave is over, check if it is the last wave
+            // If the wave is over check if it is the last wave
             if(IsLastWave()) {
                 // If it is the last wave, end the game
                 GameManager.instance.ChangeMenuState(MenuState.GameEnd);

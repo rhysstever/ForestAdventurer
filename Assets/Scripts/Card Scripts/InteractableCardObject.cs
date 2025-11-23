@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class InteractableCardObject : CardObject
 {
-    // Set in inspector
-    [SerializeField]
-    private GameObject cardToBePlayedRing;
-
     // Set in script at Start
     private Vector2 savedPos, dragOffset, hoverOffset;
     private Collider2D cardFieldCollider;

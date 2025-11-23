@@ -76,7 +76,8 @@ public class CardManager : MonoBehaviour
             // Cleamse Debuffs: "Cleanse"
 
             // Main hand cards
-            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
+            //new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
+            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Spike for 1"),
             new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
             new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
             new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack for 3, to all"),
@@ -108,7 +109,7 @@ public class CardManager : MonoBehaviour
             new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, "Attack for 1, randomly, 3 times"),
             new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Defend for 3"),
             new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Burn for 3"),
-            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 3"),
+            new CardData("Water Spirit", Slot.Spirit, Rarity.Rare, TargetType.Self, "Heal for 3"),
 
             // Spell cards
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Attack for 1, randomly"),
@@ -121,11 +122,11 @@ public class CardManager : MonoBehaviour
             // Drink cards
             new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1"),
             new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Draw 1 card"),
-            new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Unit, "Heal for 2"),
+            new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Self, "Heal for 2"),
             new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Heal for 1. Attack for 2, randomly"),
             new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 2. Poison for 2"),
             new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4"),
-            new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 3. Cleanse")
+            new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 3. Cleanse")
         };
 
         return cards;
