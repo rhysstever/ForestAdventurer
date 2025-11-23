@@ -105,10 +105,12 @@ public class CardManager : MonoBehaviour
             new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Draw 1 card"),
 
             // Spirit cards
-            new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, "Attack for 1, randomly, 3 times"),
-            new CardData("Earth Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Defend for 3"),
-            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Burn for 3"),
-            new CardData("Water Spirit", Slot.Spirit, Rarity.Rare, TargetType.Self, "Heal for 3"),
+            new CardData("Earth Spirit", Slot.Spirit, Rarity.Starter, TargetType.Self, "Defend for 2"),
+            new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, "Attack for 1, randomly, 2 times"),
+            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Burn for 2"),
+            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 2"),
+            new CardData("Light Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, "Heal for 4"),
+            new CardData("Dark Spirit", Slot.Spirit, Rarity.Rare, TargetType.Self, "Poison for 4"),
 
             // Spell cards
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Attack for 1, randomly"),
