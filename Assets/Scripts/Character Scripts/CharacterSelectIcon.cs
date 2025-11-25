@@ -17,16 +17,20 @@ public class CharacterSelectIcon : MonoBehaviour
         characterIconSelectedObj.SetActive(false);
     }
 
-    private void OnMouseUpAsButton() {
+    private void OnMouseUpAsButton()
+    {
+        characterIconSelectedObj.SetActive(false);
         CharacterManager.instance.ChooseCharacter(character);
     }
 
-    private void OnMouseEnter() {
+    private void OnMouseEnter() 
+    {
         characterIconSelectedObj.SetActive(true);
         CharacterManager.instance.SetCharacterSelectInfo(character);
     }
 
-    private void OnMouseExit() {
+    private void OnMouseExit() 
+    {
         characterIconSelectedObj.SetActive(false);
         CharacterManager.instance.ClearCharacterSelectInfo();
     }
