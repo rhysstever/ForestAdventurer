@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: 7576617242518483205
     second: Icons_6
+  - first:
+      213: 7374845061861626600
+    second: Icons_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -271,11 +274,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Icons_7
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e25ec99286b85660800000000000000
+      internalID: 7374845061861626600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 02a3e7a7eff512247bd5b1e9d9f9ce12
+    spriteID: 0152a5d760675bd41a7ebe666183d67f
     internalID: 0
     vertices: []
     indices: 
@@ -294,6 +319,7 @@ TextureImporter:
       Icons_4: 5543941588292853863
       Icons_5: -1863859237976802683
       Icons_6: 7576617242518483205
+      Icons_7: 7374845061861626600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

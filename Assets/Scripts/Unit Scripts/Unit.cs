@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
     [SerializeField]
     private TMP_Text lifeText, defenseText;
     [SerializeField]
-    private GameObject effectsParent;
+    private GameObject defenseParent, effectsParent;
     [SerializeField]
     private Transform effectTrans1, effectTrans2;
     [SerializeField]
@@ -140,7 +140,15 @@ public class Unit : MonoBehaviour
     }
 
     protected void UpdateDefenseUIText() {
-        defenseText.text = currentDefense.ToString();
+        if(currentDefense > 0)
+        {
+            defenseParent.SetActive(true);
+            defenseText.text = currentDefense.ToString();
+        } 
+        else
+        {
+            defenseParent.SetActive(false);
+        }
     }
 
     protected void RemoveEffectsUI() {
