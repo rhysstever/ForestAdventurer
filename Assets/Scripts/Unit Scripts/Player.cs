@@ -4,10 +4,14 @@ public class Player : Unit
 {
     protected int currentGold;
 
+    [SerializeField]
+    private SpriteRenderer characterSprite;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start() {
         base.Start();
         Reset();
+        characterSprite.sprite = CharacterManager.instance.GetCharacterSprite(CharacterManager.instance.ChosenCharacter);
     }
 
     public override void TakeDamage(int amount) {

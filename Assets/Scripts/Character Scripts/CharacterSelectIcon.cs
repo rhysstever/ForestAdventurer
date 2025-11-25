@@ -13,23 +13,21 @@ public class CharacterSelectIcon : MonoBehaviour
 
     void Start()
     {
-        characterSprite.sprite = CharacterManager.instance.GetCharacterSprite(character);
+        characterSprite.sprite = CharacterManager.instance.GetCharacterIconSprite(character);
         characterIconSelectedObj.SetActive(false);
     }
 
     private void OnMouseUpAsButton() {
         CharacterManager.instance.ChooseCharacter(character);
-        CharacterManager.instance.HideCharacterSelectIcons();
-        GameManager.instance.StartGame();
     }
 
     private void OnMouseEnter() {
         characterIconSelectedObj.SetActive(true);
-        UIManager.instance.UpdateCharacterSelectInfo(character);
+        CharacterManager.instance.SetCharacterSelectInfo(character);
     }
 
     private void OnMouseExit() {
         characterIconSelectedObj.SetActive(false);
-        UIManager.instance.UpdateCharacterSelectInfo();
+        CharacterManager.instance.ClearCharacterSelectInfo();
     }
 }

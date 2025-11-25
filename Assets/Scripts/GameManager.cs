@@ -160,7 +160,6 @@ public class GameManager : MonoBehaviour
         // Create Player
         GameObject playerObj = Instantiate(playerPrefab, playerPostion.position, Quaternion.identity, transform);
         player = playerObj.GetComponent<Player>();
-        // TODO - set the player sprite based on the chosen character
 
         EnterArea();
     }

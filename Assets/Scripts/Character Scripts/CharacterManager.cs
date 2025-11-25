@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public enum Character
 {
@@ -21,6 +22,10 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private Transform characterSelectIconParent;
     [SerializeField]
+    private SpriteRenderer characterSelectSprite;
+    [SerializeField]    // Character Sprites
+    private Sprite badgerSprite, beaverSprite, foxSprite, opossumSprite, otterSprite, skunkSprite;
+    [SerializeField]    // Character Selection Sprites
     private Sprite badgerSpriteIcon, beaverSpriteIcon, foxSpriteIcon, opossumSpriteIcon, otterSpriteIcon, skunkSpriteIcon;
 
     // Set at Start
@@ -28,39 +33,60 @@ public class CharacterManager : MonoBehaviour
 
     public Character ChosenCharacter { get { return chosenCharacter; } }
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start() {
+    void Start()
+    {
         HideCharacterSelectIcons();
     }
 
-    public void ShowCharacterSelectIcons() {
+    public void ShowCharacterSelectIcons()
+    {
         characterSelectIconParent.gameObject.SetActive(true);
     }
 
-    public void HideCharacterSelectIcons() {
+    public void HideCharacterSelectIcons()
+    {
         characterSelectIconParent.gameObject.SetActive(false);
     }
 
-    public void ChooseCharacter(Character character) {
-        if(!string.IsNullOrEmpty(character.ToString())) {
-            chosenCharacter = character;
-        } else {
-            Character firstCharacter = Enum.GetValues(typeof(Character)).Cast<Character>().ToList().First();
-            Debug.LogFormat("Error! No character found with name: {0}. Defaulting to {1}", name, firstCharacter.ToString());
-            chosenCharacter = firstCharacter;
-        }
+    public void ChooseCharacter(Character character)
+    {
+        chosenCharacter = character;
+        HideCharacterSelectIcons();
+        ClearCharacterSelectInfo();
+        GameManager.instance.StartGame();
     }
 
-    public int GetSlotCardCountOfChosenCharacter(Slot slotType) {
-        return slotType switch {
+    public void ClearCharacterSelectInfo()
+    {
+        characterSelectSprite.gameObject.SetActive(false);
+        UIManager.instance.UpdateCharacterSelectInfo();
+    }
+
+    public void SetCharacterSelectInfo(Character character)
+    {
+        // Update character sprite
+        characterSelectSprite.gameObject.SetActive(true);
+        characterSelectSprite.sprite = GetCharacterSprite(character);
+        UIManager.instance.UpdateCharacterSelectInfo(character);
+    }
+
+    public int GetSlotCardCountOfChosenCharacter(Slot slotType)
+    {
+        return slotType switch
+        {
             Slot.MainHand => GetCharacterDeckStructure(chosenCharacter)[0],
             Slot.OffHand => GetCharacterDeckStructure(chosenCharacter)[1],
             Slot.Ally => GetCharacterDeckStructure(chosenCharacter)[2],
@@ -71,8 +97,10 @@ public class CharacterManager : MonoBehaviour
         };
     }
 
-    public int[] GetCharacterDeckStructure(Character character) {
-        return character switch {
+    public int[] GetCharacterDeckStructure(Character character)
+    {
+        return character switch
+        {
             Character.Badger => new int[] { 4, 4, 3, 3, 2, 2 },
             Character.Beaver => new int[] { 3, 4, 3, 2, 2, 4 },
             Character.Fox => new int[] { 3, 2, 2, 4, 4, 3 },
@@ -83,8 +111,24 @@ public class CharacterManager : MonoBehaviour
         };
     }
 
-    public Sprite GetCharacterSprite(Character character) {
-        return character switch {
+    public Sprite GetCharacterSprite(Character character)
+    {
+        return character switch
+        {
+            Character.Badger => badgerSprite,
+            Character.Beaver => beaverSprite,
+            Character.Fox => foxSprite,
+            Character.Opossum => opossumSprite,
+            Character.Otter => otterSprite,
+            Character.Skunk => skunkSprite,
+            _ => null,
+        };
+    }
+
+    public Sprite GetCharacterIconSprite(Character character)
+    {
+        return character switch
+        {
             Character.Badger => badgerSpriteIcon,
             Character.Beaver => beaverSpriteIcon,
             Character.Fox => foxSpriteIcon,
