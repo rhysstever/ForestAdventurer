@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 4377092358001067670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2271647187046907216}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8026746337256856060, guid: 16c225b814517d244b2bafd6cb9b27d3, type: 3}
+  m_Sprite: {fileID: 5940053297813508232, guid: 3e6a90004932d054fb9d26c7b5d82622, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -106,10 +106,10 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 2786953436503101554, guid: 16c225b814517d244b2bafd6cb9b27d3, type: 3}
-    m_PressedSprite: {fileID: -8190526932154735554, guid: 16c225b814517d244b2bafd6cb9b27d3, type: 3}
-    m_SelectedSprite: {fileID: 2786953436503101554, guid: 16c225b814517d244b2bafd6cb9b27d3, type: 3}
-    m_DisabledSprite: {fileID: 7682752527705913312, guid: 16c225b814517d244b2bafd6cb9b27d3, type: 3}
+    m_HighlightedSprite: {fileID: -8130855654874783575, guid: 3e6a90004932d054fb9d26c7b5d82622, type: 3}
+    m_PressedSprite: {fileID: 6164107744649822116, guid: 3e6a90004932d054fb9d26c7b5d82622, type: 3}
+    m_SelectedSprite: {fileID: -8130855654874783575, guid: 3e6a90004932d054fb9d26c7b5d82622, type: 3}
+    m_DisabledSprite: {fileID: -1270368068153743214, guid: 3e6a90004932d054fb9d26c7b5d82622, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: text
+  m_text: long text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
   m_sharedMaterial: {fileID: 1267354866193280412, guid: d109bfc125b5f0143a03651c705d4b8f, type: 2}
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: d2d5ce42c79139349a3e4848998f2513
+guid: 3e6a90004932d054fb9d26c7b5d82622
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3943399833073527735
-    second: ButtonSprite_0
+      213: 5940053297813508232
+    second: ButtonSimpleLongSprite_0
   - first:
-      213: 3659994391448598428
-    second: ButtonSprite_1
+      213: -8130855654874783575
+    second: ButtonSimpleLongSprite_1
   - first:
-      213: -6512923388741311728
-    second: ButtonSprite_2
+      213: 6164107744649822116
+    second: ButtonSimpleLongSprite_2
   - first:
-      213: -4527449316593477874
-    second: ButtonSprite_3
+      213: -1270368068153743214
+    second: ButtonSimpleLongSprite_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,89 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ButtonSprite_0
+      name: ButtonSimpleLongSprite_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 99
-        width: 62
-        height: 26
+        x: 13
+        y: 100
+        width: 70
+        height: 24
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7bbaea15145c9b630800000000000000
-      internalID: 3943399833073527735
+      spriteID: 880df0ba00f4f6250800000000000000
+      internalID: 5940053297813508232
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ButtonSprite_1
+      name: ButtonSimpleLongSprite_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 67
-        width: 62
-        height: 26
+        x: 13
+        y: 68
+        width: 70
+        height: 24
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c97373ee189eac230800000000000000
-      internalID: 3659994391448598428
+      spriteID: 9a0663b6cd5692f80800000000000000
+      internalID: -8130855654874783575
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ButtonSprite_2
+      name: ButtonSimpleLongSprite_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 35
-        width: 62
-        height: 26
+        x: 13
+        y: 36
+        width: 70
+        height: 24
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 013adb45fa27d95a0800000000000000
-      internalID: -6512923388741311728
+      spriteID: 4af361db55f4b8550800000000000000
+      internalID: 6164107744649822116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ButtonSprite_3
+      name: ButtonSimpleLongSprite_3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 3
-        width: 62
-        height: 26
+        x: 13
+        y: 4
+        width: 70
+        height: 24
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e075cd185d44b21c0800000000000000
-      internalID: -4527449316593477874
+      spriteID: 29862b309febe5ee0800000000000000
+      internalID: -1270368068153743214
       vertices: []
       indices: 
       edges: []
@@ -200,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e6c0a0900b79683479998724555cc43d
+    spriteID: 2eeb5f886709b0b49a835953b108737f
     internalID: 0
     vertices: []
     indices: 
@@ -210,12 +210,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ButtonSprite_0: 3943399833073527735
-      ButtonSprite_1: 3659994391448598428
-      ButtonSprite_2: -6512923388741311728
-      ButtonSprite_3: -4527449316593477874
+      ButtonSimpleLongSprite_0: 5940053297813508232
+      ButtonSimpleLongSprite_1: -8130855654874783575
+      ButtonSimpleLongSprite_2: 6164107744649822116
+      ButtonSimpleLongSprite_3: -1270368068153743214
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
