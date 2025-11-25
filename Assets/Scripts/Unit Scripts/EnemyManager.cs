@@ -36,9 +36,6 @@ public class EnemyManager : MonoBehaviour
     private List<Round> SetEnemyWaves() {
         List<Round> combatRounds = new() {
             new(new List<GameObject>() { boarEnemyPrefab }),
-            new(new List<GameObject>() { boarEnemyPrefab }),
-            new(new List<GameObject>() { boarEnemyPrefab }),
-            new(new List<GameObject>() { boarEnemyPrefab }),
             //new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
             //new(new List<GameObject>() { entEnemyPrefab }),
             //new(new List<GameObject>() { undeadBoarEnemyPrefab, undeadBoarEnemyPrefab }),
