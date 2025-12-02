@@ -574,6 +574,7 @@ MonoBehaviour:
   wellUIParent: {fileID: 598844819}
   mainMenuToCharacterSelectButton: {fileID: 1345341952}
   quitButton: {fileID: 2095761610}
+  viewDeckButton: {fileID: 641044283}
   endTurnButton: {fileID: 334608751}
   selectCardButton: {fileID: 1663053396}
   skipButton: {fileID: 1717607845}
