@@ -1,11 +1,8 @@
-using UnityEngine;
-
 public enum Rarity
 {
     Starter,
     Common,
     Rare,
-    VeryRare,
     Legendary
 }
 

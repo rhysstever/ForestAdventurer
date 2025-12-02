@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8901695763195538030, guid: 5aa95ed6f8b76f2419054742d73789d5, type: 3}
+  m_Sprite: {fileID: -8901695763195538030, guid: e49879c708ff88b49a8de8918714f183, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -169,12 +169,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 5290447276147656552}
   cardSelectionRing: {fileID: 6301230105288187864}
+  cardToBePlayedRing: {fileID: 2889996278779194675}
   cardBackgroundImage: {fileID: 3693185672189293445}
   cardArtImage: {fileID: 2740179999078046788}
   cardSlotImage: {fileID: 0}
   cardNameText: {fileID: 3046570058124863091}
   cardDescriptionText: {fileID: 7331113614904714865}
-  cardToBePlayedRing: {fileID: 2889996278779194675}
 --- !u!1 &1943369369358396685
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 112.5}
-  m_SizeDelta: {x: 170, y: 37}
+  m_SizeDelta: {x: 159, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &513103959977193406
 CanvasRenderer:
@@ -267,8 +267,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 14
+  m_fontSizeBase: 14
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -376,7 +376,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 38c28a27158035a4ca02a6b1356d4128, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ec87bddc81480947b6732110c5e87fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -526,7 +526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6df5738adcfdb7849bb3a43fc930a9fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd758005d011c6c44a596e86d724010a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -678,7 +678,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -96}
-  m_SizeDelta: {x: 160, y: 70}
+  m_SizeDelta: {x: 159.1, y: 60.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5151238827121654658
 CanvasRenderer:
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 5, z: 0, w: 5}
+  m_margin: {x: 0, y: 4.103075, z: 0, w: -0.13756943}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

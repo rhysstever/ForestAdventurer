@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, quitButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    private Button mainMenuToCharacterSelectButton, quitButton, viewDeckButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
     private TMP_Text characterSelectInfoText, gameAreaStageText, gameEndHeaderText, gameEndDeckInfoText;
 
@@ -32,6 +32,7 @@ public class UIManager : MonoBehaviour
             Camera.main.GetComponent<CameraPan>().PanCameraDown();
         });
         quitButton.onClick.AddListener(() => Application.Quit());
+        viewDeckButton.onClick.AddListener(() => ShowDeckInfo());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
         selectCardButton.onClick.AddListener(() => {
             DeckManager.instance.AddSelectedCardToDeck();
@@ -152,6 +153,11 @@ public class UIManager : MonoBehaviour
     public void UpdateStageText()
     {
         gameAreaStageText.text = GameManager.instance.GetCurrentStageText();
+    }
+
+    private void ShowDeckInfo()
+    {
+        // TODO: show deck info UI
     }
 
     public void SetCardSelectionButton(bool isACardSelected)

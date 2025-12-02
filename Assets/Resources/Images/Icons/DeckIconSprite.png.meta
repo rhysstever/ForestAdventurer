@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 6df5738adcfdb7849bb3a43fc930a9fc
+guid: cc335f4a296ec554c904bbd0933a8060
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4393597682289937994
-    second: card_selected_ring_0
+      213: -352107158858562621
+    second: DeckIconSprite_0
+  - first:
+      213: 907699347652345483
+    second: DeckIconSprite_1
+  - first:
+      213: 4463280452466631062
+    second: DeckIconSprite_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +106,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: card_selected_ring_0
+      name: DeckIconSprite_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 0
-        width: 46
-        height: 64
+        x: 5
+        y: 34
+        width: 21
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4e0fd250d139fc30800000000000000
-      internalID: 4393597682289937994
+      spriteID: 3c30d5197601d1bf0800000000000000
+      internalID: -352107158858562621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeckIconSprite_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 34
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8efbab5fbbc89c00800000000000000
+      internalID: 907699347652345483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DeckIconSprite_2
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 2
+        width: 21
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691e73e8ce1c0fd30800000000000000
+      internalID: 4463280452466631062
       vertices: []
       indices: 
       edges: []
@@ -125,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: fc1caaed9f2fa4449959f75a2c83ad00
     internalID: 0
     vertices: []
     indices: 
@@ -133,9 +183,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      card_selected_ring_0: 4393597682289937994
+      DeckIconSprite_0: -352107158858562621
+      DeckIconSprite_1: 907699347652345483
+      DeckIconSprite_2: 4463280452466631062
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

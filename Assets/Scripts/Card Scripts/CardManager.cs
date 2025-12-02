@@ -22,7 +22,7 @@ public class CardManager : MonoBehaviour
 
     // Set in inspector
     [SerializeField]    // Card base sprites
-    private Sprite cardBase, cardBaseUncommon, cardBaseRare, cardBaseVeryRare, cardBaseLegendary;
+    private Sprite cardBase, cardBaseStarter, cardBaseUncommon, cardBaseRare, cardBaseLegendary;
     [SerializeField]    // Action icon sprites
     private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal, actionIconSpriteFire, actionIconSpritePoison, actionIconSpriteSpike, actionIconSpriteSummon;
     [SerializeField]
@@ -59,7 +59,6 @@ public class CardManager : MonoBehaviour
     }
 
     #region Card Creation
-
     private List<CardData> CardCreation() {
         List<CardData> cards = new() {
             // ===== Description Format =====
@@ -357,10 +356,9 @@ public class CardManager : MonoBehaviour
 
     public Sprite GetCardBaseSprite(Rarity rarity) {
         return rarity switch {
-            Rarity.Starter => cardBase,
+            Rarity.Starter => cardBaseStarter,
             Rarity.Common => cardBase,
             Rarity.Rare => cardBaseRare,
-            Rarity.VeryRare => cardBaseVeryRare,
             Rarity.Legendary => cardBaseLegendary,
             _ => cardBase,
         };
