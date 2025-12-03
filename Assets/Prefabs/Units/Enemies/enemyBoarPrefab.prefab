@@ -409,7 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3604821898545459861}
-  - component: {fileID: 2668363755336639127}
+  - component: {fileID: 2382534045329218650}
   - component: {fileID: 3309780963252839986}
   - component: {fileID: 2117019613621582270}
   - component: {fileID: 2046333819481523404}
@@ -437,7 +437,7 @@ Transform:
   - {fileID: 3537561257874850085}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2668363755336639127
+--- !u!212 &2382534045329218650
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -481,7 +481,7 @@ SpriteRenderer:
   m_SortingLayerID: 1771256265
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1de6506370dfffc4aa631885b683dc55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5f38a34460ea9fa41bc0395b8905e050, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -530,7 +530,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

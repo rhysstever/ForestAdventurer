@@ -7,13 +7,13 @@ public class CharacterSelectIcon : MonoBehaviour
     [SerializeField]
     private GameObject characterIconSelectedObj;
     [SerializeField]
-    private SpriteRenderer characterSprite;
+    private SpriteRenderer characterSpriteRenderer;
     [SerializeField]
     private Character character;
 
     void Start()
     {
-        characterSprite.sprite = CharacterManager.instance.GetCharacterIconSprite(character);
+        characterSpriteRenderer.sprite = CharacterManager.instance.GetCharacterIconSprite(character);
         characterIconSelectedObj.SetActive(false);
     }
 

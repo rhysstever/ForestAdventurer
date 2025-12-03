@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2470212209990428869}
-  - component: {fileID: 4602681056747346178}
+  - component: {fileID: 3790875106608506317}
   - component: {fileID: 7157018514984420337}
   - component: {fileID: 508935421084675078}
   m_Layer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 4779577030405836898}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4602681056747346178
+--- !u!212 &3790875106608506317
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterIconSelectedObj: {fileID: 3856670212642774689}
-  characterSprite: {fileID: 4602681056747346178}
+  characterSpriteRenderer: {fileID: 3790875106608506317}
   character: 0
 --- !u!1001 &4740541993929680303
 PrefabInstance:
@@ -161,15 +161,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 260573466136475085, guid: 426b20822f935e4479ebd1e66476b915, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 260573466136475085, guid: 426b20822f935e4479ebd1e66476b915, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 260573466136475085, guid: 426b20822f935e4479ebd1e66476b915, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 260573466136475085, guid: 426b20822f935e4479ebd1e66476b915, type: 3}
       propertyPath: m_LocalPosition.x
