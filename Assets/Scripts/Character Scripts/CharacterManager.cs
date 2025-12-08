@@ -25,8 +25,6 @@ public class CharacterManager : MonoBehaviour
     private SpriteRenderer characterSelectSprite;
     [SerializeField]    // Character Sprites
     private Sprite badgerSprite, beaverSprite, foxSprite, opossumSprite, otterSprite, skunkSprite;
-    [SerializeField]    // Character Selection Sprites
-    private Sprite badgerSpriteIcon, beaverSpriteIcon, foxSpriteIcon, opossumSpriteIcon, otterSpriteIcon, skunkSpriteIcon;
 
     // Set at Start
     private Character chosenCharacter;
@@ -121,20 +119,6 @@ public class CharacterManager : MonoBehaviour
             Character.Opossum => opossumSprite,
             Character.Otter => otterSprite,
             Character.Skunk => skunkSprite,
-            _ => null,
-        };
-    }
-
-    public Sprite GetCharacterIconSprite(Character character)
-    {
-        return character switch
-        {
-            Character.Badger => badgerSpriteIcon,
-            Character.Beaver => beaverSpriteIcon,
-            Character.Fox => foxSpriteIcon,
-            Character.Opossum => opossumSpriteIcon,
-            Character.Otter => otterSpriteIcon,
-            Character.Skunk => skunkSpriteIcon,
             _ => null,
         };
     }

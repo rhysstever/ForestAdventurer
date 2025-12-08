@@ -13,7 +13,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private List<Transform> enemySpawnPositions;
     [SerializeField]
-    private GameObject boarEnemyPrefab, mushroomEnemyPrefab, entEnemyPrefab, undeadBoarEnemyPrefab, hagEnemyPrefab, oozeEnemyPrefab, batSwarmEnemyPrefab, zombieEnemyPrefab, shadowEnemyPrefab, necromancerEnemyPrefab;
+    private GameObject boarEnemyPrefab, mushroomEnemyPrefab, fairyEnemyPrefab, entEnemyPrefab, hagEnemyPrefab;
+    //oozeEnemyPrefab, batSwarmEnemyPrefab, zombieEnemyPrefab, shadowEnemyPrefab, necromancerEnemyPrefab;
 
     // Instantiated in code
     private List<Round> enemyWaves;
@@ -35,19 +36,37 @@ public class EnemyManager : MonoBehaviour
 
     private List<Round> SetEnemyWaves() {
         List<Round> combatRounds = new() {
-            new(new List<GameObject>() { boarEnemyPrefab }),
-            //new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
-            //new(new List<GameObject>() { entEnemyPrefab }),
-            //new(new List<GameObject>() { undeadBoarEnemyPrefab, undeadBoarEnemyPrefab }),
-            //new(new List<GameObject>() { hagEnemyPrefab }),
+            new(new List<GameObject>() { boarEnemyPrefab, boarEnemyPrefab }),
+            new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
+            new(new List<GameObject>() { fairyEnemyPrefab, fairyEnemyPrefab, fairyEnemyPrefab }),
+            new(new List<GameObject>() { entEnemyPrefab }),
+            new(new List<GameObject>() { hagEnemyPrefab }),
             //new(new List<GameObject>() { oozeEnemyPrefab }),
-            //new(new List<GameObject>() { batSwarmEnemyPrefab, batSwarmEnemyPrefab }),
-            //new(new List<GameObject>() { zombieEnemyPrefab, zombieEnemyPrefab, zombieEnemyPrefab }),
+            //new(new List<GameObject>() { batSwarmEnemyPrefab, batSwarmEnemyPrefab, batSwarmEnemyPrefab }),
+            //new(new List<GameObject>() { zombieEnemyPrefab, zombieEnemyPrefab }),
             //new(new List<GameObject>() { shadowEnemyPrefab }),
             //new(new List<GameObject>() { necromancerEnemyPrefab }),
         };
 
         return combatRounds;
+    }
+
+    public GameObject GetEnemyPrefabByName(string enemyName)
+    {
+        return enemyName switch
+        {
+            "BoarEnemy" => boarEnemyPrefab,
+            "Boar" => boarEnemyPrefab,
+            "MushroomEnemy" => mushroomEnemyPrefab,
+            "Mushroom" => mushroomEnemyPrefab,
+            "FairyEnemy" => fairyEnemyPrefab,
+            "Fairy" => fairyEnemyPrefab,
+            "EntEnemy" => entEnemyPrefab,
+            "Ent" => entEnemyPrefab,
+            "HagEnemy" => hagEnemyPrefab,
+            "Hag" => hagEnemyPrefab,
+            _ => null,
+        };
     }
 
     public void PerformEnemyRoundActions() {
@@ -116,6 +135,11 @@ public class EnemyManager : MonoBehaviour
                 Debug.Log(string.Format("Error! Incorrect number of enemies: {0}!", round.Enemies.Count));
                 break;
         }
+    }
+
+    public void SpawnSummon(GameObject enemy)
+    {
+        // TODO: Spawn enemy in a random open position
     }
 
     private void SpawnEnemy(GameObject enemy, Vector2 position) {

@@ -542,15 +542,10 @@ MonoBehaviour:
   - {fileID: 480866814}
   - {fileID: 1177039361}
   boarEnemyPrefab: {fileID: 3525771028941821081, guid: 3019959ee41f33f4db595a15eda5fd87, type: 3}
-  mushroomEnemyPrefab: {fileID: 3525771028941821081, guid: 3b8b1fd2eb1a4d347ad9569ad450727f, type: 3}
-  entEnemyPrefab: {fileID: 0}
-  undeadBoarEnemyPrefab: {fileID: 0}
+  mushroomEnemyPrefab: {fileID: 3525771028941821081, guid: c2ddf82395d5a824caab140182b824ff, type: 3}
+  fairyEnemyPrefab: {fileID: 3525771028941821081, guid: 19f2e1a21affa45458f6a10638113c5d, type: 3}
+  entEnemyPrefab: {fileID: 3525771028941821081, guid: 1c3409d3178c30d42a5ee30055d6ab1b, type: 3}
   hagEnemyPrefab: {fileID: 0}
-  oozeEnemyPrefab: {fileID: 0}
-  batSwarmEnemyPrefab: {fileID: 0}
-  zombieEnemyPrefab: {fileID: 0}
-  shadowEnemyPrefab: {fileID: 0}
-  necromancerEnemyPrefab: {fileID: 0}
 --- !u!114 &231419620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1933,6 +1928,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3790875106608506317, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3095479366770488606, guid: 2683e9ed064e55c4da6cb95e659bb012, type: 3}
     - target: {fileID: 4602681056747346178, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2120,6 +2119,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3790875106608506317, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1797645882642897999, guid: 2683e9ed064e55c4da6cb95e659bb012, type: 3}
     - target: {fileID: 4602681056747346178, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2287,6 +2290,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3790875106608506317, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5017481440446422654, guid: 2683e9ed064e55c4da6cb95e659bb012, type: 3}
     - target: {fileID: 4602681056747346178, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2689,6 +2696,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3790875106608506317, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3596515527918512004, guid: 2683e9ed064e55c4da6cb95e659bb012, type: 3}
     - target: {fileID: 4602681056747346178, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3552,6 +3563,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3790875106608506317, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5200689712612499227, guid: 2683e9ed064e55c4da6cb95e659bb012, type: 3}
     - target: {fileID: 4602681056747346178, guid: 2ec41e46f2a2cd04da71750c61d06d91, type: 3}
       propertyPath: m_Sprite
       value: 

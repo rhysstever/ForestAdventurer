@@ -13,7 +13,6 @@ public class CharacterSelectIcon : MonoBehaviour
 
     void Start()
     {
-        characterSpriteRenderer.sprite = CharacterManager.instance.GetCharacterIconSprite(character);
         characterIconSelectedObj.SetActive(false);
     }
 

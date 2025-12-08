@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +11,8 @@ public class Enemy : Unit
     private Image nextActionIcon;
     [SerializeField]
     private List<string> actions;
+    [SerializeField]
+    private GameObject enemySummonPrefab;
 
     private int round;
 
@@ -42,21 +42,22 @@ public class Enemy : Unit
 
     public void PerformRoundAction() {
         string[] parsedAction = ParseRoundAction();
-        string actionType = parsedAction[0];
+        string actionString = parsedAction[0];
         if(parsedAction[1].Contains("x")) {
             string[] damageParts = parsedAction[1].Split("x");
             for(int i = 0; i < int.Parse(damageParts[1]); i++) {
-                PerformAction(actionType, int.Parse(damageParts[0]));
+                PerformAction(actionString, int.Parse(damageParts[0]));
             }
         } else {
-            PerformAction(actionType, int.Parse(parsedAction[1]));
+            PerformAction(actionString, int.Parse(parsedAction[1]));
         }
     }
 
-    private void PerformAction(string actionType, int amount) {
-        switch(actionType) {
+    private void PerformAction(string actionString, int amount) {
+
+        switch(actionString.Split(" ")[0]) {
             case "Attack":
-                Attack(amount);
+                GameManager.instance.Player.TakeDamage(amount, this, true);
                 break;
             case "Heal":
                 Heal(amount);
@@ -64,8 +65,29 @@ public class Enemy : Unit
             case "Defend":
                 GiveDefense(amount);
                 break;
+            case "Burn":
+                GameManager.instance.Player.GiveBurn(amount);
+                break;
+            case "Poison":
+                GameManager.instance.Player.GivePoison(amount);
+                break;
+            case "Summon":
+                int enemyCount = int.Parse(actionString.Split(" ")[1]);
+
+                if(enemySummonPrefab == null) {
+                    Debug.Log(string.Format("Error! No enemy summon prefab found!"));
+                    break;
+                } 
+                else
+                {
+                    for(int i = 0; i < enemyCount; i++)
+                    {
+                        EnemyManager.instance.SpawnSummon(enemySummonPrefab);
+                    }
+                }
+                break;
             default:
-                Debug.Log(string.Format("Error! No action type of {0} for enemy {1}", actionType, gameObject.name));
+                Debug.Log(string.Format("Error! No action type of {0} for enemy {1}", actionString, gameObject.name));
                 break;
         }
 
@@ -85,14 +107,6 @@ public class Enemy : Unit
             EnemyManager.instance.CheckIfWaveIsOver();
             Destroy(gameObject);
         }
-    }
-
-    public void Attack(int amount) {
-        Attack(amount, GameManager.instance.Player);
-    }
-
-    public void Attack(int amount, Unit target) {
-        target.TakeDamage(amount, this, true);
     }
 
     public void HideNextActionUI() {

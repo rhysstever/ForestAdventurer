@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 2117019613621582270}
   - component: {fileID: 2046333819481523404}
   m_Layer: 9
-  m_Name: enemyBoarPrefab
+  m_Name: enemyHagPrefab
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +471,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.1}
+  m_Offset: {x: 0.05, y: 1.02}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -481,7 +481,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.75, y: 1.07}
+  m_Size: {x: 3.15, y: 3.37}
   m_EdgeRadius: 0
 --- !u!50 &2117019613621582270
 Rigidbody2D:
@@ -528,7 +528,7 @@ MonoBehaviour:
   effectsParent: {fileID: 442638736410728267}
   effectTrans1: {fileID: 6860954968842074459}
   effectTrans2: {fileID: 2474428185457871075}
-  maxLife: 5
+  maxLife: 50
   currentLife: 0
   currentDefense: 0
   currentBurn: 0
@@ -537,8 +537,11 @@ MonoBehaviour:
   nextActionText: {fileID: 6089760840660964530}
   nextActionIcon: {fileID: 7565315210742501715}
   actions:
-  - Defend 2
-  - Attack 2
+  - Defend 5
+  - Summon 2
+  - Burn 5
+  - Heal 10
+  enemySummonPrefab: {fileID: 3525771028941821081, guid: c2ddf82395d5a824caab140182b824ff, type: 3}
 --- !u!1 &4277714443026142786
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +613,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 50, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4138289808503663449
@@ -1100,8 +1103,8 @@ Transform:
   m_GameObject: {fileID: 9220056837309742501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3604821898545459861}
@@ -1150,7 +1153,7 @@ SpriteRenderer:
   m_SortingLayerID: 1771256265
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f44986dd3ff427e409a2d5fce5e86f22, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0bc8c9580168fa4439047ccd308ab62c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
