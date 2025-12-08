@@ -539,6 +539,7 @@ MonoBehaviour:
   actions:
   - Defend 2
   - Attack 2
+  enemySummonPrefab: {fileID: 0}
 --- !u!1 &4277714443026142786
 GameObject:
   m_ObjectHideFlags: 0

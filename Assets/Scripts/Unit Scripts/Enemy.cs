@@ -15,8 +15,10 @@ public class Enemy : Unit
     private GameObject enemySummonPrefab;
 
     private int round;
+    private int positionIndex;
 
     public int Round {  get { return round; } }
+    public int PositionIndex { get { return positionIndex; } }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Start()
@@ -29,6 +31,15 @@ public class Enemy : Unit
     public override void Reset() {
         base.Reset();
         round = 0;
+    }
+
+    public void SetPositionIndex(int index) {
+        if(index < 0) {
+            Debug.Log("Error! Cannot set enemy position index to less than 0!");
+            return;
+        }
+
+        positionIndex = index;
     }
 
     public void IncrementRound() {
@@ -53,34 +64,33 @@ public class Enemy : Unit
         }
     }
 
-    private void PerformAction(string actionString, int amount) {
+    private void PerformAction(string actionString, int actionAmount) {
 
         switch(actionString.Split(" ")[0]) {
             case "Attack":
-                GameManager.instance.Player.TakeDamage(amount, this, true);
+                GameManager.instance.Player.TakeDamage(actionAmount, this, true);
                 break;
             case "Heal":
-                Heal(amount);
+                Heal(actionAmount);
                 break;
             case "Defend":
-                GiveDefense(amount);
+                GiveDefense(actionAmount);
                 break;
             case "Burn":
-                GameManager.instance.Player.GiveBurn(amount);
+                GameManager.instance.Player.GiveBurn(actionAmount);
                 break;
             case "Poison":
-                GameManager.instance.Player.GivePoison(amount);
+                GameManager.instance.Player.GivePoison(actionAmount);
                 break;
             case "Summon":
-                int enemyCount = int.Parse(actionString.Split(" ")[1]);
-
+                Debug.Log(string.Format("Enemy {0} is summoning {1} enemies!", gameObject.name, actionAmount));
                 if(enemySummonPrefab == null) {
                     Debug.Log(string.Format("Error! No enemy summon prefab found!"));
                     break;
                 } 
                 else
                 {
-                    for(int i = 0; i < enemyCount; i++)
+                    for(int i = 0; i < actionAmount; i++)
                     {
                         EnemyManager.instance.SpawnSummon(enemySummonPrefab);
                     }

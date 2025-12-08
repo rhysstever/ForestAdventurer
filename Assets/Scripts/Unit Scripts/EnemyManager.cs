@@ -70,9 +70,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void PerformEnemyRoundActions() {
-        for(int i = 0; i < enemies.childCount; i++) {
-            enemies.GetChild(i).GetComponent<Enemy>().PerformRoundAction();
-        }
+        GetCurrentEnemiesInScene().ForEach(enemy => enemy.PerformRoundAction());
 
         if(IsWaveOver())
         {
@@ -117,19 +115,19 @@ public class EnemyManager : MonoBehaviour
         switch(round.Enemies.Count) {
             case 3:
                 // Spawn the first (main) enemy in the middle position
-                SpawnEnemy(round.Enemies[0], enemySpawnPositions[2].position);
+                SpawnEnemy(round.Enemies[0], 2);
                 // SPawn the remaining 2 enemies on the edge positions
-                SpawnEnemy(round.Enemies[1], enemySpawnPositions[0].position);
-                SpawnEnemy(round.Enemies[2], enemySpawnPositions[4].position);
+                SpawnEnemy(round.Enemies[1], 0);
+                SpawnEnemy(round.Enemies[2], 4);
                 break;
             case 2:
                 // Spawn both enemies in the second and fourth positions
-                SpawnEnemy(round.Enemies[0], enemySpawnPositions[1].position);
-                SpawnEnemy(round.Enemies[1], enemySpawnPositions[3].position);
+                SpawnEnemy(round.Enemies[0], 1);
+                SpawnEnemy(round.Enemies[1], 3);
                 break;
             case 1:
                 // Spawn the only enemy in the center spot
-                SpawnEnemy(round.Enemies[0], enemySpawnPositions[2].position);
+                SpawnEnemy(round.Enemies[0], 2);
                 break;
             default:
                 Debug.Log(string.Format("Error! Incorrect number of enemies: {0}!", round.Enemies.Count));
@@ -139,12 +137,30 @@ public class EnemyManager : MonoBehaviour
 
     public void SpawnSummon(GameObject enemy)
     {
-        // TODO: Spawn enemy in a random open position
+        // Get leftmost available position
+        int[] currentPositions = GetCurrentEnemiesInScene().Select(e => e.PositionIndex).ToArray();
+        int positionIndex = -1;
+        for(int i = 0; i < enemySpawnPositions.Count; i++) {
+            if(!currentPositions.Contains(i)) {
+                positionIndex = i;
+                break;
+            }
+        }
+
+        // Spawn the enemy at that position
+        if(positionIndex != -1) {
+            SpawnEnemy(enemy, positionIndex);
+        } else {
+            Debug.Log("Error! No available positions to spawn summon!");
+        }
     }
 
-    private void SpawnEnemy(GameObject enemy, Vector2 position) {
+    private void SpawnEnemy(GameObject enemy, int positionIndex) {
+        Vector2 position = enemySpawnPositions[positionIndex].position;
         GameObject newSceneEnemy = Instantiate(enemy, position, Quaternion.identity, enemies);
-        newSceneEnemy.name = enemy.name;
+        newSceneEnemy.name = enemy.name + GetCurrentEnemiesInScene().Count;
+
+        newSceneEnemy.GetComponent<Enemy>().SetPositionIndex(positionIndex);
     }
 
     public bool IsLastWave() {
