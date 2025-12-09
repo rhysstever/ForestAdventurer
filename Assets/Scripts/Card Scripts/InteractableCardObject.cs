@@ -103,6 +103,15 @@ public class InteractableCardObject : CardObject
         } else {
             CardManager.instance.Play(cardData);
         }
+
+        // Play correct audio
+        switch(cardData.Slot)
+        {
+            case Slot.MainHand:
+                AudioManager.instance.PlayAttackAudio();
+                break;
+        }
+
         Destroy(gameObject);
     }
 

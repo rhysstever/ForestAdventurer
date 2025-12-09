@@ -68,6 +68,7 @@ public class Enemy : Unit
 
         switch(actionString.Split(" ")[0]) {
             case "Attack":
+                AudioManager.instance.PlayAttackAudio();
                 GameManager.instance.Player.TakeDamage(actionAmount, this, true);
                 break;
             case "Heal":

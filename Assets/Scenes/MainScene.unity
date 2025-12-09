@@ -419,6 +419,7 @@ GameObject:
   - component: {fileID: 231419617}
   - component: {fileID: 231419618}
   - component: {fileID: 231419619}
+  - component: {fileID: 231419622}
   - component: {fileID: 231419620}
   m_Layer: 0
   m_Name: GameManager
@@ -447,6 +448,7 @@ Transform:
   - {fileID: 848342543}
   - {fileID: 1819420467}
   - {fileID: 529048174}
+  - {fileID: 236213884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &231419615
@@ -599,6 +601,51 @@ MonoBehaviour:
   opossumSprite: {fileID: -5515171930948586337, guid: f852d1df703aab44e8cacccaf51e8a0f, type: 3}
   otterSprite: {fileID: 6151593519759729981, guid: f852d1df703aab44e8cacccaf51e8a0f, type: 3}
   skunkSprite: {fileID: 5915982472212450843, guid: f852d1df703aab44e8cacccaf51e8a0f, type: 3}
+--- !u!114 &231419622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231419612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d93a6b36f52734ababe9bfd30ce6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioParentTrans: {fileID: 236213884}
+  attackAudioPrefab: {fileID: 3159440694739109376, guid: 07cd35976304c4e4cba4a484c2b35325, type: 3}
+--- !u!1 &236213883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236213884}
+  m_Layer: 0
+  m_Name: AudioParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &236213884
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236213883}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 231419613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &287315100
 GameObject:
   m_ObjectHideFlags: 0
