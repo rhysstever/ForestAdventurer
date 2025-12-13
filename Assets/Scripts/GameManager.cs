@@ -14,8 +14,6 @@ public enum GameState
     Combat,
     CardSelection,
     Well
-    // TODO - Add shop game states
-    // Shop
 }
 
 public enum CombatState
