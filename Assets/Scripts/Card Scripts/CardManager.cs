@@ -21,8 +21,6 @@ public class CardManager : MonoBehaviour
     public static CardManager instance = null;
 
     // Set in inspector
-    [SerializeField]
-    private Sprite cardBase;
     [SerializeField]    // Rarity icon sprites
     private Sprite cardBaseIconStarter, cardBaseIconRare;
     [SerializeField]    // Slot icon sprites
@@ -79,30 +77,31 @@ public class CardManager : MonoBehaviour
             // Cleamse Debuffs: "Cleanse"
 
             // Main hand cards
-            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 1"),
-            new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
-            new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),   // TODO: make magic
+            new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 2"),
+            //new CardData("Wand", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),
+            //new CardData("Staff", Slot.MainHand, Rarity.Common, TargetType.None, "Some magic... nothing yet"),
             new CardData("Mace", Slot.MainHand, Rarity.Common, TargetType.AOE, "Attack for 3, to all"),
             new CardData("Flail", Slot.MainHand, Rarity.Rare, TargetType.None, "Attack for 2, randomly, 3 times"),
-            new CardData("Flame Sword", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2. Burn for 2"),
-            new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6. Poison for 2"),
+            new CardData("Flaming Arrow", Slot.MainHand, Rarity.Common, TargetType.Unit, "Attack for 2. Burn for 2"),
+            new CardData("Spear", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 6"),
             new CardData("Trident", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 4. Heal for 4"),
-            new CardData("Scythe", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 3. Poison for 3. Heal for 3"),
+            new CardData("Scythe", Slot.MainHand, Rarity.Rare, TargetType.Unit, "Attack for 3. Poison for 3"),
 
             // Off hand cards
             new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Defend for 1"),
             new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 2"),
+            new CardData("Dagger", Slot.OffHand, Rarity.Common, TargetType.Unit, "Attack for 1"),
+            //new CardData("Scroll", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Spike Shield", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 3. Spike for 2"),
-            new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),   // TODO: make magic
-            new CardData("Scroll", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),   // TODO: make magic
-            new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),   // TODO: make magic
+            //new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Tower Shield", Slot.OffHand, Rarity.Rare, TargetType.Self, "Defend for 5"),
+            //new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
 
             // Ally cards
             new CardData("Squirrel", Slot.Ally, Rarity.Starter, TargetType.Unit, "Attack for 1"),
             new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1"),
             new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Unit, "Poison for 1"),
-            new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Heal for 2"),   // TODO: make magic
+            //new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.Unit, "Burn for 2"),
             new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.None, "Spike for 1"),
             new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Draw 1 card"),
@@ -246,7 +245,7 @@ public class CardManager : MonoBehaviour
     private List<Sprite> LoadCardArtSprites() {
         List<Sprite> spriteList = new List<Sprite>();
 
-        string cardArtFilePath = "Assets/Resources/Images/Card Art/PNG";
+        string cardArtFilePath = "Assets/Resources/Images/CardArt/CardArtImages";
         string[] files = Directory.GetFiles(cardArtFilePath, "*.png", SearchOption.TopDirectoryOnly);
 
         foreach(var file in files) {
@@ -266,6 +265,8 @@ public class CardManager : MonoBehaviour
         string formattedName = cardName.Replace(" ", "");
 
         for(int i = 0; i < cardArtList.Count; i++) {
+            Debug.Log(cardArtList[i].name);
+
             if(cardArtList[i].name == formattedName + "CardArt") {
                 return cardArtList[i];
             }
