@@ -540,6 +540,7 @@ MonoBehaviour:
   - Defend 3
   - Attack 3
   - Poison 2
+  enemySummonPrefab: {fileID: 0}
 --- !u!1 &4277714443026142786
 GameObject:
   m_ObjectHideFlags: 0

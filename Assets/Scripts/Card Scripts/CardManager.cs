@@ -306,7 +306,8 @@ public class CardManager : MonoBehaviour
         while(cardDatas.Count < numOfCardData)
         {
             CardData randomCardData = GetRandomCardData();
-            if(!cardDatas.Contains(randomCardData))
+            // Ensure the random card has not already been added nor is it currently in the deck
+            if(!cardDatas.Contains(randomCardData) && GetCurrentCardData(randomCardData.Slot) != randomCardData)
             { 
                 cardDatas.Add(randomCardData);
             }
