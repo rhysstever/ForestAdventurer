@@ -21,8 +21,12 @@ public class CardManager : MonoBehaviour
     public static CardManager instance = null;
 
     // Set in inspector
-    [SerializeField]    // Card base sprites
-    private Sprite cardBase, cardBaseStarter, cardBaseUncommon, cardBaseRare, cardBaseLegendary;
+    [SerializeField]
+    private Sprite cardBase;
+    [SerializeField]    // Rarity icon sprites
+    private Sprite cardBaseIconStarter, cardBaseIconRare;
+    [SerializeField]    // Slot icon sprites
+    private Sprite cardBaseIconMainhand, cardBaseIconOffhand, cardBaseIconAlly, cardBaseIconSpirit, cardBaseIconSpell, cardBaseIconDrink;
     [SerializeField]    // Action icon sprites
     private Sprite actionIconSpriteAttack, actionIconSpriteDefend, actionIconSpriteHeal, actionIconSpriteFire, actionIconSpritePoison, actionIconSpriteSpike, actionIconSpriteSummon;
     [SerializeField]
@@ -354,13 +358,25 @@ public class CardManager : MonoBehaviour
         };
     }
 
-    public Sprite GetCardBaseSprite(Rarity rarity) {
+    public Sprite GetCardBaseRarityIconSprite(Rarity rarity) {
         return rarity switch {
-            Rarity.Starter => cardBaseStarter,
-            Rarity.Common => cardBase,
-            Rarity.Rare => cardBaseRare,
-            Rarity.Legendary => cardBaseLegendary,
-            _ => cardBase,
+            Rarity.Starter => cardBaseIconStarter,
+            Rarity.Rare => cardBaseIconRare,
+            _ => null,
+        };
+    }
+
+    public Sprite GetCardBaseSlotIconSprite(Slot slot)
+    {
+        return slot switch
+        {
+            Slot.MainHand => cardBaseIconMainhand,
+            Slot.OffHand => cardBaseIconOffhand,
+            Slot.Ally => cardBaseIconAlly,
+            Slot.Spirit => cardBaseIconSpirit,
+            Slot.Spell => cardBaseIconSpell,
+            Slot.Drink => cardBaseIconDrink,
+            _ => null,
         };
     }
 

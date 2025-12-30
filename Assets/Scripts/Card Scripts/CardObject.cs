@@ -10,7 +10,7 @@ public abstract class CardObject : MonoBehaviour
     [SerializeField]
     protected GameObject cardSelectionRing, cardToBePlayedRing;
     [SerializeField]
-    private Image cardBackgroundImage, cardArtImage, cardSlotImage;
+    private Image cardArtImage, cardRarityIcon, cardSlotIcon;
     [SerializeField]
     private TMP_Text cardNameText, cardDescriptionText;
 
@@ -38,11 +38,37 @@ public abstract class CardObject : MonoBehaviour
 
         Sprite cardArtSprite = CardManager.instance.GetCardArtSprite(cardData.Name);
         if(cardArtSprite != null) {
+            // Set card art image
+            cardArtImage.gameObject.SetActive(true);
             cardArtImage.sprite = cardArtSprite;
         }
+        else
+        {
+            cardArtImage.gameObject.SetActive(false);
+        }
 
-        cardBackgroundImage.sprite = CardManager.instance.GetCardBaseSprite(cardData.Rarity);
-        // TODO: Set card slot image
+        Sprite rarityIconSprite = CardManager.instance.GetCardBaseRarityIconSprite(cardData.Rarity);
+        if(rarityIconSprite != null) {
+            // Set card background rarity image
+            cardRarityIcon.gameObject.SetActive(true);
+            cardRarityIcon.sprite = rarityIconSprite;
+        }
+        else
+        {
+            cardRarityIcon.gameObject.SetActive(false);
+        }
+
+        Sprite slotIconSprite = CardManager.instance.GetCardBaseSlotIconSprite(cardData.Slot);
+        if(slotIconSprite != null)
+        {
+            // Set card background slot image
+            cardSlotIcon.gameObject.SetActive(true);
+            cardSlotIcon.sprite = slotIconSprite;
+        } 
+        else
+        {
+            cardSlotIcon.gameObject.SetActive(false);
+        }
     }
 
     private void OnMouseOver() {
