@@ -74,7 +74,7 @@ public class CardManager : MonoBehaviour
             // Poison: "Poison for X"
             // Gain Spikes: "Spike for X"
             // Draw Cards: "Draw X cards"
-            // Cleamse Debuffs: "Cleanse"
+            // Cleanse Debuffs: "Cleanse"
 
             // Main hand cards
             new CardData("Shortsword", Slot.MainHand, Rarity.Starter, TargetType.Unit, "Attack for 2"),
@@ -91,6 +91,7 @@ public class CardManager : MonoBehaviour
             new CardData("Wooden Shield", Slot.OffHand, Rarity.Starter, TargetType.Self, "Defend for 1"),
             new CardData("Buckler", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 2"),
             new CardData("Dagger", Slot.OffHand, Rarity.Common, TargetType.Unit, "Attack for 1"),
+            new CardData("Quiver", Slot.OffHand, Rarity.Common, TargetType.Unit, "Attack for 1, randomly"),
             //new CardData("Scroll", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Spike Shield", Slot.OffHand, Rarity.Common, TargetType.Self, "Defend for 3. Spike for 2"),
             //new CardData("Tome", Slot.OffHand, Rarity.Common, TargetType.Self, "Some magic... nothing yet"),
@@ -101,8 +102,9 @@ public class CardManager : MonoBehaviour
             new CardData("Squirrel", Slot.Ally, Rarity.Starter, TargetType.Unit, "Attack for 1"),
             new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, "Heal for 1"),
             new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Unit, "Poison for 1"),
+            new CardData("Newt", Slot.Ally, Rarity.Common, TargetType.Unit, "Burn for 1"),
             //new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
-            new CardData("Newt", Slot.Ally, Rarity.Rare, TargetType.Unit, "Burn for 2"),
+            new CardData("Toad", Slot.Ally, Rarity.Rare, TargetType.Unit, "Heal for 1. Poison for 1"),
             new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.None, "Spike for 1"),
             new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, "Draw 1 card"),
 
@@ -121,6 +123,7 @@ public class CardManager : MonoBehaviour
             new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None, "Attack for 4, randomly"),
             new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5"),
             new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE, "Attack for 3, to all"),
+            new CardData("Curse", Slot.Spell, Rarity.Rare, TargetType.Unit, "Poison for 5"),
 
             // Drink cards
             new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1"),
@@ -129,7 +132,7 @@ public class CardManager : MonoBehaviour
             new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Heal for 1. Attack for 2, randomly"),
             new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 2. Poison for 2"),
             new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4"),
-            new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 3. Cleanse")
+            new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 1. Cleanse")
         };
 
         return cards;
