@@ -268,8 +268,6 @@ public class CardManager : MonoBehaviour
         string formattedName = cardName.Replace(" ", "");
 
         for(int i = 0; i < cardArtList.Count; i++) {
-            Debug.Log(cardArtList[i].name);
-
             if(cardArtList[i].name == formattedName + "CardArt") {
                 return cardArtList[i];
             }
