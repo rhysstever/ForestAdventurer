@@ -128,10 +128,10 @@ public class CardManager : MonoBehaviour
             // Drink cards
             new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, "Heal for 1"),
             new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, "Draw 1 card"),
-            new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.Self, "Heal for 2"),
-            new CardData("Flask", Slot.Drink, Rarity.Common, TargetType.None, "Heal for 1. Attack for 2, randomly"),
-            new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 2. Poison for 2"),
-            new CardData("Goblet", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4"),
+            new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.None, "Heal for 1. Attack for 1, randomly"),
+            new CardData("Goblet", Slot.Drink, Rarity.Common, TargetType.Self, "Heal for 2"),
+            new CardData("Potion", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 4"),
+            new CardData("Flagon", Slot.Drink, Rarity.Rare, TargetType.Unit, "Heal for 1. Poison for 2"),
             new CardData("Chalice", Slot.Drink, Rarity.Rare, TargetType.Self, "Heal for 1. Cleanse")
         };
 
