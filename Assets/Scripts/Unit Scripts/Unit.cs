@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Unit : MonoBehaviour
 {
@@ -16,7 +15,8 @@ public class Unit : MonoBehaviour
 
     // Instantiated in code
     [SerializeField]
-    protected int currentLife, currentDefense, currentBurn, currentPoison, currentSpike;
+    protected int currentDefense, currentBurn, currentPoison, currentSpike;
+    protected int currentLife;
     private float effectOffset;
 
     public int CurrentLife { get { return currentLife; } }
