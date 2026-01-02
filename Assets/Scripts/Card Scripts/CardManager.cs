@@ -248,7 +248,7 @@ public class CardManager : MonoBehaviour
     private List<Sprite> LoadCardArtSprites() {
         List<Sprite> spriteList = new List<Sprite>();
 
-        string cardArtFilePath = "Assets/Resources/Images/CardArt/CardArtImages";
+        string cardArtFilePath = "Assets/Resources/Images/CardArt/";
         string[] files = Directory.GetFiles(cardArtFilePath, "*.png", SearchOption.TopDirectoryOnly);
 
         foreach(var file in files) {
