@@ -13,9 +13,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, quitButton, viewDeckButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    private GameObject viewDeckUIParent, viewDeckCardsUIParent;
+    [SerializeField]
+    private Button mainMenuToCharacterSelectButton, quitButton, viewDeckButton, closeViewDeckButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
     private TMP_Text characterSelectInfoText, gameAreaStageText, gameEndHeaderText, gameEndDeckInfoText;
+
+    private bool isDeckBeingViewed;
+
+    public bool IsDeckBeingViewed { get { return isDeckBeingViewed; } }
 
     private void Awake() {
         if(instance == null) {
@@ -27,12 +33,14 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
+        // Set up button listeners
         mainMenuToCharacterSelectButton.onClick.AddListener(() => {
             mainMenuButtonsParent.SetActive(false);
             Camera.main.GetComponent<CameraPan>().PanCameraDown();
         });
         quitButton.onClick.AddListener(() => Application.Quit());
         viewDeckButton.onClick.AddListener(() => ShowDeckInfo());
+        closeViewDeckButton.onClick.AddListener(() => HideDeckInfo());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
         selectCardButton.onClick.AddListener(() => {
             DeckManager.instance.AddSelectedCardToDeck();
@@ -70,6 +78,7 @@ public class UIManager : MonoBehaviour
                 characterSelectUIParent.SetActive(false);
                 gameUIParent.SetActive(true);
                 gameEndUIParent.SetActive(false);
+                HideDeckInfo();
                 break;
             case MenuState.GameEnd:
                 mainMenuUIParent.SetActive(false);
@@ -95,7 +104,6 @@ public class UIManager : MonoBehaviour
                 wellUIParent.SetActive(false);
 
                 endTurnButton.gameObject.SetActive(false);
-                
                 break;
             case GameState.Well:
                 nonCombatUIParent.SetActive(true);
@@ -157,7 +165,53 @@ public class UIManager : MonoBehaviour
 
     private void ShowDeckInfo()
     {
-        // TODO: show deck info UI
+        isDeckBeingViewed = true;
+        viewDeckUIParent.SetActive(true);
+        viewDeckButton.gameObject.SetActive(false);
+
+        UpdateButtonInteractability(false);
+
+        DeckManager.instance.DisplayDeckCards(viewDeckCardsUIParent.transform);
+    }
+
+    private void HideDeckInfo()
+    {
+        isDeckBeingViewed = false;
+        viewDeckUIParent.SetActive(false);
+        viewDeckButton.gameObject.SetActive(true);
+
+        UpdateButtonInteractability(true);
+
+        // Destroy displayed cards
+        foreach(Transform child in viewDeckCardsUIParent.transform)
+        {
+            if(child.childCount > 0)
+            { 
+                Destroy(child.GetChild(0).gameObject); 
+            }
+        }
+    }
+
+    /// <summary>
+    /// Update active buttons' interactability
+    /// </summary>
+    /// <param name="interactable">Whether buttons should be interactable</param>
+    private void UpdateButtonInteractability(bool interactable)
+    {
+        if(endTurnButton.gameObject.activeSelf)
+        {
+            endTurnButton.interactable = interactable;
+        }
+
+        if(selectCardButton.gameObject.activeSelf)
+        {
+            selectCardButton.interactable = interactable;
+        }
+
+        if(skipButton.gameObject.activeSelf)
+        {
+            skipButton.interactable = interactable;
+        }
     }
 
     public void SetCardSelectionButton(bool isACardSelected)

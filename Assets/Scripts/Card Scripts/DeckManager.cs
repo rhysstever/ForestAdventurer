@@ -15,7 +15,7 @@ public class DeckManager : MonoBehaviour
     [SerializeField]
     private Collider2D fieldCollider;
     [SerializeField]
-    private GameObject playableCardPrefab, displayCardPrefab;
+    private GameObject playableCardPrefab, selectableCardPrefab, displayCardPrefab;
 
     // Set in script
     private List<CardData> deck, hand, discard;
@@ -153,7 +153,7 @@ public class DeckManager : MonoBehaviour
                     break;
             }
 
-            SpawnCard(displayCardPrefab, cardDatasToDisplay[i], position, cardSelectionCardParentTrans);
+            SpawnCard(selectableCardPrefab, cardDatasToDisplay[i], position, cardSelectionCardParentTrans);
         }
 
         // Reset the current selection
@@ -184,6 +184,17 @@ public class DeckManager : MonoBehaviour
     public void ClearCardSelectionDisplayCards() {
         for(int i = cardSelectionCardParentTrans.childCount - 1; i >= 0; i--) {
             Destroy(cardSelectionCardParentTrans.GetChild(i).gameObject);
+        }
+    }
+
+    public void DisplayDeckCards(Transform viewDeckCardParent)
+    {
+        for(int i = 0; i < viewDeckCardParent.childCount; i++)
+        {
+            Transform child = viewDeckCardParent.GetChild(i);
+            CardData cardDataToDisplay = CardManager.instance.GetCurrentCardData((Slot)i);
+
+            SpawnCard(displayCardPrefab, cardDataToDisplay, child.position, child);
         }
     }
 }

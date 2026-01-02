@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class InteractableCardObject : CardObject
 {
+    // Set in inspector
+    [SerializeField]
+    private BoxCollider2D cardCollider;
+
     // Set in script at Start
     private Vector2 savedPos, dragOffset, hoverOffset;
     private Collider2D cardFieldCollider;
@@ -29,6 +33,8 @@ public class InteractableCardObject : CardObject
                 TargettingManager.instance.CardTargetting == gameObject &&
                 TargettingManager.instance.Target != null);
         }
+
+        cardCollider.enabled = !UIManager.instance.IsDeckBeingViewed;
     }
 
     private void OnMouseEnter() {
@@ -43,6 +49,19 @@ public class InteractableCardObject : CardObject
                     transform.position += (Vector3)hoverOffset;
                 }
             }
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        // When this card is first no longer hovered,
+        // If this card targets, but the player is not currently targetting,
+        // OR this card does not target and is not being dragged,
+        // Deselect it
+        if((cardData.TargetType == TargetType.Unit && TargettingManager.instance.CardTargetting == null)
+            || (cardData.TargetType != TargetType.Unit && !isBeingDragged))
+        {
+            Deselect();
         }
     }
 

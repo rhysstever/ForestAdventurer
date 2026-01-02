@@ -1,5 +1,11 @@
-public class CardSelectionCard : CardObject
+using UnityEngine;
+
+public class CardSelectionCardObject : CardObject
 {
+    // Set in inspector
+    [SerializeField]
+    private BoxCollider2D cardCollider;
+
     protected override void Start()
     {
         base.Start();
@@ -8,6 +14,7 @@ public class CardSelectionCard : CardObject
     protected void Update()
     {
         cardToBePlayedRing.SetActive(cardData == DeckManager.instance.CurrentCardSelection);
+        cardCollider.enabled = !UIManager.instance.IsDeckBeingViewed;
     }
 
     private void OnMouseOver()
@@ -16,6 +23,19 @@ public class CardSelectionCard : CardObject
         if(TargettingManager.instance.CardTargetting == null)
         {
             Select();
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        // When this card is first no longer hovered,
+        // If this card targets, but the player is not currently targetting,
+        // OR this card does not target and is not being dragged,
+        // Deselect it
+        if((cardData.TargetType == TargetType.Unit && TargettingManager.instance.CardTargetting == null)
+            || (cardData.TargetType != TargetType.Unit && !isBeingDragged))
+        {
+            Deselect();
         }
     }
 

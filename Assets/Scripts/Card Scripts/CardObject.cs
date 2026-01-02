@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class CardObject : MonoBehaviour
+public class CardObject : MonoBehaviour
 {
     // Set in inspector
     [SerializeField]
@@ -68,17 +68,6 @@ public abstract class CardObject : MonoBehaviour
         else
         {
             cardSlotIcon.gameObject.SetActive(false);
-        }
-    }
-
-    private void OnMouseExit() {
-        // When this card is first no longer hovered,
-        // If this card targets, but the player is not currently targetting,
-        // OR this card does not target and is not being dragged,
-        // Deselect it
-        if((cardData.TargetType == TargetType.Unit && TargettingManager.instance.CardTargetting == null)
-            || (cardData.TargetType != TargetType.Unit && !isBeingDragged)) {
-            Deselect();
         }
     }
 
