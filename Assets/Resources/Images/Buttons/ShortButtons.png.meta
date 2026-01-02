@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 3e6a90004932d054fb9d26c7b5d82622
+guid: 244cfa885de478e45bb1c7dfd8d143be
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5940053297813508232
-    second: ButtonSimpleLongSprite_0
-  - first:
-      213: -8130855654874783575
-    second: ButtonSimpleLongSprite_1
-  - first:
-      213: 6164107744649822116
-    second: ButtonSimpleLongSprite_2
-  - first:
-      213: -1270368068153743214
-    second: ButtonSimpleLongSprite_3
+      213: -5637747791548802160
+    second: ShortButtons_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,89 +100,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ButtonSimpleLongSprite_0
+      name: ShortButtons_0
       rect:
         serializedVersion: 2
-        x: 13
+        x: 0
+        y: 300
+        width: 200
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b9d7fe042b2c1b0800000000000000
+      internalID: -5637747791548802160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShortButtons_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e7984a91e6b01244ba614ac1f45ba32
+      internalID: -12837868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShortButtons_2
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 100
-        width: 70
-        height: 24
+        width: 200
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 880df0ba00f4f6250800000000000000
-      internalID: 5940053297813508232
+      spriteID: 15baf17467ee4824a924090e2b89c82f
+      internalID: -904022205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ButtonSimpleLongSprite_1
+      name: ShortButtons_3
       rect:
         serializedVersion: 2
-        x: 13
-        y: 68
-        width: 70
-        height: 24
+        x: 0
+        y: 0
+        width: 200
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9a0663b6cd5692f80800000000000000
-      internalID: -8130855654874783575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ButtonSimpleLongSprite_2
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 36
-        width: 70
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4af361db55f4b8550800000000000000
-      internalID: 6164107744649822116
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ButtonSimpleLongSprite_3
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 4
-        width: 70
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 29862b309febe5ee0800000000000000
-      internalID: -1270368068153743214
+      spriteID: c1afae7cfec2b404da30a93297f3057a
+      internalID: 1634097787
       vertices: []
       indices: 
       edges: []
@@ -200,7 +191,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 2eeb5f886709b0b49a835953b108737f
+    spriteID: 71201f4bf5b53024db8aecffc842cc19
     internalID: 0
     vertices: []
     indices: 
@@ -210,12 +201,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":200.0,"y":100.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ButtonSimpleLongSprite_0: 5940053297813508232
-      ButtonSimpleLongSprite_1: -8130855654874783575
-      ButtonSimpleLongSprite_2: 6164107744649822116
-      ButtonSimpleLongSprite_3: -1270368068153743214
+      ShortButtons_0: -5637747791548802160
+      ShortButtons_1: -12837868
+      ShortButtons_2: -904022205
+      ShortButtons_3: 1634097787
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
