@@ -47,8 +47,13 @@ public class InteractableCardObject : CardObject
     }
 
     private void OnMouseDown() {
-        // When clicked on,
-        // If this card targets, start targetting it
+        // When clicked over, select this card the player is not already targetting
+        if(TargettingManager.instance.CardTargetting == null)
+        {
+            Select();
+        }
+
+        // Also, if this card targets, start targetting it
         if(cardData.TargetType == TargetType.Unit) {
             TargettingManager.instance.StartTargetting(gameObject);
             cardToBePlayedRing.SetActive(true);

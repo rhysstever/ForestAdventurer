@@ -71,13 +71,6 @@ public abstract class CardObject : MonoBehaviour
         }
     }
 
-    private void OnMouseOver() {
-        // When hovered over, select this card the player is not already targetting
-        if(TargettingManager.instance.CardTargetting == null) {
-            Select();
-        }
-    }
-
     private void OnMouseExit() {
         // When this card is first no longer hovered,
         // If this card targets, but the player is not currently targetting,

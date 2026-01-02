@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class CardSelectionCard : CardObject
 {
     protected override void Start()
@@ -10,6 +8,15 @@ public class CardSelectionCard : CardObject
     protected void Update()
     {
         cardToBePlayedRing.SetActive(cardData == DeckManager.instance.CurrentCardSelection);
+    }
+
+    private void OnMouseOver()
+    {
+        // When hovered over, select this card the player is not already targetting
+        if(TargettingManager.instance.CardTargetting == null)
+        {
+            Select();
+        }
     }
 
     private void OnMouseUpAsButton()
