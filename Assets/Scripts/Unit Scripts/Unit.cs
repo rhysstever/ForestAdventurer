@@ -42,7 +42,7 @@ public class Unit : MonoBehaviour
                 // subtract the difference from the unit's health
                 currentLife -= (amount - currentDefense);
                 currentDefense = 0;
-                
+                AudioManager.instance.PlayDamageTakenAudio();
             } else {
                 // If the damage dealth is less than the unit's defense,
                 // subtract it from the current defense
@@ -53,6 +53,7 @@ public class Unit : MonoBehaviour
         } else {
             // If the unit has no defense, subtract the damage from its health
             currentLife -= amount;
+            AudioManager.instance.PlayDamageTakenAudio();
         }
         // If there is an attack and the unit has spikes, reflect spike damage to the attacker
         if(attacker != null && currentSpike > 0) {

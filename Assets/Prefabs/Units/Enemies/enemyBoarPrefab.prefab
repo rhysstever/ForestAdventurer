@@ -528,8 +528,7 @@ MonoBehaviour:
   effectsParent: {fileID: 442638736410728267}
   effectTrans1: {fileID: 6860954968842074459}
   effectTrans2: {fileID: 2474428185457871075}
-  maxLife: 1
-  currentLife: 0
+  maxLife: 5
   currentDefense: 0
   currentBurn: 0
   currentPoison: 0

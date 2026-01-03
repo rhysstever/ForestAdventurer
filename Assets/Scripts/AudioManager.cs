@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Transform audioParentTrans;
     [SerializeField]
-    private GameObject attackAudioPrefab;
+    private GameObject attackAudioPrefab, damageTakenAudioPrefab;
 
     private void Awake()
     {
@@ -37,5 +37,10 @@ public class AudioManager : MonoBehaviour
     public void PlayAttackAudio()
     {
         Instantiate(attackAudioPrefab, audioParentTrans);
+    }
+
+    public void PlayDamageTakenAudio()
+    {
+        Instantiate(damageTakenAudioPrefab, audioParentTrans);
     }
 }
