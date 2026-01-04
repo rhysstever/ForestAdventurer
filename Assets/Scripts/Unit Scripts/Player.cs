@@ -14,12 +14,12 @@ public class Player : Unit
         characterSpriteRenderer.sprite = CharacterManager.instance.GetCharacterSprite(CharacterManager.instance.ChosenCharacter);
     }
 
-    public override void TakeDamage(int amount) {
-        base.TakeDamage(amount, null, true);
+    public override void TakeDamage(int amount, DamageType damageType) {
+        base.TakeDamage(amount, null, damageType);
     }
 
-    public override void TakeDamage(int amount, Unit attacker, bool isDamageBlockable) {
-        base.TakeDamage(amount, attacker, isDamageBlockable);
+    public override void TakeDamage(int amount, Unit attacker, DamageType damageType) {
+        base.TakeDamage(amount, attacker, damageType);
 
         // Check if the player has been killed, if so, end the game
         if(currentLife <= 0) {

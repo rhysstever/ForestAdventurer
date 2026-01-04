@@ -8,7 +8,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Transform audioParentTrans;
     [SerializeField]
-    private GameObject attackAudioPrefab, damageTakenAudioPrefab;
+    private GameObject damageTakenAudioPrefab, damageBlockedAudioPrefab, healAudioPrefab, 
+        attackAudioPrefab, spellAttackAudioPrefab, spellBuffAudioPrefab,
+        giveDefenseAudioPrefab, burnAudioPrefab, poisonAudioPrefab, spikesAudioPrefab;
 
     private void Awake()
     {
@@ -34,13 +36,53 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    public void PlayDamageTakenAudio()
+    {
+        Instantiate(damageTakenAudioPrefab, audioParentTrans);
+    }
+
+    public void PlayDamageBlockedAudio()
+    {
+        Instantiate(damageBlockedAudioPrefab, audioParentTrans);
+    }
+
+    public void PlayHealAudio()
+    {
+        Instantiate(healAudioPrefab, audioParentTrans);
+    }
+
     public void PlayAttackAudio()
     {
         Instantiate(attackAudioPrefab, audioParentTrans);
     }
 
-    public void PlayDamageTakenAudio()
+    public void PlaySpellAttackAudio()
     {
-        Instantiate(damageTakenAudioPrefab, audioParentTrans);
+        Instantiate(spellAttackAudioPrefab, audioParentTrans);
+    }
+
+    public void PlaySpellBuffAudio()
+    {
+        Instantiate(spellBuffAudioPrefab, audioParentTrans);
+    }
+
+    public void PlayGiveDefenseAudio()
+    {
+        Instantiate(giveDefenseAudioPrefab, audioParentTrans);
+    }
+
+    public void PlayBurnAudio()
+    {
+        Instantiate(burnAudioPrefab, audioParentTrans);
+    }
+
+    public void PlayPoisonAudio()
+    {
+        Instantiate(poisonAudioPrefab, audioParentTrans);
+    }
+
+    public void PlaySpikesAudio()
+    {
+        Instantiate(spikesAudioPrefab, audioParentTrans);
     }
 }

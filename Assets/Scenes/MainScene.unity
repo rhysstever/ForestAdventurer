@@ -726,8 +726,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioParentTrans: {fileID: 236213884}
-  attackAudioPrefab: {fileID: 3159440694739109376, guid: 07cd35976304c4e4cba4a484c2b35325, type: 3}
   damageTakenAudioPrefab: {fileID: 3159440694739109376, guid: 38460d66f16cfed43826a79dab454448, type: 3}
+  damageBlockedAudioPrefab: {fileID: 3159440694739109376, guid: 041655a2dd3b72f41a2e0422b516a77a, type: 3}
+  healAudioPrefab: {fileID: 3159440694739109376, guid: f317700dc62ed694791e132e708189a0, type: 3}
+  attackAudioPrefab: {fileID: 3159440694739109376, guid: 07cd35976304c4e4cba4a484c2b35325, type: 3}
+  spellAttackAudioPrefab: {fileID: 3159440694739109376, guid: 0dedf518e3fac3a409b78e6b640ed51d, type: 3}
+  spellBuffAudioPrefab: {fileID: 3159440694739109376, guid: e35691bcaa565a746860eb8bbdc6c347, type: 3}
+  giveDefenseAudioPrefab: {fileID: 3159440694739109376, guid: 200e456c274b44f4a9cf074a36abe3d4, type: 3}
+  burnAudioPrefab: {fileID: 3159440694739109376, guid: a0db8def48b6f3a42bac9d76413c12ec, type: 3}
+  poisonAudioPrefab: {fileID: 3159440694739109376, guid: 49a8134b315266b499e9cfa17f3299c2, type: 3}
+  spikesAudioPrefab: {fileID: 3159440694739109376, guid: 444c88dec21928b4086cae1e9567fa1c, type: 3}
 --- !u!1 &236213883
 GameObject:
   m_ObjectHideFlags: 0

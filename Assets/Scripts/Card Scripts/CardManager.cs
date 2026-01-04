@@ -120,7 +120,7 @@ public class CardManager : MonoBehaviour
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Attack for 1, randomly"),
             new CardData("Fireball", Slot.Spell, Rarity.Common, TargetType.Unit, "Burn for 3"),
             new CardData("Life Drain", Slot.Spell, Rarity.Common, TargetType.Unit, "Attack for 2. Heal for 2"),
-            new CardData("Lightning Bolt", Slot.Spell, Rarity.Rare, TargetType.None, "Attack for 4, randomly"),
+            new CardData("Lightning Strike", Slot.Spell, Rarity.Rare, TargetType.None, "Attack for 4, randomly"),
             new CardData("Heal", Slot.Spell, Rarity.Rare, TargetType.Self, "Heal for 5"),
             new CardData("Blizzard", Slot.Spell, Rarity.Rare, TargetType.AOE, "Attack for 3, to all"),
             new CardData("Curse", Slot.Spell, Rarity.Rare, TargetType.Unit, "Poison for 5"),
@@ -148,11 +148,11 @@ public class CardManager : MonoBehaviour
         string description = cardData.Description;
 
         description.Split(". ").ToList().ForEach(action =>
-            PerformCardAction(action, targetEnemy)
+            PerformCardAction(action, targetEnemy, cardData.Slot)
         );
     }
 
-    private void PerformCardAction(string action, Enemy target) {
+    private void PerformCardAction(string action, Enemy target, Slot slot) {
         string firstWord = action.Split(" ")[0];
         int amount;
 
@@ -177,12 +177,23 @@ public class CardManager : MonoBehaviour
                 // Attack based on the parsed info
                 for(int i = 0; i < isMulti; i++) {
                     amount = int.Parse(attackParts[0].Split(" ")[2]);
+
+                    DamageType attackType;
+                    if(slot == Slot.Spell)
+                    {
+                        attackType = DamageType.Spell;
+                    }
+                    else
+                    {
+                        attackType = DamageType.Attack;
+                    }
+
                     if(isAOE) {
-                        AttackEveryEnemy(amount);
+                        AttackEveryEnemy(amount, attackType);
                     } else if(isRandom) {
-                        AttackRandomEnemy(amount);
+                        AttackRandomEnemy(amount, attackType);
                     } else {
-                        AttackUnit(amount, target);
+                        AttackUnit(amount, target, attackType);
                     }
                 }
                 break;
@@ -218,19 +229,19 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    private void AttackEveryEnemy(int damage) {
+    private void AttackEveryEnemy(int damage, DamageType attackType) {
         EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
-            AttackUnit(damage, enemy);
+            AttackUnit(damage, enemy, attackType);
         });
     }
 
-    private void AttackRandomEnemy(int damage) {
+    private void AttackRandomEnemy(int damage, DamageType attackType) {
         List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
         int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
-        AttackUnit(damage, currentEnemies[randomEnemyIndex]);
+        AttackUnit(damage, currentEnemies[randomEnemyIndex], attackType);
     }
 
-    private void AttackUnit(int amount, Enemy enemy) {
+    private void AttackUnit(int amount, Enemy enemy, DamageType attackType) {
         if(enemy == null) {
             Debug.Log("Error: No target to attack!");
             return;
@@ -241,7 +252,16 @@ public class CardManager : MonoBehaviour
             return;
         }
 
-        enemy.TakeDamage(amount, GameManager.instance.Player, true);
+        if(attackType == DamageType.Attack)
+        {
+            AudioManager.instance.PlayAttackAudio();
+        }
+        else if(attackType == DamageType.Spell)
+        {
+            AudioManager.instance.PlaySpellAttackAudio();
+        }
+
+        enemy.TakeDamage(amount, GameManager.instance.Player, DamageType.Attack);
     }
     #endregion Card Actions
     

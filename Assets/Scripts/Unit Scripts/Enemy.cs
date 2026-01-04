@@ -69,7 +69,7 @@ public class Enemy : Unit
         switch(actionString.Split(" ")[0]) {
             case "Attack":
                 AudioManager.instance.PlayAttackAudio();
-                GameManager.instance.Player.TakeDamage(actionAmount, this, true);
+                GameManager.instance.Player.TakeDamage(actionAmount, this, DamageType.Attack);
                 break;
             case "Heal":
                 Heal(actionAmount);
@@ -107,12 +107,12 @@ public class Enemy : Unit
         UpdateNextActionUI();
     }
 
-    public override void TakeDamage(int amount) { 
-        TakeDamage(amount, null, true);
+    public override void TakeDamage(int amount, DamageType damageType) { 
+        TakeDamage(amount, null, damageType);
     }
 
-    public override void TakeDamage(int amount, Unit attacker, bool isDamageBlockable) {
-        base.TakeDamage(amount, attacker, isDamageBlockable);
+    public override void TakeDamage(int amount, Unit attacker, DamageType damageType) {
+        base.TakeDamage(amount, attacker, damageType);
 
         if(currentLife <= 0) {
             EnemyManager.instance.CheckIfWaveIsOver();
