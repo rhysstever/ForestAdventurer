@@ -26,10 +26,14 @@ public class DeckManager : MonoBehaviour
     public Collider2D FieldCollider { get { return fieldCollider; } }
     public CardData CurrentCardSelection { get { return currentCardSelection; } }
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
 
@@ -44,7 +48,8 @@ public class DeckManager : MonoBehaviour
         currentHandSize = 4;
     }
 
-    public void SetupForNewCombat() {
+    public void SetupForNewCombat()
+    {
         deck = GenerateDeck();
         hand.Clear();
         discard.Clear();
@@ -52,19 +57,25 @@ public class DeckManager : MonoBehaviour
         GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
     }
 
-    public List<CardData> GenerateDeck() {
+    public List<CardData> GenerateDeck()
+    {
         List<CardData> cards = new List<CardData>();
         Character chosenCharacter = CharacterManager.instance.ChosenCharacter;
 
-        foreach(Slot slot in Enum.GetValues(typeof(Slot)).Cast<Slot>().ToList()) {
+        foreach(Slot slot in Enum.GetValues(typeof(Slot)).Cast<Slot>().ToList())
+        {
             CardData cardData = CardManager.instance.GetCurrentCardData(slot);
 
-            if(cardData != null) {
+            if(cardData != null)
+            {
                 int cardCount = CharacterManager.instance.GetSlotCardCountOfChosenCharacter(slot);
-                for(int i = 0; i < cardCount; i++) {
+                for(int i = 0; i < cardCount; i++)
+                {
                     cards.Add(cardData);
                 }
-            } else {
+            }
+            else
+            {
                 Debug.LogFormat("Warning! No current {0} card, not generating", slot);
             }
         }
@@ -72,7 +83,8 @@ public class DeckManager : MonoBehaviour
         return cards;
     }
 
-    public void DiscardHand() {
+    public void DiscardHand()
+    {
         RemoveCardsFromScene();
 
         // Create a list copy of the cards still in hand,
@@ -82,15 +94,19 @@ public class DeckManager : MonoBehaviour
         hand.Clear();
     }
 
-    public void DealHand() {
+    public void DealHand()
+    {
         RemoveCardsFromScene();
         DrawCards(currentHandSize);
     }
 
-    public void DrawCards(int numberOfCardsToDraw) {
+    public void DrawCards(int numberOfCardsToDraw)
+    {
         // Add the given number of cards from the deck into the hand
-        for(int i = 0; i < numberOfCardsToDraw; i++) {
-            if(deck.Count == 0) {
+        for(int i = 0; i < numberOfCardsToDraw; i++)
+        {
+            if(deck.Count == 0)
+            {
                 // If the deck is empty, move the discard pile into the deck
                 ShuffleDiscardPileIntoDeck();
             }
@@ -102,30 +118,35 @@ public class DeckManager : MonoBehaviour
             CardData card = deck[newIndex];
             hand.Add(card);
             deck.RemoveAt(newIndex);
-        }        
+        }
 
         float cardXOffset = 3.5f;
         float cardRowXOffset = 4.5f;
 
         // Spawn the all the cards in the scene
-        for(int i = 0; i < hand.Count; i++) {
+        for(int i = 0; i < hand.Count; i++)
+        {
             SpawnCard(playableCardPrefab, hand[i], new Vector2(cardXOffset * i - cardRowXOffset, -5f), cardParentTrans);
         }
     }
 
-    public void ShuffleDiscardPileIntoDeck() {
+    public void ShuffleDiscardPileIntoDeck()
+    {
         List<CardData> cardsInDiscardPile = discard.ToList();
         deck.AddRange(cardsInDiscardPile);
         discard.Clear();
     }
 
-    private void RemoveCardsFromScene() {
-        for(int i = cardParentTrans.childCount - 1; i >= 0; i--) {
+    private void RemoveCardsFromScene()
+    {
+        for(int i = cardParentTrans.childCount - 1; i >= 0; i--)
+        {
             Destroy(cardParentTrans.GetChild(i).gameObject);
         }
     }
 
-    private GameObject SpawnCard(GameObject cardPrefab, CardData cardData, Vector2 position, Transform parent) {
+    private GameObject SpawnCard(GameObject cardPrefab, CardData cardData, Vector2 position, Transform parent)
+    {
         GameObject newCard = Instantiate(cardPrefab, position, Quaternion.identity, parent);
         CardObject cardObj = newCard.GetComponent<CardObject>();
         cardObj.SetCardData(cardData);
@@ -133,15 +154,18 @@ public class DeckManager : MonoBehaviour
         return newCard;
     }
 
-    public void SetupCardSelection() {
+    public void SetupCardSelection()
+    {
         // Hide the field collider
         fieldCollider.gameObject.SetActive(false);
 
         // Create the card selection cards to display
         List<CardData> cardDatasToDisplay = CardManager.instance.GetRandomCardDatas(3);
-        for(int i = 0; i < cardDatasToDisplay.Count; i++) {
+        for(int i = 0; i < cardDatasToDisplay.Count; i++)
+        {
             Vector2 position = Vector2.zero;
-            switch(i) {
+            switch(i)
+            {
                 case 0:
                     position = cardSelectionCard1Pos.position;
                     break;
@@ -181,8 +205,10 @@ public class DeckManager : MonoBehaviour
         }
     }
 
-    public void ClearCardSelectionDisplayCards() {
-        for(int i = cardSelectionCardParentTrans.childCount - 1; i >= 0; i--) {
+    public void ClearCardSelectionDisplayCards()
+    {
+        for(int i = cardSelectionCardParentTrans.childCount - 1; i >= 0; i--)
+        {
             Destroy(cardSelectionCardParentTrans.GetChild(i).gameObject);
         }
     }
