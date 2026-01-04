@@ -28,7 +28,8 @@ public class CardData
     public TargetType TargetType { get { return targetType; } }
     public string Description { get { return description; } }
 
-    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType, string description) {
+    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType, string description)
+    {
         this.name = name;
         this.slot = slot;
         this.rarity = rarity;
@@ -36,8 +37,9 @@ public class CardData
         this.description = description;
     }
 
-    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType) 
-        : this(name, slot, rarity, targetType, "") {
+    public CardData(string name, Slot slot, Rarity rarity, TargetType targetType)
+        : this(name, slot, rarity, targetType, "")
+    {
         this.name = name;
         this.slot = slot;
         this.rarity = rarity;

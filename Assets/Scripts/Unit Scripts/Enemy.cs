@@ -17,7 +17,7 @@ public class Enemy : Unit
     private int round;
     private int positionIndex;
 
-    public int Round {  get { return round; } }
+    public int Round { get { return round; } }
     public int PositionIndex { get { return positionIndex; } }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,13 +28,16 @@ public class Enemy : Unit
         UpdateNextActionUI();
     }
 
-    public override void Reset() {
+    public override void Reset()
+    {
         base.Reset();
         round = 0;
     }
 
-    public void SetPositionIndex(int index) {
-        if(index < 0) {
+    public void SetPositionIndex(int index)
+    {
+        if(index < 0)
+        {
             Debug.Log("Error! Cannot set enemy position index to less than 0!");
             return;
         }
@@ -42,31 +45,40 @@ public class Enemy : Unit
         positionIndex = index;
     }
 
-    public void IncrementRound() {
+    public void IncrementRound()
+    {
         round++;
     }
 
-    private string[] ParseRoundAction() {
+    private string[] ParseRoundAction()
+    {
         int actionRound = round % actions.Count;
         return actions[actionRound].Split(" ");
     }
 
-    public void PerformRoundAction() {
+    public void PerformRoundAction()
+    {
         string[] parsedAction = ParseRoundAction();
         string actionString = parsedAction[0];
-        if(parsedAction[1].Contains("x")) {
+        if(parsedAction[1].Contains("x"))
+        {
             string[] damageParts = parsedAction[1].Split("x");
-            for(int i = 0; i < int.Parse(damageParts[1]); i++) {
+            for(int i = 0; i < int.Parse(damageParts[1]); i++)
+            {
                 PerformAction(actionString, int.Parse(damageParts[0]));
             }
-        } else {
+        }
+        else
+        {
             PerformAction(actionString, int.Parse(parsedAction[1]));
         }
     }
 
-    private void PerformAction(string actionString, int actionAmount) {
+    private void PerformAction(string actionString, int actionAmount)
+    {
 
-        switch(actionString.Split(" ")[0]) {
+        switch(actionString.Split(" ")[0])
+        {
             case "Attack":
                 AudioManager.instance.PlayAttackAudio();
                 GameManager.instance.Player.TakeDamage(actionAmount, this, DamageType.Attack);
@@ -85,10 +97,11 @@ public class Enemy : Unit
                 break;
             case "Summon":
                 Debug.Log(string.Format("Enemy {0} is summoning {1} enemies!", gameObject.name, actionAmount));
-                if(enemySummonPrefab == null) {
+                if(enemySummonPrefab == null)
+                {
                     Debug.Log(string.Format("Error! No enemy summon prefab found!"));
                     break;
-                } 
+                }
                 else
                 {
                     for(int i = 0; i < actionAmount; i++)
@@ -107,25 +120,30 @@ public class Enemy : Unit
         UpdateNextActionUI();
     }
 
-    public override void TakeDamage(int amount, DamageType damageType) { 
+    public override void TakeDamage(int amount, DamageType damageType)
+    {
         TakeDamage(amount, null, damageType);
     }
 
-    public override void TakeDamage(int amount, Unit attacker, DamageType damageType) {
+    public override void TakeDamage(int amount, Unit attacker, DamageType damageType)
+    {
         base.TakeDamage(amount, attacker, damageType);
 
-        if(currentLife <= 0) {
+        if(currentLife <= 0)
+        {
             EnemyManager.instance.CheckIfWaveIsOver();
             Destroy(gameObject);
         }
     }
 
-    public void HideNextActionUI() {
+    public void HideNextActionUI()
+    {
         nextActionText.gameObject.SetActive(false);
         nextActionIcon.gameObject.SetActive(false);
     }
 
-    public void UpdateNextActionUI() {
+    public void UpdateNextActionUI()
+    {
         string[] nextAction = ParseRoundAction();
         nextActionText.text = nextAction[1];
         nextActionIcon.sprite = CardManager.instance.GetActionSprite(nextAction[0]);
@@ -134,16 +152,20 @@ public class Enemy : Unit
         nextActionIcon.gameObject.SetActive(true);
     }
 
-    private void OnMouseEnter() {
+    private void OnMouseEnter()
+    {
         // If the player is currently targetting, set this enemy as the target
-        if(TargettingManager.instance.CardTargetting != null) {
+        if(TargettingManager.instance.CardTargetting != null)
+        {
             TargettingManager.instance.SetTarget(gameObject);
         }
     }
 
-    private void OnMouseExit() {
+    private void OnMouseExit()
+    {
         // If the player is currently targetting, remove this enemy as the target
-        if(TargettingManager.instance.CardTargetting != null) {
+        if(TargettingManager.instance.CardTargetting != null)
+        {
             TargettingManager.instance.SetTarget(null);
         }
     }

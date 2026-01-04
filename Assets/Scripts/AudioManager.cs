@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Transform audioParentTrans;
     [SerializeField]
-    private GameObject damageTakenAudioPrefab, damageBlockedAudioPrefab, healAudioPrefab, 
+    private GameObject damageTakenAudioPrefab, damageBlockedAudioPrefab, healAudioPrefab,
         attackAudioPrefab, spellAttackAudioPrefab, spellBuffAudioPrefab,
         giveDefenseAudioPrefab, burnAudioPrefab, poisonAudioPrefab, spikesAudioPrefab;
 
@@ -27,13 +27,13 @@ public class AudioManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void PlayDamageTakenAudio()

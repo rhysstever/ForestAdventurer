@@ -22,7 +22,8 @@ public class CardObject : MonoBehaviour
 
     public CardData CardData { get { return cardData; } }
 
-    protected virtual void Start() {
+    protected virtual void Start()
+    {
         cardSelectionRing.SetActive(false);
         cardToBePlayedRing.SetActive(false);
         isSelected = false;
@@ -31,13 +32,15 @@ public class CardObject : MonoBehaviour
         Deselect();
     }
 
-    public void SetCardData(CardData cardData) {
+    public void SetCardData(CardData cardData)
+    {
         this.cardData = cardData;
         cardNameText.text = cardData.Name;
         cardDescriptionText.text = cardData.Description;
 
         Sprite cardArtSprite = CardManager.instance.GetCardArtSprite(cardData.Name);
-        if(cardArtSprite != null) {
+        if(cardArtSprite != null)
+        {
             // Set card art image
             cardArtImage.gameObject.SetActive(true);
             cardArtImage.sprite = cardArtSprite;
@@ -48,7 +51,8 @@ public class CardObject : MonoBehaviour
         }
 
         Sprite rarityIconSprite = CardManager.instance.GetCardBaseRarityIconSprite(cardData.Rarity);
-        if(rarityIconSprite != null) {
+        if(rarityIconSprite != null)
+        {
             // Set card background rarity image
             cardRarityIcon.gameObject.SetActive(true);
             cardRarityIcon.sprite = rarityIconSprite;
@@ -64,14 +68,15 @@ public class CardObject : MonoBehaviour
             // Set card background slot image
             cardSlotIcon.gameObject.SetActive(true);
             cardSlotIcon.sprite = slotIconSprite;
-        } 
+        }
         else
         {
             cardSlotIcon.gameObject.SetActive(false);
         }
     }
 
-    protected virtual void Select() {
+    protected virtual void Select()
+    {
         // Show the selection ring of the card
         cardSelectionRing.SetActive(true);
         // Prioritize the card in the sorting layer
@@ -80,7 +85,8 @@ public class CardObject : MonoBehaviour
         isSelected = true;
     }
 
-    protected virtual void Deselect() {
+    protected virtual void Deselect()
+    {
         // Hide the selection ring of the card
         cardSelectionRing.SetActive(false);
         // Deprioritize the card in the sorting layer

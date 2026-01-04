@@ -8,7 +8,8 @@ public class EffectUIObject : MonoBehaviour
     [SerializeField]
     private SpriteRenderer effectSprite;
 
-    public void UpdateEffectUIObject(int newAmount, Sprite newSprite) {
+    public void UpdateEffectUIObject(int newAmount, Sprite newSprite)
+    {
         effectAmountText.text = newAmount.ToString();
         effectSprite.sprite = newSprite;
     }

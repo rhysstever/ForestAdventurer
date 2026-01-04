@@ -21,13 +21,18 @@ public class CharacterSelectArrows : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(GameManager.instance.CurrentMenuState == MenuState.CharacterSelect) {
+        if(GameManager.instance.CurrentMenuState == MenuState.CharacterSelect)
+        {
             timer += Time.deltaTime;
 
-            if(timer >= moveFrequency) {
-                if((Vector2)topRight.localPosition == startSize) {
+            if(timer >= moveFrequency)
+            {
+                if((Vector2)topRight.localPosition == startSize)
+                {
                     SetPositions(endSize);
-                } else {
+                }
+                else
+                {
                     SetPositions(startSize);
                 }
                 timer = 0f;
@@ -35,7 +40,8 @@ public class CharacterSelectArrows : MonoBehaviour
         }
     }
 
-    private void SetPositions(Vector2 position) {
+    private void SetPositions(Vector2 position)
+    {
         topLeft.transform.localPosition = new Vector3(-position.x, position.y, 0);
         topRight.transform.localPosition = new Vector3(position.x, position.y, 0);
         bottomLeft.transform.localPosition = new Vector3(-position.x, -position.y, 0);

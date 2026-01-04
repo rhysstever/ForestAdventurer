@@ -9,13 +9,13 @@ public class CameraPan : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void ResetCameraPosition()
@@ -26,11 +26,13 @@ public class CameraPan : MonoBehaviour
             Camera.main.transform.position.z);
     }
 
-    public void PanCameraDown() {
+    public void PanCameraDown()
+    {
         StartCoroutine(PanDown());
     }
 
-    IEnumerator PanDown() {
+    IEnumerator PanDown()
+    {
         while(transform.position.y > endingPos.position.y)
         {
             // If the user clicks while panning, the panning is skipped

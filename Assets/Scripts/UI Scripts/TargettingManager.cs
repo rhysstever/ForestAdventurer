@@ -11,15 +11,19 @@ public class TargettingManager : MonoBehaviour
 
     // Instantiated in script
     private GameObject cardTargetting, target;
-    
+
     // Properties
     public GameObject CardTargetting { get { return cardTargetting; } }
     public GameObject Target { get { return target; } }
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
     }
@@ -29,9 +33,11 @@ public class TargettingManager : MonoBehaviour
         Reset();
     }
 
-    void Update() {
+    void Update()
+    {
         // If the player is targetting,
-        if(cardTargetting != null) {
+        if(cardTargetting != null)
+        {
             // Enable the mouse aiming target and move it to the mouse
             mouseTargetAiming.SetActive(true);
             mouseTargetAiming.transform.position = GetMousePosition();
@@ -40,31 +46,38 @@ public class TargettingManager : MonoBehaviour
             mouseTarget.SetActive(target != null);
 
             // If enabled, move the target to the mouse
-            if(mouseTarget.activeSelf) {
+            if(mouseTarget.activeSelf)
+            {
                 mouseTarget.transform.position = GetMousePosition();
             }
-        } else {
+        }
+        else
+        {
             // Otherwise, disable both targets
             mouseTargetAiming.SetActive(false);
             mouseTarget.SetActive(false);
         }
     }
 
-    public Vector2 GetMousePosition() {
+    public Vector2 GetMousePosition()
+    {
         Vector3 position = Input.mousePosition;
         position.z = -Camera.main.transform.position.z;
         return (Vector2)Camera.main.ScreenToWorldPoint(position);
     }
 
-    public void StartTargetting(GameObject cardTargetting) {
+    public void StartTargetting(GameObject cardTargetting)
+    {
         this.cardTargetting = cardTargetting;
     }
 
-    public void StopTargetting() {
+    public void StopTargetting()
+    {
         cardTargetting = null;
     }
 
-    public void SetTarget(GameObject target) {
+    public void SetTarget(GameObject target)
+    {
         this.target = target;
     }
 

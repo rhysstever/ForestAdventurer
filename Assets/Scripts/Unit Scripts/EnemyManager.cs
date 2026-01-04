@@ -20,10 +20,14 @@ public class EnemyManager : MonoBehaviour
     private List<Round> enemyWaves;
     private int currentWaveNum;
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
     }
@@ -34,7 +38,8 @@ public class EnemyManager : MonoBehaviour
         Reset();
     }
 
-    private List<Round> SetEnemyWaves() {
+    private List<Round> SetEnemyWaves()
+    {
         List<Round> combatRounds = new() {
             new(new List<GameObject>() { boarEnemyPrefab, boarEnemyPrefab }),
             new(new List<GameObject>() { mushroomEnemyPrefab, mushroomEnemyPrefab }),
@@ -69,7 +74,8 @@ public class EnemyManager : MonoBehaviour
         };
     }
 
-    public void PerformEnemyRoundActions() {
+    public void PerformEnemyRoundActions()
+    {
         GetCurrentEnemiesInScene().ForEach(enemy => enemy.PerformRoundAction());
 
         if(IsWaveOver())
@@ -82,37 +88,46 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    public bool IsWaveOver() {
+    public bool IsWaveOver()
+    {
         // Check all enemies in the scene and if none have health, the wave is over
         return GetCurrentEnemiesInScene().Where(enemy => enemy.CurrentLife > 0).ToList().Count == 0;
     }
 
-    public void CheckIfWaveIsOver() {
+    public void CheckIfWaveIsOver()
+    {
         // Check all enemies in the scene and if none have health, the wave is over
-        if(IsWaveOver()) {
+        if(IsWaveOver())
+        {
             // If the wave is over check if it is the last wave
-            if(IsLastWave()) {
+            if(IsLastWave())
+            {
                 // If it is the last wave, end the game
                 GameManager.instance.ChangeMenuState(MenuState.GameEnd);
-            } else {
+            }
+            else
+            {
                 // If there are more waves, change to CombatEnd to reward the player
                 GameManager.instance.ChangeCombatState(CombatState.CombatEnd);
             }
         }
     }
 
-    public void SpawnNextWave() {
+    public void SpawnNextWave()
+    {
         currentWaveNum++;
 
         // If there are no more waves to spawn, end the game
-        if(currentWaveNum >= enemyWaves.Count) {
+        if(currentWaveNum >= enemyWaves.Count)
+        {
             Debug.Log("You win! All waves defeated!");
             GameManager.instance.ChangeMenuState(MenuState.GameEnd);
             return;
         }
 
         Round round = enemyWaves[currentWaveNum];
-        switch(round.Enemies.Count) {
+        switch(round.Enemies.Count)
+        {
             case 3:
                 // Spawn the first (main) enemy in the middle position
                 SpawnEnemy(round.Enemies[0], 2);
@@ -140,22 +155,28 @@ public class EnemyManager : MonoBehaviour
         // Get leftmost available position
         int[] currentPositions = GetCurrentEnemiesInScene().Select(e => e.PositionIndex).ToArray();
         int positionIndex = -1;
-        for(int i = 0; i < enemySpawnPositions.Count; i++) {
-            if(!currentPositions.Contains(i)) {
+        for(int i = 0; i < enemySpawnPositions.Count; i++)
+        {
+            if(!currentPositions.Contains(i))
+            {
                 positionIndex = i;
                 break;
             }
         }
 
         // Spawn the enemy at that position
-        if(positionIndex != -1) {
+        if(positionIndex != -1)
+        {
             SpawnEnemy(enemy, positionIndex);
-        } else {
+        }
+        else
+        {
             Debug.Log("Error! No available positions to spawn summon!");
         }
     }
 
-    private void SpawnEnemy(GameObject enemy, int positionIndex) {
+    private void SpawnEnemy(GameObject enemy, int positionIndex)
+    {
         Vector2 position = enemySpawnPositions[positionIndex].position;
         GameObject newSceneEnemy = Instantiate(enemy, position, Quaternion.identity, enemies);
         newSceneEnemy.name = enemy.name + GetCurrentEnemiesInScene().Count;
@@ -163,22 +184,27 @@ public class EnemyManager : MonoBehaviour
         newSceneEnemy.GetComponent<Enemy>().SetPositionIndex(positionIndex);
     }
 
-    public bool IsLastWave() {
+    public bool IsLastWave()
+    {
         return currentWaveNum == enemyWaves.Count - 1;
     }
 
-    public List<Enemy> GetCurrentEnemiesInScene() {
+    public List<Enemy> GetCurrentEnemiesInScene()
+    {
         return enemies.GetComponentsInChildren<Enemy>().ToList();
     }
 
-    public void ProcessEffectsOnEnemies() {
+    public void ProcessEffectsOnEnemies()
+    {
         GetCurrentEnemiesInScene().ForEach(enemy => enemy.ProcessEffects());
     }
 
-    public void Reset() {
+    public void Reset()
+    {
         currentWaveNum = -1;
 
-        for(int i = enemies.childCount - 1; i >= 0; i--) { 
+        for(int i = enemies.childCount - 1; i >= 0; i--)
+        {
             Destroy(enemies.GetChild(i).gameObject);
         }
     }

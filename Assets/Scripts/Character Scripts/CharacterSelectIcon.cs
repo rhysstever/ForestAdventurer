@@ -22,13 +22,13 @@ public class CharacterSelectIcon : MonoBehaviour
         CharacterManager.instance.ChooseCharacter(character);
     }
 
-    private void OnMouseEnter() 
+    private void OnMouseEnter()
     {
         characterIconSelectedObj.SetActive(true);
         CharacterManager.instance.SetCharacterSelectInfo(character);
     }
 
-    private void OnMouseExit() 
+    private void OnMouseExit()
     {
         characterIconSelectedObj.SetActive(false);
         CharacterManager.instance.ClearCharacterSelectInfo();

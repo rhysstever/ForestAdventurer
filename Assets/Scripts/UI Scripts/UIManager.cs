@@ -23,10 +23,14 @@ public class UIManager : MonoBehaviour
 
     public bool IsDeckBeingViewed { get { return isDeckBeingViewed; } }
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
     }
@@ -57,8 +61,10 @@ public class UIManager : MonoBehaviour
         gameEndToMainMenuButton.onClick.AddListener(() => GameManager.instance.ChangeMenuState(MenuState.MainMenu));
     }
 
-    public void UpdateMenuUI(MenuState menuState) {
-        switch(menuState) {
+    public void UpdateMenuUI(MenuState menuState)
+    {
+        switch(menuState)
+        {
             case MenuState.MainMenu:
                 mainMenuUIParent.SetActive(true);
                 mainMenuButtonsParent.SetActive(true);
@@ -90,8 +96,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateGameUI(GameState gameState) {
-        switch(gameState) {
+    public void UpdateGameUI(GameState gameState)
+    {
+        switch(gameState)
+        {
             case GameState.Combat:
                 combatUIParent.SetActive(true);
                 nonCombatUIParent.SetActive(false);
@@ -117,8 +125,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateCombatUI(CombatState combatState) {
-        switch(combatState) {
+    public void UpdateCombatUI(CombatState combatState)
+    {
+        switch(combatState)
+        {
             case CombatState.CombatStart:
                 break;
             case CombatState.CombatPlayerTurn:
@@ -132,12 +142,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void UpdateCharacterSelectInfo() {
+    public void UpdateCharacterSelectInfo()
+    {
         characterSelectInfoText.text = "Choose Your Character";
         characterSelectInfoText.verticalAlignment = VerticalAlignmentOptions.Middle;
     }
 
-    public void UpdateCharacterSelectInfo(Character character) {
+    public void UpdateCharacterSelectInfo(Character character)
+    {
         int[] deckStructure = CharacterManager.instance.GetCharacterDeckStructure(character);
         characterSelectInfoText.text = string.Format(
             "{0}\n" +
@@ -146,7 +158,7 @@ public class UIManager : MonoBehaviour
             "\n{3} allies" +
             "\n{4} spirits" +
             "\n{5} spells" +
-            "\n{6} drinks", 
+            "\n{6} drinks",
             character.ToString(),
             deckStructure[0],
             deckStructure[1],
@@ -186,8 +198,8 @@ public class UIManager : MonoBehaviour
         foreach(Transform child in viewDeckCardsUIParent.transform)
         {
             if(child.childCount > 0)
-            { 
-                Destroy(child.GetChild(0).gameObject); 
+            {
+                Destroy(child.GetChild(0).gameObject);
             }
         }
     }
@@ -219,19 +231,24 @@ public class UIManager : MonoBehaviour
         selectCardButton.interactable = isACardSelected;
     }
 
-    public void UpdateGameEndText() {
+    public void UpdateGameEndText()
+    {
         bool victory = GameManager.instance.Player.CurrentLife > 0;
-        if(victory) {
+        if(victory)
+        {
             gameEndHeaderText.text = "VICTORY";
-        } else {
+        }
+        else
+        {
             gameEndHeaderText.text = string.Format(
-                "SLAIN ON {0}", 
+                "SLAIN ON {0}",
                 GameManager.instance.GetCurrentStageText());
         }
 
         // Check for the current spirit card, which has no starter
         string spiritText = "None";
-        if(CardManager.instance.GetCurrentCardData(Slot.Spirit) != null) {
+        if(CardManager.instance.GetCurrentCardData(Slot.Spirit) != null)
+        {
             spiritText = CardManager.instance.GetCurrentCardData(Slot.Spirit).Name;
         }
 

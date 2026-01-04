@@ -40,10 +40,14 @@ public class CardManager : MonoBehaviour
 
     public GameObject EffectUIPrefab { get { return effectUIPrefab; } }
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
 
@@ -61,7 +65,8 @@ public class CardManager : MonoBehaviour
     }
 
     #region Card Creation
-    private List<CardData> CardCreation() {
+    private List<CardData> CardCreation()
+    {
         List<CardData> cards = new() {
             // ===== Description Format =====
             // Normal Attack: "Attack for X"
@@ -140,11 +145,13 @@ public class CardManager : MonoBehaviour
     #endregion Card Creation
 
     #region Card Actions
-    public void Play(CardData cardData) {
+    public void Play(CardData cardData)
+    {
         Play(cardData, null);
     }
 
-    public void Play(CardData cardData, Enemy targetEnemy) {
+    public void Play(CardData cardData, Enemy targetEnemy)
+    {
         string description = cardData.Description;
 
         description.Split(". ").ToList().ForEach(action =>
@@ -152,11 +159,13 @@ public class CardManager : MonoBehaviour
         );
     }
 
-    private void PerformCardAction(string action, Enemy target, Slot slot) {
+    private void PerformCardAction(string action, Enemy target, Slot slot)
+    {
         string firstWord = action.Split(" ")[0];
         int amount;
 
-        switch(firstWord) {
+        switch(firstWord)
+        {
             case "Attack":
                 string[] attackParts = action.Split(", ");
 
@@ -164,18 +173,25 @@ public class CardManager : MonoBehaviour
                 bool isAOE = false;
                 bool isRandom = false;
                 int isMulti = 1;
-                for(int i = 1; i < attackParts.Length; i++) {
-                    if(attackParts[i].Contains("to all")) {
+                for(int i = 1; i < attackParts.Length; i++)
+                {
+                    if(attackParts[i].Contains("to all"))
+                    {
                         isAOE = true;
-                    } else if(attackParts[i].Contains("randomly")) {
+                    }
+                    else if(attackParts[i].Contains("randomly"))
+                    {
                         isRandom = true;
-                    } else if(attackParts[i].Contains("times")) {
+                    }
+                    else if(attackParts[i].Contains("times"))
+                    {
                         isMulti = int.Parse(attackParts[i].Split(" ")[0]);
                     }
                 }
 
                 // Attack based on the parsed info
-                for(int i = 0; i < isMulti; i++) {
+                for(int i = 0; i < isMulti; i++)
+                {
                     amount = int.Parse(attackParts[0].Split(" ")[2]);
 
                     DamageType attackType;
@@ -188,11 +204,16 @@ public class CardManager : MonoBehaviour
                         attackType = DamageType.Attack;
                     }
 
-                    if(isAOE) {
+                    if(isAOE)
+                    {
                         AttackEveryEnemy(amount, attackType);
-                    } else if(isRandom) {
+                    }
+                    else if(isRandom)
+                    {
                         AttackRandomEnemy(amount, attackType);
-                    } else {
+                    }
+                    else
+                    {
                         AttackUnit(amount, target, attackType);
                     }
                 }
@@ -229,25 +250,30 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    private void AttackEveryEnemy(int damage, DamageType attackType) {
+    private void AttackEveryEnemy(int damage, DamageType attackType)
+    {
         EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(enemy => {
             AttackUnit(damage, enemy, attackType);
         });
     }
 
-    private void AttackRandomEnemy(int damage, DamageType attackType) {
+    private void AttackRandomEnemy(int damage, DamageType attackType)
+    {
         List<Enemy> currentEnemies = EnemyManager.instance.GetCurrentEnemiesInScene();
         int randomEnemyIndex = UnityEngine.Random.Range(0, currentEnemies.Count);
         AttackUnit(damage, currentEnemies[randomEnemyIndex], attackType);
     }
 
-    private void AttackUnit(int amount, Enemy enemy, DamageType attackType) {
-        if(enemy == null) {
+    private void AttackUnit(int amount, Enemy enemy, DamageType attackType)
+    {
+        if(enemy == null)
+        {
             Debug.Log("Error: No target to attack!");
             return;
         }
 
-        if(amount < 1) {
+        if(amount < 1)
+        {
             Debug.Log(string.Format("Error: Not enough damage ({0})", amount));
             return;
         }
@@ -264,19 +290,24 @@ public class CardManager : MonoBehaviour
         enemy.TakeDamage(amount, GameManager.instance.Player, DamageType.Attack);
     }
     #endregion Card Actions
-    
-    private List<Sprite> LoadCardArtSprites() {
+
+    private List<Sprite> LoadCardArtSprites()
+    {
         List<Sprite> spriteList = new List<Sprite>();
 
         string cardArtFilePath = "Assets/Resources/Images/CardArt/";
         string[] files = Directory.GetFiles(cardArtFilePath, "*.png", SearchOption.TopDirectoryOnly);
 
-        foreach(var file in files) {
+        foreach(var file in files)
+        {
             var sprite = AssetDatabase.LoadAssetAtPath(file, typeof(Sprite));
 
-            if(sprite != null) {
+            if(sprite != null)
+            {
                 spriteList.Add((Sprite)sprite);
-            } else {
+            }
+            else
+            {
                 Debug.Log("Error! Sprite not loaded");
             }
         }
@@ -284,11 +315,14 @@ public class CardManager : MonoBehaviour
         return spriteList;
     }
 
-    public Sprite GetCardArtSprite(string cardName) {
+    public Sprite GetCardArtSprite(string cardName)
+    {
         string formattedName = cardName.Replace(" ", "");
 
-        for(int i = 0; i < cardArtList.Count; i++) {
-            if(cardArtList[i].name == formattedName + "CardArt") {
+        for(int i = 0; i < cardArtList.Count; i++)
+        {
+            if(cardArtList[i].name == formattedName + "CardArt")
+            {
                 return cardArtList[i];
             }
         }
@@ -297,12 +331,14 @@ public class CardManager : MonoBehaviour
         return null;
     }
 
-    private Rarity GetRandomRarity() {
+    private Rarity GetRandomRarity()
+    {
         float currentRarityPercSum = 0f;
         // Get a random float
         float randomF = UnityEngine.Random.Range(0f, 1f);
 
-        for(int i = 0; i < rarityPercentages.Count; i++) {
+        for(int i = 0; i < rarityPercentages.Count; i++)
+        {
             // Find the next rarity
             KeyValuePair<Rarity, float> currentPair = rarityPercentages.ElementAt(i);
             // Add its rate to a running sum
@@ -311,7 +347,8 @@ public class CardManager : MonoBehaviour
             currentRarityPercSum += currentPair.Value;
             // If the random float is less than the running sum, 
             // Return this rarity
-            if(randomF <= currentRarityPercSum) {
+            if(randomF <= currentRarityPercSum)
+            {
                 return currentPair.Key;
             }
         }
@@ -330,7 +367,7 @@ public class CardManager : MonoBehaviour
             CardData randomCardData = GetRandomCardData();
             // Ensure the random card has not already been added nor is it currently in the deck
             if(!cardDatas.Contains(randomCardData) && GetCurrentCardData(randomCardData.Slot) != randomCardData)
-            { 
+            {
                 cardDatas.Add(randomCardData);
             }
         }
@@ -338,12 +375,14 @@ public class CardManager : MonoBehaviour
         return cardDatas;
     }
 
-    public CardData GetRandomCardData() {
+    public CardData GetRandomCardData()
+    {
         Slot randomSlot = (Slot)UnityEngine.Random.Range(0, Enum.GetValues(typeof(Slot)).Length);
         return GetRandomCardData(randomSlot);
     }
 
-    public CardData GetRandomCardData(Slot slotType) {
+    public CardData GetRandomCardData(Slot slotType)
+    {
         Rarity randomRarity = GetRandomRarity();
 
         List<CardData> filterList = cardLibrary
@@ -353,13 +392,17 @@ public class CardManager : MonoBehaviour
         return filterList[randomIndex];
     }
 
-    public CardData GetStarterCardData(Slot slotType) {
+    public CardData GetStarterCardData(Slot slotType)
+    {
         List<CardData> filteredList = cardLibrary
             .FindAll(card => card.Slot == slotType)
             .FindAll(card => card.Rarity == Rarity.Starter);
-        if(filteredList.Count > 0) { 
+        if(filteredList.Count > 0)
+        {
             return filteredList[0];
-        } else {
+        }
+        else
+        {
             return null;
         }
     }
@@ -369,8 +412,10 @@ public class CardManager : MonoBehaviour
     /// </summary>
     /// <param name="slotType">The card type</param>
     /// <returns>A Card object, if card exists, otherwise null</returns>
-    public CardData GetCurrentCardData(Slot slotType) {
-        return slotType switch {
+    public CardData GetCurrentCardData(Slot slotType)
+    {
+        return slotType switch
+        {
             Slot.MainHand => mainHand,
             Slot.OffHand => offHand,
             Slot.Ally => ally,
@@ -381,8 +426,10 @@ public class CardManager : MonoBehaviour
         };
     }
 
-    public Sprite GetCardBaseRarityIconSprite(Rarity rarity) {
-        return rarity switch {
+    public Sprite GetCardBaseRarityIconSprite(Rarity rarity)
+    {
+        return rarity switch
+        {
             Rarity.Starter => cardBaseIconStarter,
             Rarity.Rare => cardBaseIconRare,
             _ => null,
@@ -403,8 +450,10 @@ public class CardManager : MonoBehaviour
         };
     }
 
-    public Sprite GetActionSprite(string actionType) {
-        return actionType.ToLower() switch {
+    public Sprite GetActionSprite(string actionType)
+    {
+        return actionType.ToLower() switch
+        {
             "attack" => actionIconSpriteAttack,
             "defend" => actionIconSpriteDefend,
             "heal" => actionIconSpriteHeal,
@@ -416,8 +465,10 @@ public class CardManager : MonoBehaviour
         };
     }
 
-    public void UpdateSlot(CardData newCardData) {
-        switch(newCardData.Slot) {
+    public void UpdateSlot(CardData newCardData)
+    {
+        switch(newCardData.Slot)
+        {
             case Slot.MainHand:
                 mainHand = newCardData;
                 break;
@@ -442,7 +493,8 @@ public class CardManager : MonoBehaviour
     /// <summary>
     /// Reset card slots to starting cards
     /// </summary>
-    public void Reset() {
+    public void Reset()
+    {
         // Setup starter slots
         mainHand = GetStarterCardData(Slot.MainHand);
         offHand = GetStarterCardData(Slot.OffHand);

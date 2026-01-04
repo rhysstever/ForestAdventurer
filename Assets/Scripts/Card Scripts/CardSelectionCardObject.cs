@@ -44,7 +44,7 @@ public class CardSelectionCardObject : CardObject
         if(cardData == DeckManager.instance.CurrentCardSelection)
         {
             DeckManager.instance.SetCurrentCardSelection(null);
-        } 
+        }
         else
         {
             DeckManager.instance.SetCurrentCardSelection(cardData);

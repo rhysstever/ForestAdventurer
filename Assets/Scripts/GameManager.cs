@@ -50,10 +50,14 @@ public class GameManager : MonoBehaviour
     public GameState CurrentGameState { get { return currentGameState; } }
     public CombatState CurrentCombatState { get { return currentCombatState; } }
 
-    private void Awake() {
-        if(instance == null) {
+    private void Awake()
+    {
+        if(instance == null)
+        {
             instance = this;
-        } else if(instance != this) {
+        }
+        else if(instance != this)
+        {
             Destroy(gameObject);
         }
     }
@@ -63,13 +67,16 @@ public class GameManager : MonoBehaviour
         ChangeMenuState(MenuState.MainMenu);
     }
 
-    public void ChangeMenuState(MenuState newMenuState) {
+    public void ChangeMenuState(MenuState newMenuState)
+    {
         currentMenuState = newMenuState;
 
-        switch(newMenuState) {
+        switch(newMenuState)
+        {
             case MenuState.MainMenu:
                 // Destroy the player if it exists
-                if(player != null) {
+                if(player != null)
+                {
                     Destroy(player.gameObject);
                 }
                 currentAreaIndex = -1;
@@ -84,7 +91,7 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(GameState.None);
                 ChangeCombatState(CombatState.None);
                 break;
-            case MenuState.Game:                
+            case MenuState.Game:
                 break;
             case MenuState.GameEnd:
                 ChangeGameState(GameState.None);
@@ -95,10 +102,12 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateMenuUI(newMenuState);
     }
 
-    public void ChangeGameState(GameState newGameState) {
+    public void ChangeGameState(GameState newGameState)
+    {
         currentGameState = newGameState;
 
-        switch(newGameState) {
+        switch(newGameState)
+        {
             case GameState.Combat:
                 ChangeCombatState(CombatState.CombatStart);
                 break;
@@ -117,10 +126,12 @@ public class GameManager : MonoBehaviour
         UIManager.instance.UpdateGameUI(newGameState);
     }
 
-    public void ChangeCombatState(CombatState newCombatState) {
+    public void ChangeCombatState(CombatState newCombatState)
+    {
         currentCombatState = newCombatState;
 
-        switch(newCombatState) {
+        switch(newCombatState)
+        {
             case CombatState.CombatStart:
                 EnemyManager.instance.SpawnNextWave();
                 DeckManager.instance.SetupForNewCombat();
@@ -132,10 +143,13 @@ public class GameManager : MonoBehaviour
             case CombatState.CombatEnemyTurn:
                 EnemyManager.instance.ProcessEffectsOnEnemies();
                 DeckManager.instance.DiscardHand();
-                if(EnemyManager.instance.IsWaveOver()) {
+                if(EnemyManager.instance.IsWaveOver())
+                {
                     ChangeCombatState(CombatState.CombatEnd);
                     return;
-                } else {
+                }
+                else
+                {
                     EnemyManager.instance.PerformEnemyRoundActions();
                 }
                 break;
