@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -215,12 +216,21 @@ public class DeckManager : MonoBehaviour
 
     public void DisplayDeckCards(Transform viewDeckCardParent)
     {
-        for(int i = 0; i < viewDeckCardParent.childCount; i++)
+        for(int i = 0; i < viewDeckCardParent.childCount; i += 2)
         {
+            Slot slot = (Slot)(i / 2);
+
+            // Spawn display card for each slot
             Transform child = viewDeckCardParent.GetChild(i);
-            CardData cardDataToDisplay = CardManager.instance.GetCurrentCardData((Slot)i);
+            CardData cardDataToDisplay = CardManager.instance.GetCurrentCardData(slot);
 
             SpawnCard(displayCardPrefab, cardDataToDisplay, child.position, child);
+
+            // Update text for the card count
+            if(viewDeckCardParent.GetChild(i + 1).TryGetComponent<TMP_Text>(out var textObj))
+            {
+                textObj.text = string.Format("x {0}", CharacterManager.instance.GetSlotCardCountOfChosenCharacter(slot));
+            }
         }
     }
 }
