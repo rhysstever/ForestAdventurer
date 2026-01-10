@@ -36,7 +36,7 @@ public class InteractableCardObject : CardObject
                 TargettingManager.instance.Target != null);
         }
 
-        cardCollider.enabled = !UIManager.instance.IsDeckBeingViewed;
+        cardCollider.enabled = !UIManager.instance.IsSubMenuShowing;
     }
 
     private void OnMouseEnter()

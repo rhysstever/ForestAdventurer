@@ -13,15 +13,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject mainMenuButtonsParent, combatUIParent, nonCombatUIParent, cardSelectionUIParent, wellUIParent;
     [SerializeField]
-    private GameObject viewDeckUIParent, viewDeckCardsUIParent;
+    private GameObject gameInfoUIParent, viewDeckUIParent, viewDeckCardsUIParent;
     [SerializeField]
-    private Button mainMenuToCharacterSelectButton, quitButton, viewDeckButton, closeViewDeckButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
+    private Button mainMenuToCharacterSelectButton, quitButton, gameInfoButton, closeGameInfoButton, viewDeckButton, closeViewDeckButton, endTurnButton, selectCardButton, skipButton, drinkWellButton, gameEndToMainMenuButton;
     [SerializeField]
     private TMP_Text characterSelectInfoText, gameAreaStageText, gameEndHeaderText, gameEndDeckInfoText;
 
-    private bool isDeckBeingViewed;
+    private bool isSubMenuShowing;
 
-    public bool IsDeckBeingViewed { get { return isDeckBeingViewed; } }
+    public bool IsSubMenuShowing { get { return isSubMenuShowing; } }
 
     private void Awake()
     {
@@ -43,6 +43,8 @@ public class UIManager : MonoBehaviour
             Camera.main.GetComponent<CameraPan>().PanCameraDown();
         });
         quitButton.onClick.AddListener(() => Application.Quit());
+        gameInfoButton.onClick.AddListener(() => ShowGameInfo());
+        closeGameInfoButton.onClick.AddListener(() => HideGameInfo());
         viewDeckButton.onClick.AddListener(() => ShowDeckInfo());
         closeViewDeckButton.onClick.AddListener(() => HideDeckInfo());
         endTurnButton.onClick.AddListener(() => GameManager.instance.ChangeCombatState(CombatState.CombatEnemyTurn));
@@ -84,6 +86,7 @@ public class UIManager : MonoBehaviour
                 characterSelectUIParent.SetActive(false);
                 gameUIParent.SetActive(true);
                 gameEndUIParent.SetActive(false);
+                HideGameInfo();
                 HideDeckInfo();
                 break;
             case MenuState.GameEnd:
@@ -175,9 +178,25 @@ public class UIManager : MonoBehaviour
         gameAreaStageText.text = GameManager.instance.GetCurrentStageText();
     }
 
+    private void ShowGameInfo()
+    {
+        isSubMenuShowing = true;
+        gameInfoUIParent.SetActive(true);
+        gameInfoButton.gameObject.SetActive(false);
+        UpdateButtonInteractability(false);
+    }
+
+    private void HideGameInfo()
+    {
+        isSubMenuShowing = false;
+        gameInfoUIParent.SetActive(false);
+        gameInfoButton.gameObject.SetActive(true);
+        UpdateButtonInteractability(true);
+    }
+
     private void ShowDeckInfo()
     {
-        isDeckBeingViewed = true;
+        isSubMenuShowing = true;
         viewDeckUIParent.SetActive(true);
         viewDeckButton.gameObject.SetActive(false);
 
@@ -188,7 +207,7 @@ public class UIManager : MonoBehaviour
 
     private void HideDeckInfo()
     {
-        isDeckBeingViewed = false;
+        isSubMenuShowing = false;
         viewDeckUIParent.SetActive(false);
         viewDeckButton.gameObject.SetActive(true);
 
@@ -223,6 +242,21 @@ public class UIManager : MonoBehaviour
         if(skipButton.gameObject.activeSelf)
         {
             skipButton.interactable = interactable;
+        }
+
+        if(drinkWellButton.gameObject.activeSelf)
+        {
+            drinkWellButton.interactable = interactable;
+        }
+
+        if(viewDeckButton.gameObject.activeSelf)
+        {
+            viewDeckButton.interactable = interactable;
+        }
+
+        if(gameInfoButton.gameObject.activeSelf)
+        {
+            gameInfoButton.interactable = interactable;
         }
     }
 

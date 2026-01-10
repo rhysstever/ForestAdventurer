@@ -14,7 +14,7 @@ public class CardSelectionCardObject : CardObject
     protected void Update()
     {
         cardToBePlayedRing.SetActive(cardData == DeckManager.instance.CurrentCardSelection);
-        cardCollider.enabled = !UIManager.instance.IsDeckBeingViewed;
+        cardCollider.enabled = !UIManager.instance.IsSubMenuShowing;
     }
 
     private void OnMouseOver()

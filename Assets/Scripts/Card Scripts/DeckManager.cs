@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DeckManager : MonoBehaviour
 {
@@ -60,8 +59,7 @@ public class DeckManager : MonoBehaviour
 
     public List<CardData> GenerateDeck()
     {
-        List<CardData> cards = new List<CardData>();
-        Character chosenCharacter = CharacterManager.instance.ChosenCharacter;
+        List<CardData> cards = new();
 
         foreach(Slot slot in Enum.GetValues(typeof(Slot)).Cast<Slot>().ToList())
         {
