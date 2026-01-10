@@ -155,7 +155,7 @@ public class UIManager : MonoBehaviour
     {
         int[] deckStructure = CharacterManager.instance.GetCharacterDeckStructure(character);
         characterSelectInfoText.text = string.Format(
-            "{0}\n" +
+            "{0} Deck\n" +
             "\n{1} main hands" +
             "\n{2} off hands" +
             "\n{3} allies" +
