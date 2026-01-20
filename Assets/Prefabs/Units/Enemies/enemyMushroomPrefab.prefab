@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 25338055697610524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.75, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -394,7 +394,7 @@ Transform:
   m_GameObject: {fileID: 3018702773577800538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.25, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -529,11 +529,6 @@ MonoBehaviour:
   effectsParent: {fileID: 442638736410728267}
   effectTrans1: {fileID: 6860954968842074459}
   effectTrans2: {fileID: 2474428185457871075}
-  damageTakenParticlesPrefab: {fileID: 0}
-  damageBlockedParticlesPrefab: {fileID: 0}
-  healParticlesPrefab: {fileID: 0}
-  burnedParticlesPrefab: {fileID: 0}
-  poisonedParticlesPrefab: {fileID: 0}
   maxLife: 8
   currentDefense: 0
   currentBurn: 0

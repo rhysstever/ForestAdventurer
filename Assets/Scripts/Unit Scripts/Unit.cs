@@ -178,7 +178,7 @@ public class Unit : MonoBehaviour
     public IEnumerator ProcessEffects()
     {
         WaitForSeconds betweenEffectsDelayWait = new WaitForSeconds(1);
-        WaitForSeconds effectTriggerToDamageDelayWait = new WaitForSeconds(0.25f);
+        WaitForSeconds effectTriggerToDamageDelayWait = new WaitForSeconds(0.5f);
 
         if(currentBurn > 0)
         {

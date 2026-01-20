@@ -39,8 +39,11 @@ public class GameManager : MonoBehaviour
 
     // Instantiated in code
     private Player player;
+    [SerializeField]
     private MenuState currentMenuState;
+    [SerializeField]
     private GameState currentGameState;
+    [SerializeField]
     private CombatState currentCombatState;
     private int currentAreaIndex;
     private int currentStageIndex;
@@ -132,6 +135,7 @@ public class GameManager : MonoBehaviour
     public void ChangeCombatState(CombatState newCombatState)
     {
         currentCombatState = newCombatState;
+        UIManager.instance.UpdateCombatUI(newCombatState);
 
         switch(newCombatState)
         {
@@ -157,8 +161,6 @@ public class GameManager : MonoBehaviour
                 DeckManager.instance.DiscardHand();
                 break;
         }
-
-        UIManager.instance.UpdateCombatUI(newCombatState);
     }
 
     public void StartGame()

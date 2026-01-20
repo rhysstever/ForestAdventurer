@@ -130,6 +130,8 @@ public class UIManager : MonoBehaviour
 
     public void UpdateCombatUI(CombatState combatState)
     {
+        endTurnButton.interactable = combatState == CombatState.CombatPlayerTurn;
+
         switch(combatState)
         {
             case CombatState.CombatStart:
