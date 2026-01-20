@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e3d0dab3e450149857c45e36d2caee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitSpriteRenderer: {fileID: 0}
   lifeText: {fileID: 1786477413763081510}
   defenseText: {fileID: 6197874259440982837}
   defenseParent: {fileID: 8199231744967432922}
@@ -445,7 +446,6 @@ MonoBehaviour:
   effectTrans1: {fileID: 3900064309980977564}
   effectTrans2: {fileID: 4063457963306556167}
   maxLife: 10
-  currentLife: 0
   currentDefense: 0
   currentBurn: 0
   currentPoison: 0

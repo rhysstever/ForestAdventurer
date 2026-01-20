@@ -522,14 +522,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00ec0f842ec90a41a2f655ec366077f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitSpriteRenderer: {fileID: 8626770220398758777}
   lifeText: {fileID: 9184009717036956153}
   defenseText: {fileID: 8216573357952119562}
   defenseParent: {fileID: 4277714443026142786}
   effectsParent: {fileID: 442638736410728267}
   effectTrans1: {fileID: 6860954968842074459}
   effectTrans2: {fileID: 2474428185457871075}
+  damageTakenParticlesPrefab: {fileID: 0}
+  damageBlockedParticlesPrefab: {fileID: 0}
+  healParticlesPrefab: {fileID: 0}
+  burnedParticlesPrefab: {fileID: 0}
+  poisonedParticlesPrefab: {fileID: 0}
   maxLife: 50
-  currentLife: 0
   currentDefense: 0
   currentBurn: 0
   currentPoison: 0

@@ -15,6 +15,8 @@ public class Unit : MonoBehaviour
 {
     // Instantiated in inspector
     [SerializeField]
+    private SpriteRenderer unitSpriteRenderer;
+    [SerializeField]
     private TMP_Text lifeText, defenseText;
     [SerializeField]
     private GameObject defenseParent, effectsParent;
@@ -181,9 +183,11 @@ public class Unit : MonoBehaviour
         if(currentBurn > 0)
         {
             AudioManager.instance.PlayBurnAudio();
+            unitSpriteRenderer.color = ParticlesManager.instance.BurnColor;
             // TODO: Activate burn visual effect
             yield return effectTriggerToDamageDelayWait;
             TakeDamage(currentBurn, null, DamageType.Burn);
+            unitSpriteRenderer.color = ParticlesManager.instance.ResetColor;
             currentBurn--;
             UpdateEffectsUI();
         }
@@ -192,9 +196,11 @@ public class Unit : MonoBehaviour
         {
             yield return betweenEffectsDelayWait;
             AudioManager.instance.PlayPoisonAudio();
+            unitSpriteRenderer.color = ParticlesManager.instance.PoisonColor;
             // TODO: Activate poison visual effect
             yield return effectTriggerToDamageDelayWait;
             TakeDamage(currentPoison, null, DamageType.Poison);
+            unitSpriteRenderer.color = ParticlesManager.instance.ResetColor;
             currentPoison--;
             UpdateEffectsUI();
         }

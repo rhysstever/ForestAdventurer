@@ -48,6 +48,9 @@ TagManager:
   - name: Collidable
     uniqueID: 1771256265
     locked: 0
+  - name: Effects
+    uniqueID: 1458284633
+    locked: 0
   - name: Mouse
     uniqueID: 722927429
     locked: 0
