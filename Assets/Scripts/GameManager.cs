@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public enum MenuState
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
     private CombatState currentCombatState;
     private int currentAreaIndex;
     private int currentStageIndex;
+
+    private IEnumerator playerEffectsCoroutine, enemyEffectsCoroutine;
 
     // Properties
     public Player Player { get { return player; } }
@@ -137,21 +140,14 @@ public class GameManager : MonoBehaviour
                 DeckManager.instance.SetupForNewCombat();
                 break;
             case CombatState.CombatPlayerTurn:
-                player.ProcessEffects();
+                playerEffectsCoroutine = player.ProcessEffects();
+                StartCoroutine(playerEffectsCoroutine);
                 DeckManager.instance.DealHand();
                 break;
             case CombatState.CombatEnemyTurn:
-                EnemyManager.instance.ProcessEffectsOnEnemies();
                 DeckManager.instance.DiscardHand();
-                if(EnemyManager.instance.IsWaveOver())
-                {
-                    ChangeCombatState(CombatState.CombatEnd);
-                    return;
-                }
-                else
-                {
-                    EnemyManager.instance.PerformEnemyRoundActions();
-                }
+                enemyEffectsCoroutine = EnemyManager.instance.ProcessEffectsOnEnemies();
+                StartCoroutine(enemyEffectsCoroutine);
                 break;
             case CombatState.CombatEnd:
                 player.PostCombatReset();

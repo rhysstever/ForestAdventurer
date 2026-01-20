@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -172,11 +173,16 @@ public class Unit : MonoBehaviour
         UpdateEffectsUI();
     }
 
-    public void ProcessEffects()
+    public IEnumerator ProcessEffects()
     {
+        WaitForSeconds betweenEffectsDelayWait = new WaitForSeconds(1);
+        WaitForSeconds effectTriggerToDamageDelayWait = new WaitForSeconds(0.25f);
+
         if(currentBurn > 0)
         {
             AudioManager.instance.PlayBurnAudio();
+            // TODO: Activate burn visual effect
+            yield return effectTriggerToDamageDelayWait;
             TakeDamage(currentBurn, null, DamageType.Burn);
             currentBurn--;
             UpdateEffectsUI();
@@ -184,8 +190,13 @@ public class Unit : MonoBehaviour
 
         if(currentPoison > 0)
         {
+            yield return betweenEffectsDelayWait;
             AudioManager.instance.PlayPoisonAudio();
+            // TODO: Activate poison visual effect
+            yield return effectTriggerToDamageDelayWait;
             TakeDamage(currentPoison, null, DamageType.Poison);
+            currentPoison--;
+            UpdateEffectsUI();
         }
     }
 

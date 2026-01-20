@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,6 +20,9 @@ public class EnemyManager : MonoBehaviour
     // Instantiated in code
     private List<Round> enemyWaves;
     private int currentWaveNum;
+
+    private IEnumerator enemyActionsCoroutine;
+    private IEnumerator enemyEffectsCoroutine;
 
     private void Awake()
     {
@@ -74,9 +78,22 @@ public class EnemyManager : MonoBehaviour
         };
     }
 
-    public void PerformEnemyRoundActions()
+    public void StartEnemyCombatTurn()
     {
-        GetCurrentEnemiesInScene().ForEach(enemy => enemy.PerformRoundAction());
+        enemyActionsCoroutine = PerformEnemyRoundActions(GetCurrentEnemiesInScene());
+        StartCoroutine(enemyActionsCoroutine);
+    }
+
+    private IEnumerator PerformEnemyRoundActions(List<Enemy> enemies)
+    {
+        WaitForSeconds enemyDelayWait = new WaitForSeconds(1);
+        int enemyIndex = 0;
+        while(enemyIndex < enemies.Count)
+        {
+            yield return enemyDelayWait;
+            enemies[enemyIndex].PerformRoundAction();
+            enemyIndex++;
+        }
 
         if(IsWaveOver())
         {
@@ -194,9 +211,28 @@ public class EnemyManager : MonoBehaviour
         return enemies.GetComponentsInChildren<Enemy>().ToList();
     }
 
-    public void ProcessEffectsOnEnemies()
+    public IEnumerator ProcessEffectsOnEnemies()
     {
-        GetCurrentEnemiesInScene().ForEach(enemy => enemy.ProcessEffects());
+        WaitForSeconds enemyEffectsDelayWait = new WaitForSeconds(1);
+        int enemyIndex = 0;
+        List<Enemy> enemies = GetCurrentEnemiesInScene();
+
+        while(enemyIndex < enemies.Count)
+        {
+            yield return enemyEffectsDelayWait;
+            enemyEffectsCoroutine = enemies[enemyIndex].ProcessEffects();
+            StartCoroutine(enemyEffectsCoroutine);
+            enemyIndex++;
+        }
+
+        if(IsWaveOver())
+        {
+            GameManager.instance.ChangeCombatState(CombatState.CombatEnd);
+        }
+        else
+        {
+            StartEnemyCombatTurn();
+        }
     }
 
     public void Reset()

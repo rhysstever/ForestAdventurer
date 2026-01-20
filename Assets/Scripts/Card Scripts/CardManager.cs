@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -34,6 +36,8 @@ public class CardManager : MonoBehaviour
     private List<CardData> cardLibrary;
     private Dictionary<Rarity, float> rarityPercentages;
     private List<Sprite> cardArtList;
+
+    private IEnumerator cardPlayCoroutine;
 
     // Slots
     private CardData mainHand, offHand, spirit, ally, spell, drink;
@@ -119,7 +123,7 @@ public class CardManager : MonoBehaviour
             new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, "Burn for 2"),
             new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, "Heal for 2"),
             new CardData("Light Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, "Heal for 4"),
-            new CardData("Dark Spirit", Slot.Spirit, Rarity.Rare, TargetType.Self, "Poison for 4"),
+            new CardData("Dark Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, "Poison for 4"),
 
             // Spell cards
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, "Attack for 1, randomly"),
@@ -152,11 +156,30 @@ public class CardManager : MonoBehaviour
 
     public void Play(CardData cardData, Enemy targetEnemy)
     {
-        string description = cardData.Description;
+        cardPlayCoroutine = ProcessCard(cardData, targetEnemy);
+        StartCoroutine(cardPlayCoroutine);
+    }
 
-        description.Split(". ").ToList().ForEach(action =>
-            PerformCardAction(action, targetEnemy, cardData.Slot)
-        );
+    private IEnumerator ProcessCard(CardData cardData, Enemy targetEnemy)
+    {
+        WaitForSeconds firstActionDelayWait = new WaitForSeconds(1);
+        WaitForSeconds actionDelayWait = new WaitForSeconds(0.5f);
+        List<string> actions = cardData.Description.Split(". ").ToList();
+        int actionIndex = 0;
+        // Apply a small delay before performing each action
+        while(actionIndex < actions.Count)
+        {
+            if(actionIndex == 0)
+            {
+                yield return firstActionDelayWait;
+            }
+            else
+            {
+                yield return actionDelayWait;
+            }
+            PerformCardAction(actions[actionIndex], targetEnemy, cardData.Slot);
+            actionIndex++;
+        }
     }
 
     private void PerformCardAction(string action, Enemy target, Slot slot)
