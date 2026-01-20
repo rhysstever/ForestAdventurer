@@ -147,6 +147,7 @@ public class GameManager : MonoBehaviour
                 playerEffectsCoroutine = player.ProcessEffects();
                 StartCoroutine(playerEffectsCoroutine);
                 DeckManager.instance.DealHand();
+                EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(e => e.UpdateNextActionUI());
                 break;
             case CombatState.CombatEnemyTurn:
                 DeckManager.instance.DiscardHand();

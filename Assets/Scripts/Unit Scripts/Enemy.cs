@@ -117,7 +117,7 @@ public class Enemy : Unit
 
         // Post-action updates
         IncrementRound();
-        UpdateNextActionUI();
+        HideNextActionUI();
     }
 
     public override void TakeDamage(int amount, DamageType damageType)
