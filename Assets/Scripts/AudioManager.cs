@@ -8,9 +8,25 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Transform audioParentTrans;
     [SerializeField]
-    private GameObject damageTakenAudioPrefab, damageBlockedAudioPrefab, healAudioPrefab,
-        attackAudioPrefab, spellAttackAudioPrefab, spellBuffAudioPrefab,
-        giveDefenseAudioPrefab, burnAudioPrefab, poisonAudioPrefab, spikesAudioPrefab;
+    private GameObject damageTakenAudioPrefab;
+    [SerializeField]
+    private GameObject damageBlockedAudioPrefab;
+    [SerializeField]
+    private GameObject healAudioPrefab;
+    [SerializeField]
+    private GameObject attackAudioPrefab;
+    [SerializeField]
+    private GameObject spellAttackAudioPrefab;
+    [SerializeField]
+    private GameObject spellBuffAudioPrefab;
+    [SerializeField]
+    private GameObject giveDefenseAudioPrefab;
+    [SerializeField]
+    private GameObject burnAudioPrefab;
+    [SerializeField]
+    private GameObject poisonAudioPrefab;
+    [SerializeField]
+    private GameObject spikesAudioPrefab;
 
     private void Awake()
     {
