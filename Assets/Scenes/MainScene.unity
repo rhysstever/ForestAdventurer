@@ -1250,10 +1250,10 @@ MonoBehaviour:
   healParticlePrefab: {fileID: 0}
   burnedParticlePrefab: {fileID: 0}
   poisonedParticlePrefab: {fileID: 0}
-  resetColor: {r: 1, g: 1, b: 1, a: 0}
-  takeDamageColor: {r: 1, g: 0.4575472, b: 0.4575472, a: 0}
-  burnColor: {r: 1, g: 0.80566037, b: 0.514151, a: 0}
-  poisonColor: {r: 0.5637544, g: 1, b: 0.504717, a: 0}
+  resetColor: {r: 1, g: 1, b: 1, a: 1}
+  takeDamageColor: {r: 1, g: 0.4575472, b: 0.4575472, a: 1}
+  burnColor: {r: 1, g: 0.80566037, b: 0.514151, a: 1}
+  poisonColor: {r: 0.5637544, g: 1, b: 0.504717, a: 1}
 --- !u!1 &236213883
 GameObject:
   m_ObjectHideFlags: 0

@@ -186,8 +186,8 @@ public class Unit : MonoBehaviour
             unitSpriteRenderer.color = ParticlesManager.instance.BurnColor;
             // TODO: Activate burn visual effect
             yield return effectTriggerToDamageDelayWait;
-            TakeDamage(currentBurn, null, DamageType.Burn);
             unitSpriteRenderer.color = ParticlesManager.instance.ResetColor;
+            TakeDamage(currentBurn, null, DamageType.Burn);
             currentBurn--;
             UpdateEffectsUI();
         }
@@ -199,8 +199,8 @@ public class Unit : MonoBehaviour
             unitSpriteRenderer.color = ParticlesManager.instance.PoisonColor;
             // TODO: Activate poison visual effect
             yield return effectTriggerToDamageDelayWait;
-            TakeDamage(currentPoison, null, DamageType.Poison);
             unitSpriteRenderer.color = ParticlesManager.instance.ResetColor;
+            TakeDamage(currentPoison, null, DamageType.Poison);
             currentPoison--;
             UpdateEffectsUI();
         }
