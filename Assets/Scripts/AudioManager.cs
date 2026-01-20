@@ -38,51 +38,51 @@ public class AudioManager : MonoBehaviour
 
     public void PlayDamageTakenAudio()
     {
-        Instantiate(damageTakenAudioPrefab, audioParentTrans);
+        //Instantiate(damageTakenAudioPrefab, audioParentTrans);
     }
 
     public void PlayDamageBlockedAudio()
     {
-        Instantiate(damageBlockedAudioPrefab, audioParentTrans);
+        //Instantiate(damageBlockedAudioPrefab, audioParentTrans);
     }
 
     public void PlayHealAudio()
     {
-        Instantiate(healAudioPrefab, audioParentTrans);
+        //Instantiate(healAudioPrefab, audioParentTrans);
     }
 
     public void PlayAttackAudio()
     {
-        Instantiate(attackAudioPrefab, audioParentTrans);
+        //Instantiate(attackAudioPrefab, audioParentTrans);
     }
 
     public void PlaySpellAttackAudio()
     {
-        Instantiate(spellAttackAudioPrefab, audioParentTrans);
+        //Instantiate(spellAttackAudioPrefab, audioParentTrans);
     }
 
     public void PlaySpellBuffAudio()
     {
-        Instantiate(spellBuffAudioPrefab, audioParentTrans);
+        //Instantiate(spellBuffAudioPrefab, audioParentTrans);
     }
 
     public void PlayGiveDefenseAudio()
     {
-        Instantiate(giveDefenseAudioPrefab, audioParentTrans);
+        //Instantiate(giveDefenseAudioPrefab, audioParentTrans);
     }
 
     public void PlayBurnAudio()
     {
-        Instantiate(burnAudioPrefab, audioParentTrans);
+        //Instantiate(burnAudioPrefab, audioParentTrans);
     }
 
     public void PlayPoisonAudio()
     {
-        Instantiate(poisonAudioPrefab, audioParentTrans);
+        //Instantiate(poisonAudioPrefab, audioParentTrans);
     }
 
     public void PlaySpikesAudio()
     {
-        Instantiate(spikesAudioPrefab, audioParentTrans);
+        //Instantiate(spikesAudioPrefab, audioParentTrans);
     }
 }
