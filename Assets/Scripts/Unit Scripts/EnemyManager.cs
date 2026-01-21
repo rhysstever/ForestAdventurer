@@ -87,12 +87,13 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator PerformEnemyRoundActions(List<Enemy> enemies)
     {
         WaitForSeconds enemyDelayWait = new WaitForSeconds(1);
+        WaitForSeconds endOfEnemyTurnsDelayWait = new WaitForSeconds(1);
         int enemyIndex = 0;
         while(enemyIndex < enemies.Count)
         {
-            yield return enemyDelayWait;
             if(enemies[enemyIndex].CurrentLife > 0)
             {
+                yield return enemyDelayWait;
                 enemies[enemyIndex].PerformRoundAction();
             }
             enemyIndex++;
@@ -104,6 +105,7 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
+            yield return endOfEnemyTurnsDelayWait;
             GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
         }
     }
@@ -222,9 +224,12 @@ public class EnemyManager : MonoBehaviour
 
         while(enemyIndex < enemies.Count)
         {
-            yield return enemyEffectsDelayWait;
-            enemyEffectsCoroutine = enemies[enemyIndex].ProcessEffects();
-            StartCoroutine(enemyEffectsCoroutine);
+            if(enemies[enemyIndex].HasEffectsToProcess())
+            {
+                yield return enemyEffectsDelayWait;
+                enemyEffectsCoroutine = enemies[enemyIndex].ProcessEffects();
+                StartCoroutine(enemyEffectsCoroutine);
+            }
             enemyIndex++;
         }
 

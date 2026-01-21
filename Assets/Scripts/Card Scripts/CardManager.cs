@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using static AudioManager;
@@ -109,14 +108,14 @@ public class CardManager : MonoBehaviour
             //new CardData("Arcane Focus", Slot.OffHand, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
 
             // Ally cards
-            new CardData("Squirrel", Slot.Ally, Rarity.Starter, TargetType.Unit, onAllyAudioDelegate, "Attack for 1"),
-            new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, onAllyAudioDelegate, "Heal for 1"),
-            new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Unit, onAllyAudioDelegate, "Poison for 1"),
-            new CardData("Newt", Slot.Ally, Rarity.Common, TargetType.Unit, onAllyAudioDelegate, "Burn for 1"),
+            new CardData("Squirrel", Slot.Ally, Rarity.Starter, TargetType.Unit, onSquirrelAudioDelegate, "Attack for 1"),
+            new CardData("Frog", Slot.Ally, Rarity.Common, TargetType.Self, onFrogAudioDelegate, "Heal for 1"),
+            new CardData("Rat", Slot.Ally, Rarity.Common, TargetType.Unit, onRatAudioDelegate, "Poison for 1"),
+            new CardData("Newt", Slot.Ally, Rarity.Common, TargetType.Unit, onNewtAudioDelegate, "Burn for 1"),
             //new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
-            new CardData("Toad", Slot.Ally, Rarity.Rare, TargetType.Unit, onAllyAudioDelegate, "Heal for 1. Poison for 1"),
-            new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.None, onAllyAudioDelegate, "Spike for 1"),
-            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, onAllyAudioDelegate, "Heal for 3"),   // TODO: change to "Draw 1 card" when drawing is implemented
+            new CardData("Toad", Slot.Ally, Rarity.Rare, TargetType.Unit, onToadAudioDelegate, "Heal for 1. Poison for 1"),
+            new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.None, onPorcupineAudioDelegate, "Spike for 1"),
+            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, onHamsterAudioDelegate, "Heal for 3"),   // TODO: change to "Draw 1 card" when drawing is implemented
 
             // Spirit cards
             new CardData("Earth Spirit", Slot.Spirit, Rarity.Starter, TargetType.Self, onDefendAudioDelegate, "Defend for 2"),

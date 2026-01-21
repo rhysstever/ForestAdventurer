@@ -174,6 +174,11 @@ public class Unit : MonoBehaviour
         UpdateEffectsUI();
     }
 
+    public bool HasEffectsToProcess()
+    {
+        return currentBurn > 0 || currentPoison > 0;
+    }
+
     public IEnumerator ProcessEffects()
     {
         WaitForSeconds betweenEffectsDelayWait = new WaitForSeconds(1);

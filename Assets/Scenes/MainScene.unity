@@ -1015,7 +1015,6 @@ GameObject:
   - component: {fileID: 231419617}
   - component: {fileID: 231419618}
   - component: {fileID: 231419619}
-  - component: {fileID: 231419622}
   - component: {fileID: 231419623}
   - component: {fileID: 231419620}
   m_Layer: 0
@@ -1045,8 +1044,8 @@ Transform:
   - {fileID: 848342543}
   - {fileID: 1819420467}
   - {fileID: 529048174}
-  - {fileID: 236213884}
   - {fileID: 322939597}
+  - {fileID: 861787934}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &231419615
@@ -1212,39 +1211,6 @@ MonoBehaviour:
   opossumSprite: {fileID: -5515171930948586337, guid: f852d1df703aab44e8cacccaf51e8a0f, type: 3}
   otterSprite: {fileID: 6151593519759729981, guid: f852d1df703aab44e8cacccaf51e8a0f, type: 3}
   skunkSprite: {fileID: 5915982472212450843, guid: f852d1df703aab44e8cacccaf51e8a0f, type: 3}
---- !u!114 &231419622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231419612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d93a6b36f52734ababe9bfd30ce6b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioParentTrans: {fileID: 236213884}
-  damageTakenAudioPrefabs:
-  - {fileID: 3159440694739109376, guid: 38460d66f16cfed43826a79dab454448, type: 3}
-  - {fileID: 3159440694739109376, guid: ad31175486fb9274d9b3782ecec0201b, type: 3}
-  - {fileID: 3159440694739109376, guid: 1911ea9b01042054ba573bd14f57eb5d, type: 3}
-  damageBlockedAudioPrefabs:
-  - {fileID: 3159440694739109376, guid: 041655a2dd3b72f41a2e0422b516a77a, type: 3}
-  - {fileID: 3159440694739109376, guid: a2df83f7c369a4d4fb2a44e48f3e06e9, type: 3}
-  - {fileID: 3159440694739109376, guid: 490c352fdbcf3f3498a7d8d08f0dc559, type: 3}
-  healAudioPrefab: {fileID: 3159440694739109376, guid: f317700dc62ed694791e132e708189a0, type: 3}
-  attackAudioPrefabs:
-  - {fileID: 3159440694739109376, guid: 22f914201598e614690f132470ee6f4d, type: 3}
-  - {fileID: 3159440694739109376, guid: 0d5204ce1ae2c7c46852de20a0717bd8, type: 3}
-  - {fileID: 3159440694739109376, guid: 27c2d77e99e43c046b063226e3886475, type: 3}
-  spellAttackAudioPrefab: {fileID: 3159440694739109376, guid: 0dedf518e3fac3a409b78e6b640ed51d, type: 3}
-  spellBuffAudioPrefab: {fileID: 3159440694739109376, guid: e35691bcaa565a746860eb8bbdc6c347, type: 3}
-  giveDefenseAudioPrefab: {fileID: 3159440694739109376, guid: fd61582cd3c805e46ac5d2f0b8b2f970, type: 3}
-  burnAudioPrefab: {fileID: 3159440694739109376, guid: a0db8def48b6f3a42bac9d76413c12ec, type: 3}
-  poisonAudioPrefab: {fileID: 3159440694739109376, guid: 49a8134b315266b499e9cfa17f3299c2, type: 3}
-  spikesAudioPrefab: {fileID: 3159440694739109376, guid: 444c88dec21928b4086cae1e9567fa1c, type: 3}
-  drinkAudioPrefab: {fileID: 3159440694739109376, guid: 632b8032c21734b4a82d71eaf91f0b4b, type: 3}
 --- !u!114 &231419623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,37 +1233,6 @@ MonoBehaviour:
   takeDamageColor: {r: 1, g: 0.4575472, b: 0.4575472, a: 1}
   burnColor: {r: 1, g: 0.80566037, b: 0.514151, a: 1}
   poisonColor: {r: 0.5637544, g: 1, b: 0.504717, a: 1}
---- !u!1 &236213883
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 236213884}
-  m_Layer: 0
-  m_Name: AudioParent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &236213884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 236213883}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 231419613}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &287315100
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,6 +3325,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 231419613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &861787933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861787934}
+  - component: {fileID: 861787935}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &861787934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861787933}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 231419613}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861787935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861787933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d93a6b36f52734ababe9bfd30ce6b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioParentTrans: {fileID: 0}
+  damageTakenAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: 38460d66f16cfed43826a79dab454448, type: 3}
+  - {fileID: 3159440694739109376, guid: ad31175486fb9274d9b3782ecec0201b, type: 3}
+  - {fileID: 3159440694739109376, guid: 1911ea9b01042054ba573bd14f57eb5d, type: 3}
+  damageBlockedAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: 041655a2dd3b72f41a2e0422b516a77a, type: 3}
+  - {fileID: 3159440694739109376, guid: a2df83f7c369a4d4fb2a44e48f3e06e9, type: 3}
+  - {fileID: 3159440694739109376, guid: 490c352fdbcf3f3498a7d8d08f0dc559, type: 3}
+  healAudioPrefab: {fileID: 3159440694739109376, guid: f317700dc62ed694791e132e708189a0, type: 3}
+  attackAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: 22f914201598e614690f132470ee6f4d, type: 3}
+  - {fileID: 3159440694739109376, guid: 0d5204ce1ae2c7c46852de20a0717bd8, type: 3}
+  - {fileID: 3159440694739109376, guid: 27c2d77e99e43c046b063226e3886475, type: 3}
+  squirrelAudioPrefab: {fileID: 0}
+  frogAudioPrefab: {fileID: 0}
+  ratAudioPrefab: {fileID: 0}
+  newtAudioPrefab: {fileID: 0}
+  toadAudioPrefab: {fileID: 0}
+  porcupineAudioPrefab: {fileID: 0}
+  hamsterAudioPrefab: {fileID: 0}
+  spellAttackAudioPrefab: {fileID: 3159440694739109376, guid: 0dedf518e3fac3a409b78e6b640ed51d, type: 3}
+  giveDefenseAudioPrefab: {fileID: 3159440694739109376, guid: fd61582cd3c805e46ac5d2f0b8b2f970, type: 3}
+  burnAudioPrefab: {fileID: 3159440694739109376, guid: a0db8def48b6f3a42bac9d76413c12ec, type: 3}
+  poisonAudioPrefab: {fileID: 3159440694739109376, guid: 49a8134b315266b499e9cfa17f3299c2, type: 3}
+  spikesAudioPrefab: {fileID: 3159440694739109376, guid: 444c88dec21928b4086cae1e9567fa1c, type: 3}
+  drinkAudioPrefab: {fileID: 3159440694739109376, guid: 632b8032c21734b4a82d71eaf91f0b4b, type: 3}
 --- !u!1 &865027866
 GameObject:
   m_ObjectHideFlags: 0

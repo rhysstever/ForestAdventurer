@@ -8,8 +8,6 @@ public class AudioManager : MonoBehaviour
 
     // Set in inspector
     [SerializeField]
-    private Transform audioParentTrans;
-    [SerializeField]
     private List<GameObject> damageTakenAudioPrefabs;
     [SerializeField]
     private List<GameObject> damageBlockedAudioPrefabs;
@@ -17,8 +15,8 @@ public class AudioManager : MonoBehaviour
     private GameObject healAudioPrefab;
     [SerializeField]
     private List<GameObject> attackAudioPrefabs;
-    [SerializeField]
-    private GameObject allyAudioPrefab;
+    [SerializeField]    // Ally audio prefabs
+    private GameObject squirrelAudioPrefab, frogAudioPrefab, ratAudioPrefab, newtAudioPrefab, toadAudioPrefab, porcupineAudioPrefab, hamsterAudioPrefab;
     [SerializeField]
     private GameObject spellAttackAudioPrefab;
     [SerializeField]
@@ -35,7 +33,8 @@ public class AudioManager : MonoBehaviour
     public delegate void OnAudioDelegate();
     public static OnAudioDelegate onAttackAudioDelegate;
     public static OnAudioDelegate onDefendAudioDelegate;
-    public static OnAudioDelegate onAllyAudioDelegate;
+    public static OnAudioDelegate onSquirrelAudioDelegate, onFrogAudioDelegate, onRatAudioDelegate, 
+        onNewtAudioDelegate, onToadAudioDelegate, onPorcupineAudioDelegate, onHamsterAudioDelegate;
     public static OnAudioDelegate onSpellAttackAudioDelegate;
     public static OnAudioDelegate onDrinkAudioDelegate;
     public static OnAudioDelegate onHealAudioDelegate;
@@ -55,7 +54,16 @@ public class AudioManager : MonoBehaviour
 
         onAttackAudioDelegate += PlayAttackAudio;
         onDefendAudioDelegate += PlayGiveDefenseAudio;
-        // TODO: setup ally audio delegate
+
+        // Ally audio delegates
+        onSquirrelAudioDelegate += PlaySquirrelAudio;
+        onFrogAudioDelegate += PlayFrogAudio;
+        onRatAudioDelegate += PlayRatAudio;
+        onNewtAudioDelegate += PlayNewtAudio;
+        onToadAudioDelegate += PlayToadAudio;
+        onPorcupineAudioDelegate += PlayPorcupineAudio;
+        onHamsterAudioDelegate += PlayHamsterAudio;
+
         onSpellAttackAudioDelegate += PlaySpellAttackAudio;
         onDrinkAudioDelegate += PlayDrinkAudio;
         onHealAudioDelegate += PlayHealAudio;
@@ -74,10 +82,42 @@ public class AudioManager : MonoBehaviour
         CreateAudioObject(giveDefenseAudioPrefab);
     }
 
-    public void PlayAllyAudio()
+    #region Ally Audio
+    public void PlaySquirrelAudio()
     {
-        CreateAudioObject(allyAudioPrefab);
+        CreateAudioObject(squirrelAudioPrefab);
     }
+
+    public void PlayFrogAudio()
+    {
+        CreateAudioObject(frogAudioPrefab);
+    }
+
+    public void PlayRatAudio()
+    {
+        CreateAudioObject(ratAudioPrefab);
+    }
+
+    public void PlayNewtAudio()
+    {
+        CreateAudioObject(newtAudioPrefab);
+    }
+
+    public void PlayToadAudio()
+    {
+        CreateAudioObject(toadAudioPrefab);
+    }
+
+    public void PlayPorcupineAudio()
+    {
+        CreateAudioObject(porcupineAudioPrefab);
+    }
+
+    public void PlayHamsterAudio()
+    {
+        CreateAudioObject(hamsterAudioPrefab);
+    }
+    #endregion Ally Audio
 
     public void PlaySpellAttackAudio()
     {
@@ -123,6 +163,6 @@ public class AudioManager : MonoBehaviour
 
     private void CreateAudioObject(GameObject audioPrefab)
     {
-        Instantiate(audioPrefab, audioParentTrans);
+        Instantiate(audioPrefab, transform);
     }
 }
