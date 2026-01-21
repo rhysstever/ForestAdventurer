@@ -121,7 +121,6 @@ public class Unit : MonoBehaviour
             return;
         }
 
-        AudioManager.instance.PlayGiveDefenseAudio();
         currentDefense += amount;
         UpdateDefenseUIText();
     }

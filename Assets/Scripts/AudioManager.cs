@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -9,13 +10,15 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private Transform audioParentTrans;
     [SerializeField]
-    private GameObject damageTakenAudioPrefab;
+    private List<GameObject> damageTakenAudioPrefabs;
     [SerializeField]
-    private GameObject damageBlockedAudioPrefab;
+    private List<GameObject> damageBlockedAudioPrefabs;
     [SerializeField]
     private GameObject healAudioPrefab;
     [SerializeField]
-    private GameObject attackAudioPrefab;
+    private List<GameObject> attackAudioPrefabs;
+    [SerializeField]
+    private GameObject allyAudioPrefab;
     [SerializeField]
     private GameObject spellAttackAudioPrefab;
     [SerializeField]
@@ -28,6 +31,18 @@ public class AudioManager : MonoBehaviour
     private GameObject poisonAudioPrefab;
     [SerializeField]
     private GameObject spikesAudioPrefab;
+    [SerializeField]
+    private GameObject drinkAudioPrefab;
+
+    public delegate void OnAudioDelegate();
+    public static OnAudioDelegate onAttackAudioDelegate;
+    public static OnAudioDelegate onDefendAudioDelegate;
+    public static OnAudioDelegate onAllyAudioDelegate;
+    public static OnAudioDelegate onSpellAttackAudioDelegate;
+    public static OnAudioDelegate onSpellBuffAudioDelegate;
+    public static OnAudioDelegate onDrinkAudioDelegate;
+    // Placeholder
+    public static OnAudioDelegate onEmptyAudioDelegate = delegate { };
 
     private void Awake()
     {
@@ -39,55 +54,77 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    public void PlayDamageTakenAudio()
-    {
-        //Instantiate(damageTakenAudioPrefab, audioParentTrans);
-    }
-
-    public void PlayDamageBlockedAudio()
-    {
-        //Instantiate(damageBlockedAudioPrefab, audioParentTrans);
-    }
-
-    public void PlayHealAudio()
-    {
-        //Instantiate(healAudioPrefab, audioParentTrans);
+        onAttackAudioDelegate += PlayAttackAudio;
+        onDefendAudioDelegate += PlayGiveDefenseAudio;
+        onDrinkAudioDelegate += PlayDrinkAudio;
     }
 
     public void PlayAttackAudio()
     {
-        //Instantiate(attackAudioPrefab, audioParentTrans);
-    }
-
-    public void PlaySpellAttackAudio()
-    {
-        //Instantiate(spellAttackAudioPrefab, audioParentTrans);
-    }
-
-    public void PlaySpellBuffAudio()
-    {
-        //Instantiate(spellBuffAudioPrefab, audioParentTrans);
+        int randIndex = Random.Range(0, attackAudioPrefabs.Count);
+        CreateAudioObject(attackAudioPrefabs[randIndex]);
     }
 
     public void PlayGiveDefenseAudio()
     {
-        //Instantiate(giveDefenseAudioPrefab, audioParentTrans);
+        CreateAudioObject(giveDefenseAudioPrefab);
+    }
+
+    public void PlayAllyAudio()
+    {
+        CreateAudioObject(allyAudioPrefab);
+    }
+
+    public void PlaySpellAttackAudio()
+    {
+        CreateAudioObject(spellAttackAudioPrefab);
+    }
+
+    public void PlaySpellBuffAudio()
+    {
+        CreateAudioObject(spellBuffAudioPrefab);
+    }
+
+    public void PlayHealAudio()
+    {
+        CreateAudioObject(healAudioPrefab);
+    }
+
+    public void PlayDrinkAudio()
+    {
+        CreateAudioObject(drinkAudioPrefab);
+    }
+
+    public void PlayDamageTakenAudio()
+    {
+        int randIndex = Random.Range(0, damageTakenAudioPrefabs.Count);
+        CreateAudioObject(damageTakenAudioPrefabs[randIndex]);
+    }
+
+    public void PlayDamageBlockedAudio()
+    {
+        int randIndex = Random.Range(0, damageBlockedAudioPrefabs.Count);
+        CreateAudioObject(damageBlockedAudioPrefabs[randIndex]);
     }
 
     public void PlayBurnAudio()
     {
-        //Instantiate(burnAudioPrefab, audioParentTrans);
+        CreateAudioObject(burnAudioPrefab);
     }
 
     public void PlayPoisonAudio()
     {
-        //Instantiate(poisonAudioPrefab, audioParentTrans);
+        CreateAudioObject(poisonAudioPrefab);
     }
 
     public void PlaySpikesAudio()
     {
-        //Instantiate(spikesAudioPrefab, audioParentTrans);
+        CreateAudioObject(spikesAudioPrefab);
+    }
+
+    private void CreateAudioObject(GameObject audioPrefab)
+    {
+        Instantiate(audioPrefab, audioParentTrans);
     }
 }

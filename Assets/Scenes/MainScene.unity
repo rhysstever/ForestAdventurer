@@ -1063,6 +1063,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5105779831913063137, guid: ade7b5a67128e254a9112d9588ffe236, type: 3}
   playerPostion: {fileID: 848342543}
+  currentMenuState: 0
+  currentGameState: 0
+  currentCombatState: 0
 --- !u!114 &231419616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,16 +1225,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioParentTrans: {fileID: 236213884}
-  damageTakenAudioPrefab: {fileID: 3159440694739109376, guid: 38460d66f16cfed43826a79dab454448, type: 3}
-  damageBlockedAudioPrefab: {fileID: 3159440694739109376, guid: 041655a2dd3b72f41a2e0422b516a77a, type: 3}
+  damageTakenAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: 38460d66f16cfed43826a79dab454448, type: 3}
+  - {fileID: 3159440694739109376, guid: ad31175486fb9274d9b3782ecec0201b, type: 3}
+  - {fileID: 3159440694739109376, guid: 1911ea9b01042054ba573bd14f57eb5d, type: 3}
+  damageBlockedAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: 041655a2dd3b72f41a2e0422b516a77a, type: 3}
+  - {fileID: 3159440694739109376, guid: a2df83f7c369a4d4fb2a44e48f3e06e9, type: 3}
+  - {fileID: 3159440694739109376, guid: 490c352fdbcf3f3498a7d8d08f0dc559, type: 3}
   healAudioPrefab: {fileID: 3159440694739109376, guid: f317700dc62ed694791e132e708189a0, type: 3}
-  attackAudioPrefab: {fileID: 3159440694739109376, guid: 07cd35976304c4e4cba4a484c2b35325, type: 3}
+  attackAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: 22f914201598e614690f132470ee6f4d, type: 3}
+  - {fileID: 3159440694739109376, guid: 0d5204ce1ae2c7c46852de20a0717bd8, type: 3}
+  - {fileID: 3159440694739109376, guid: 27c2d77e99e43c046b063226e3886475, type: 3}
   spellAttackAudioPrefab: {fileID: 3159440694739109376, guid: 0dedf518e3fac3a409b78e6b640ed51d, type: 3}
   spellBuffAudioPrefab: {fileID: 3159440694739109376, guid: e35691bcaa565a746860eb8bbdc6c347, type: 3}
-  giveDefenseAudioPrefab: {fileID: 3159440694739109376, guid: 200e456c274b44f4a9cf074a36abe3d4, type: 3}
+  giveDefenseAudioPrefab: {fileID: 3159440694739109376, guid: fd61582cd3c805e46ac5d2f0b8b2f970, type: 3}
   burnAudioPrefab: {fileID: 3159440694739109376, guid: a0db8def48b6f3a42bac9d76413c12ec, type: 3}
   poisonAudioPrefab: {fileID: 3159440694739109376, guid: 49a8134b315266b499e9cfa17f3299c2, type: 3}
   spikesAudioPrefab: {fileID: 3159440694739109376, guid: 444c88dec21928b4086cae1e9567fa1c, type: 3}
+  drinkAudioPrefab: {fileID: 3159440694739109376, guid: 632b8032c21734b4a82d71eaf91f0b4b, type: 3}
 --- !u!114 &231419623
 MonoBehaviour:
   m_ObjectHideFlags: 0

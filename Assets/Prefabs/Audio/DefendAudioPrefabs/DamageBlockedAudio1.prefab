@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8920303947866126034}
   - component: {fileID: 527563286034370381}
   m_Layer: 0
-  m_Name: DamageBlockedAudio
+  m_Name: DamageBlockedAudio1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 8aea3b996a8e5e0488028640f00bbd96, type: 3}
+  m_Resource: {fileID: 8300000, guid: 07ec1e020f069c34e8f6fce2e0b1b7eb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
