@@ -83,7 +83,7 @@ public class CardManager : MonoBehaviour
             // Burn: "Burn for X"
             // Poison: "Poison for X"
             // Gain Spikes: "Spike for X"
-            // Draw Cards: "Draw X cards"
+            // Draw Cards: "Draw X cards"   // TODO: implement drawing
             // Cleanse Debuffs: "Cleanse"
 
             // Main hand cards
@@ -116,7 +116,7 @@ public class CardManager : MonoBehaviour
             //new CardData("Bunny", Slot.Ally, Rarity.Rare, TargetType.Self, "Some magic... nothing yet"),
             new CardData("Toad", Slot.Ally, Rarity.Rare, TargetType.Unit, onAllyAudioDelegate, "Heal for 1. Poison for 1"),
             new CardData("Porcupine", Slot.Ally, Rarity.Rare, TargetType.None, onAllyAudioDelegate, "Spike for 1"),
-            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, onAllyAudioDelegate, "Draw 1 card"),
+            new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, onAllyAudioDelegate, "Heal for 3"),   // TODO: change to "Draw 1 card" when drawing is implemented
 
             // Spirit cards
             new CardData("Earth Spirit", Slot.Spirit, Rarity.Starter, TargetType.Self, onDefendAudioDelegate, "Defend for 2"),
@@ -137,7 +137,7 @@ public class CardManager : MonoBehaviour
 
             // Drink cards
             new CardData("Cup", Slot.Drink, Rarity.Starter, TargetType.Self, onDrinkAudioDelegate, "Heal for 1"),
-            new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, onDrinkAudioDelegate, "Draw 1 card"),
+            new CardData("Pouch", Slot.Drink, Rarity.Common, TargetType.Self, onDrinkAudioDelegate, "Heal for 1"), // TODO: change to "Draw 1 card" when drawing is implemented
             new CardData("Tankard", Slot.Drink, Rarity.Common, TargetType.None, onDrinkAudioDelegate, "Heal for 1. Attack for 1, randomly"),
             new CardData("Goblet", Slot.Drink, Rarity.Common, TargetType.Self, onDrinkAudioDelegate, "Heal for 2"),
             new CardData("Potion", Slot.Drink, Rarity.Rare, TargetType.Self, onDrinkAudioDelegate, "Heal for 4"),
