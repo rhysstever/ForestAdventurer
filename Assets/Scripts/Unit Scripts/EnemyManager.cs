@@ -91,7 +91,10 @@ public class EnemyManager : MonoBehaviour
         while(enemyIndex < enemies.Count)
         {
             yield return enemyDelayWait;
-            enemies[enemyIndex].PerformRoundAction();
+            if(enemies[enemyIndex].CurrentLife > 0)
+            {
+                enemies[enemyIndex].PerformRoundAction();
+            }
             enemyIndex++;
         }
 

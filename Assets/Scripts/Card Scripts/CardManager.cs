@@ -119,12 +119,12 @@ public class CardManager : MonoBehaviour
             new CardData("Hamster", Slot.Ally, Rarity.Rare, TargetType.Unit, onAllyAudioDelegate, "Draw 1 card"),
 
             // Spirit cards
-            new CardData("Earth Spirit", Slot.Spirit, Rarity.Starter, TargetType.Self, onSpellBuffAudioDelegate, "Defend for 2"),
-            new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, onSpellBuffAudioDelegate, "Attack for 1, randomly, 2 times"),
-            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, onSpellAttackAudioDelegate, "Burn for 2"),
-            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, onSpellAttackAudioDelegate, "Heal for 2"),
-            new CardData("Light Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, onSpellAttackAudioDelegate, "Heal for 4"),
-            new CardData("Dark Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, onSpellAttackAudioDelegate, "Poison for 4"),
+            new CardData("Earth Spirit", Slot.Spirit, Rarity.Starter, TargetType.Self, onDefendAudioDelegate, "Defend for 2"),
+            new CardData("Air Spirit", Slot.Spirit, Rarity.Common, TargetType.None, onAttackAudioDelegate, "Attack for 1, randomly, 2 times"),
+            new CardData("Fire Spirit", Slot.Spirit, Rarity.Common, TargetType.Unit, onBurnAudioDelegate, "Burn for 2"),
+            new CardData("Water Spirit", Slot.Spirit, Rarity.Common, TargetType.Self, onHealAudioDelegate, "Heal for 2"),
+            new CardData("Light Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, onHealAudioDelegate, "Heal for 4"),
+            new CardData("Dark Spirit", Slot.Spirit, Rarity.Rare, TargetType.Unit, onPoisonAudioDelegate, "Poison for 4"),
 
             // Spell cards
             new CardData("Arcane Bolt", Slot.Spell, Rarity.Starter, TargetType.None, onSpellAttackAudioDelegate, "Attack for 1, randomly"),

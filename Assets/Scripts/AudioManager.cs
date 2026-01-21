@@ -22,8 +22,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private GameObject spellAttackAudioPrefab;
     [SerializeField]
-    private GameObject spellBuffAudioPrefab;
-    [SerializeField]
     private GameObject giveDefenseAudioPrefab;
     [SerializeField]
     private GameObject burnAudioPrefab;
@@ -39,10 +37,10 @@ public class AudioManager : MonoBehaviour
     public static OnAudioDelegate onDefendAudioDelegate;
     public static OnAudioDelegate onAllyAudioDelegate;
     public static OnAudioDelegate onSpellAttackAudioDelegate;
-    public static OnAudioDelegate onSpellBuffAudioDelegate;
     public static OnAudioDelegate onDrinkAudioDelegate;
-    // Placeholder
-    public static OnAudioDelegate onEmptyAudioDelegate = delegate { };
+    public static OnAudioDelegate onHealAudioDelegate;
+    public static OnAudioDelegate onBurnAudioDelegate;
+    public static OnAudioDelegate onPoisonAudioDelegate;
 
     private void Awake()
     {
@@ -57,7 +55,12 @@ public class AudioManager : MonoBehaviour
 
         onAttackAudioDelegate += PlayAttackAudio;
         onDefendAudioDelegate += PlayGiveDefenseAudio;
+        // TODO: setup ally audio delegate
+        onSpellAttackAudioDelegate += PlaySpellAttackAudio;
         onDrinkAudioDelegate += PlayDrinkAudio;
+        onHealAudioDelegate += PlayHealAudio;
+        onBurnAudioDelegate += PlayBurnAudio;
+        onPoisonAudioDelegate += PlayPoisonAudio;
     }
 
     public void PlayAttackAudio()
@@ -79,11 +82,6 @@ public class AudioManager : MonoBehaviour
     public void PlaySpellAttackAudio()
     {
         CreateAudioObject(spellAttackAudioPrefab);
-    }
-
-    public void PlaySpellBuffAudio()
-    {
-        CreateAudioObject(spellBuffAudioPrefab);
     }
 
     public void PlayHealAudio()

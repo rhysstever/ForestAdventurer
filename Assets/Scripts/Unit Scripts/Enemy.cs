@@ -76,7 +76,6 @@ public class Enemy : Unit
 
     private void PerformAction(string actionString, int actionAmount)
     {
-
         switch(actionString.Split(" ")[0])
         {
             case "Attack":
@@ -87,6 +86,7 @@ public class Enemy : Unit
                 Heal(actionAmount);
                 break;
             case "Defend":
+                AudioManager.instance.PlayGiveDefenseAudio();
                 GiveDefense(actionAmount);
                 break;
             case "Burn":
@@ -96,7 +96,6 @@ public class Enemy : Unit
                 GameManager.instance.Player.GivePoison(actionAmount);
                 break;
             case "Summon":
-                Debug.Log(string.Format("Enemy {0} is summoning {1} enemies!", gameObject.name, actionAmount));
                 if(enemySummonPrefab == null)
                 {
                     Debug.Log(string.Format("Error! No enemy summon prefab found!"));
