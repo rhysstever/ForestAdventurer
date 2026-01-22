@@ -131,6 +131,7 @@ public class Enemy : Unit
         if(currentLife <= 0)
         {
             EnemyManager.instance.CheckIfWaveIsOver();
+            AudioManager.instance.PlayDeathAudio();
             Destroy(gameObject);
         }
     }

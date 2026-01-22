@@ -29,6 +29,7 @@ public class Player : Unit
         {
             currentLife = 0;
             UpdateLifeUIText();
+            AudioManager.instance.PlayDeathAudio();
             GameManager.instance.ChangeMenuState(MenuState.GameEnd);
         }
     }

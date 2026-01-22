@@ -60,7 +60,10 @@ public class Unit : MonoBehaviour
                 // subtract the difference from the unit's health
                 currentLife -= (amount - currentDefense);
                 currentDefense = 0;
-                AudioManager.instance.PlayDamageTakenAudio();
+                if(currentLife > 0)
+                {
+                    AudioManager.instance.PlayDamageTakenAudio();
+                }
             }
             else
             {
@@ -76,6 +79,10 @@ public class Unit : MonoBehaviour
         else
         {
             currentLife -= amount;
+            if(currentLife > 0)
+            {
+                AudioManager.instance.PlayDamageTakenAudio();
+            }
         }
 
         // If the damage type is an attack or spell, there is an attacker, and the unit has spikes,

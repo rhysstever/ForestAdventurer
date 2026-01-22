@@ -3494,6 +3494,10 @@ MonoBehaviour:
   - {fileID: 3159440694739109376, guid: 041655a2dd3b72f41a2e0422b516a77a, type: 3}
   - {fileID: 3159440694739109376, guid: a2df83f7c369a4d4fb2a44e48f3e06e9, type: 3}
   - {fileID: 3159440694739109376, guid: 490c352fdbcf3f3498a7d8d08f0dc559, type: 3}
+  deathAudioPrefabs:
+  - {fileID: 3159440694739109376, guid: cd837fff6bb28af4393a2d694823d6ba, type: 3}
+  - {fileID: 3159440694739109376, guid: 197200a2a20b668409ff6571c65f9332, type: 3}
+  - {fileID: 3159440694739109376, guid: b50697403925a2e47917a37a18b35eb4, type: 3}
   healAudioPrefab: {fileID: 3159440694739109376, guid: f317700dc62ed694791e132e708189a0, type: 3}
   attackAudioPrefabs:
   - {fileID: 3159440694739109376, guid: 22f914201598e614690f132470ee6f4d, type: 3}

@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> damageBlockedAudioPrefabs;
     [SerializeField]
+    private List<GameObject> deathAudioPrefabs;
+    [SerializeField]
     private GameObject healAudioPrefab;
     [SerializeField]
     private List<GameObject> attackAudioPrefabs;
@@ -144,6 +146,12 @@ public class AudioManager : MonoBehaviour
     {
         int randIndex = Random.Range(0, damageBlockedAudioPrefabs.Count);
         CreateAudioObject(damageBlockedAudioPrefabs[randIndex]);
+    }
+
+    public void PlayDeathAudio()
+    {
+        int randIndex = Random.Range(0, deathAudioPrefabs.Count);
+        CreateAudioObject(deathAudioPrefabs[randIndex]);
     }
 
     public void PlayBurnAudio()
