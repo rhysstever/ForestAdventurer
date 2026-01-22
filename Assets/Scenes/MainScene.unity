@@ -3502,10 +3502,10 @@ MonoBehaviour:
   squirrelAudioPrefab: {fileID: 3159440694739109376, guid: d52e1ad0b8d8d1d4d9342c51507ca8b5, type: 3}
   frogAudioPrefab: {fileID: 3159440694739109376, guid: d8dab014028b45341ab626f811251086, type: 3}
   ratAudioPrefab: {fileID: 3159440694739109376, guid: a36481e55798f5e49ad8c123bb99bf16, type: 3}
-  newtAudioPrefab: {fileID: 3159440694739109376, guid: a36481e55798f5e49ad8c123bb99bf16, type: 3}
+  newtAudioPrefab: {fileID: 3159440694739109376, guid: 663971c8fd2b83e489905792929bc56c, type: 3}
   toadAudioPrefab: {fileID: 3159440694739109376, guid: 6ab3e4527bbac194ea447920c72f774a, type: 3}
-  porcupineAudioPrefab: {fileID: 3159440694739109376, guid: a36481e55798f5e49ad8c123bb99bf16, type: 3}
-  hamsterAudioPrefab: {fileID: 3159440694739109376, guid: a36481e55798f5e49ad8c123bb99bf16, type: 3}
+  porcupineAudioPrefab: {fileID: 3159440694739109376, guid: beacddaa513271241a58c805a541fbd8, type: 3}
+  hamsterAudioPrefab: {fileID: 3159440694739109376, guid: c74713a226071fc45827ef9c5ed10e84, type: 3}
   spellAttackAudioPrefab: {fileID: 3159440694739109376, guid: 0dedf518e3fac3a409b78e6b640ed51d, type: 3}
   giveDefenseAudioPrefab: {fileID: 3159440694739109376, guid: fd61582cd3c805e46ac5d2f0b8b2f970, type: 3}
   burnAudioPrefab: {fileID: 3159440694739109376, guid: a0db8def48b6f3a42bac9d76413c12ec, type: 3}
