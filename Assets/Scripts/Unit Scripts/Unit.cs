@@ -215,6 +215,10 @@ public class Unit : MonoBehaviour
             currentPoison--;
             UpdateEffectsUI();
         }
+
+        DeckManager.instance.DealHand();
+        yield return effectTriggerToDamageDelayWait;
+        EnemyManager.instance.GetCurrentEnemiesInScene().ForEach(e => e.UpdateNextActionUI());
     }
 
     protected void UpdateLifeUIText()
