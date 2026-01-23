@@ -89,7 +89,7 @@ public class EnemyManager : MonoBehaviour
         WaitForSeconds enemyDelayWait = new WaitForSeconds(1);
         WaitForSeconds endOfEnemyTurnsDelayWait = new WaitForSeconds(1);
         int enemyIndex = 0;
-        while(enemyIndex < enemies.Count)
+        while(enemyIndex < enemies.Count && GameManager.instance.Player.CurrentLife > 0)
         {
             if(enemies[enemyIndex].CurrentLife > 0)
             {
@@ -99,14 +99,17 @@ public class EnemyManager : MonoBehaviour
             enemyIndex++;
         }
 
-        if(IsWaveOver())
+        if(GameManager.instance.Player.CurrentLife > 0)
         {
-            CheckIfWaveIsOver();
-        }
-        else
-        {
-            yield return endOfEnemyTurnsDelayWait;
-            GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
+            if(IsWaveOver())
+            {
+                CheckIfWaveIsOver();
+            }
+            else
+            {
+                yield return endOfEnemyTurnsDelayWait;
+                GameManager.instance.ChangeCombatState(CombatState.CombatPlayerTurn);
+            }
         }
     }
 
